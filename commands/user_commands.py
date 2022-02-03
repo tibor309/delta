@@ -7,9 +7,9 @@ import random
 import os
 import praw
 
-
 bot_token = os.environ['TOKEN']
 bot_prefix = os.environ['PREFIX']
+bot_color = os.environ['COLOR']
 reddit_id = os.environ['REDDIT_CLIENT_ID']
 reddit_secret = os.environ['REDDIT_CLIENT_SECRET']
 

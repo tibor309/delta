@@ -1,7 +1,6 @@
 import os
-
 bot_prefix = os.environ['PREFIX']
-bot_color = 0x17c6ff
+
 
 
 #####  Help commands  #####
@@ -13,7 +12,7 @@ mod_help = f"**Member commands**\n`{bot_prefix}kick [member] (reason)` - Kicks a
 
 admin_help = f"**Server commands**\n`{bot_prefix}servername [text]` - Change the server name\n\n**Role commands**\n`{bot_prefix}rolecreate [name]` - Create a role\n`{bot_prefix}roledel [name]` - Delete role\n\n**Channel commands**\n`{bot_prefix}channelcreate <text/voice> [name]` - Create channel\n`{bot_prefix}channeldel [name]` - Delete a channel"
 
-bot_help = f"`{bot_prefix}sudo [command] <command parameters>` - Execute a command as an another user\n`{bot_prefix}say [channel] [message]` - Send a message with the bot\n`{bot_prefix}react [emoji] [message_id]` - React to a message\n`{bot_prefix}guildinf` - Get info about the current server\n\n**Settings**\n`{bot_prefix}leaveguild [server_id]` - Leave a server\n`{bot_prefix}ping` - Check ping\n`{bot_prefix}setbot name` - Change bot name"
+
 
 ####################
 
@@ -32,14 +31,10 @@ role_no_role_mention_messages = ["Which role do you want to revoke?", "mention a
 nick_no_member_messages = ["Mention a member!", "who's nickname do you want to change?"]
 nick_no_nick_messages = ["to what?", "i think you don't know how to use this command.", "You forgot the nickname"]
 
-setname_no_name_messages = ["If you want to give me a new name, then give one", "what name?", "no name?"]
 
 role_no_user_messages = ["Mention a user!", "you forgot the user!"]
 role_no_revoke_role_mention_messages = ["Which role do you want to revoke?", "mention a role too", "You forgot the role."]
 role_no_give_role_mention_messages = ["Which role do you want to give?", "mention a role too", "You forgot the role."]
-
-sayid_no_channel_messages = ["Mention a channel!", "Mention a channel too", "you forgot to mention a channel."]
-sayid_no_text_messages = ["What do you want me to say?", "text?", "what"]
 
 whois_no_member_mention = ["Mention a member!", "Who is the target?", "You forgot to mention a member again."]
 

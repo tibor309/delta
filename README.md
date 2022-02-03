@@ -1,20 +1,24 @@
 # Splash
-This discord bot was made for me and my friends using discord.py. It currently still in development.
+This discord bot was made for me and my friends using discord.py. Splash is an advanced discord bot with moderation, fun, and antivirus functionalities.
 
-# Setup
-Install all dependecies with this command, then config the `.env` files. Thats all.
+## Setup
+Install all dependecies with the command below. Rename the `.env.example` file to simply `.env`, and edit it. Thats all.
 ```
 pip install -r requirements.txt
 ```
+## Antivirus
+Splash is able to filter out [malicious links](https://github.com/Tibor309/splash/blob/main/utils/blacklist.txt), and kick the message author. Theres gonna be a spam based filter too in the near furure.
 
-## Discord Activities
-Discord has released a beta feature that allows users to use slash commands, and create activities. At least one person needs to click on the <strong>blue link</strong>, and not the 'Play' button, in order to start the activity! Once the activity is started, people can join by clicking 'Play'. **All the generated invite links are valid for 10 mins!**
+## Discord activities
+Discord has released a beta feature that allows users to create vc activities. At least one person needs to click on the <strong>blue link</strong>, in order to start the activity! Once the activity is started, people can join by clicking **`Play`**. All the generated invite links are valid for 15 mins!
  
 The activities feature is only supported on web and updated PC app versions of Discord and is not supported on mobile.
 Multiple people clicking the blue link at once can cause a "Activity Ended" error screen, however it's not a common occurence.
 
 
 ![YouTube Together](https://cdn.discordapp.com/attachments/678298437854298122/860210751448547328/msedge_HpqALcJCcD.png)
+
+To start activities use the `/activity` command and optional commands. If the invite link is expired, people can still join from the vc.
 
 # Commands
 These commands can be used by the server members. The default prefix is `.`!
@@ -23,8 +27,9 @@ These commands can be used by the server members. The default prefix is `.`!
 | Command | Description |
 | --- | --- | 
 | `/activity <activity>` | Start an activity |
-| `/help <command>` | Get info abot commands |
+| `/help <command>` | Get info about commands |
 | `/avatar <user>` | Steal someones avatar |
+| `/meme <subreddit>` | Send memes |
 
 ## Moderator commands
 | Command | Description | Required perm |
@@ -38,9 +43,18 @@ These commands can be used by the server members. The default prefix is `.`!
 | `.lock (channel)` | Lock a channel | MANAGE_CHANNELS |
 | `.unlock (channel)` | Unock a channel | MANAGE_CHANNELS |
 | `.nick [member] [nickname]` | Change a member's nickname | MANAGE_NICKNAMES |
-| `.whois [member]` | Show data about a meber | MANAGE_NICKNAMES |
+| `.userinf [member]` | Shows stuff about a member | MANAGE_NICKNAMES |
+| `.vcmute` | Mutes everyone in the current vc | MUTE_MEMBERS |
+| `.vcunmute` | Unmutes everyone in the current vc | MUTE_MEMBERS |
+| `.slowmode` | Set channel slowmode | MANAGE_CHANNELS |
 
 ## Admin commands
 | Command | Description | Required perm |
 | --- | --- | --- |
 | `.servername [name]` | Change the server name | MANAGE_GULD |
+| `.rolecreate [permission id] [name]` | Create a role | MANAGE_ROLES |
+| `.roledel [role name]` | Delete a role | MANAGE_ROLES |
+| `.channelcreate <text/voice> [name]` | Create a channel| MANAGE_CHANNELS |
+| `.channeldel [channel name]` | Delete a channel | MANAGE_ROLES |
+
+To generate a permission id, use [this](https://discordapi.com/permissions.html) website!

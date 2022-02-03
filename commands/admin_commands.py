@@ -24,8 +24,10 @@ class admin(commands.Cog):
   ##### Rolecreate
   @commands.command(no_pm=True)
   @commands.has_permissions(manage_roles=True, manage_guild=True)
-  async def rolecreate(self, ctx, perm:int=521942715968, *, name = None):
-    if name == None:
+  async def rolecreate(self, ctx, perm:int=None, *, name = None):
+    if perm == None:
+      await ctx.reply("If you don't have one, you can generate one here, or use the default id `521942715968`\nhttps://discordapi.com/permissions.html")
+    elif name == None:
       await ctx.reply(random.choice(rolecreate_no_name_messages), mention_author = True)
     else:
       try:
@@ -34,7 +36,7 @@ class admin(commands.Cog):
         rolecreate_created_messages = [f"The {name} role has been created!", "Done!", f"Created {name} role"]
         await ctx.reply(random.choice(rolecreate_created_messages), mention_author=False)
       except:
-        await ctx.reply("Thats not a perm id. If you don't have one, you can generate one here\nhttps://discordapi.com/permissions.html")
+        await ctx.reply("Thats not a perm id.")
 
 
   ##### Roledel
