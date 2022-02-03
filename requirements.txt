@@ -1,0 +1,9 @@
+aiohttp
+discord.py
+dislash.py
+Flask
+discord-together
+praw
+PyNaCl
+youtube_dl
+pafy
