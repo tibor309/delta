@@ -1,5 +1,6 @@
 import os
 bot_prefix = os.environ['PREFIX']
+bot_color = 0x17c6ff
 
 
 

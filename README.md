@@ -1,5 +1,5 @@
 # Splash
-This discord bot was made for me and my friends using discord.py. Splash is an advanced discord bot with moderation, fun, and antivirus functionalities.
+This discord bot was made for me and my friends using discord.py. Splash is an advanced discord bot with moderation, general, fun, and antivirus functionalities.
 
 ## Setup
 Install all dependecies with the command below. Rename the `.env.example` file to simply `.env`, and edit it. Thats all.
@@ -7,7 +7,7 @@ Install all dependecies with the command below. Rename the `.env.example` file t
 pip install -r requirements.txt
 ```
 ## Antivirus
-Splash is able to filter out [malicious links](https://github.com/Tibor309/splash/blob/main/utils/blacklist.txt), and kick the message author. Theres gonna be a spam based filter too in the near furure.
+Splash is able to filter out [malicious links](https://github.com/Tibor309/splash/blob/main/utils/blacklist.txt), and kick the message author. *Theres gonna be a spam based filter too in the near furure.*
 
 ## Discord activities
 Discord has released a beta feature that allows users to create vc activities. At least one person needs to click on the <strong>blue link</strong>, in order to start the activity! Once the activity is started, people can join by clicking **`Play`**. All the generated invite links are valid for 15 mins!

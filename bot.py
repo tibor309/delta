@@ -15,7 +15,6 @@ import mobile_status ## Mobile status patch
 bot_token = os.environ['TOKEN']
 bot_prefix = os.environ['PREFIX']
 bot_owner = os.environ['OWNER_ID']
-bot_color = os.environ['COLOR']
 
 
 client = commands.Bot(command_prefix=bot_prefix, intents=discord.Intents.all())
@@ -44,7 +43,7 @@ async def on_ready():
 @client.command()
 async def ping(ctx):
   embed=discord.Embed(description=f"<:folder2:902564322847383592> Base `{round(client.latency * 1000)}ms`",color=bot_color)
-  await asyncio.sleep(0,3)
+  await asyncio.sleep(0.3)
   await ctx.send(embed=embed)
 
 

@@ -9,7 +9,6 @@ import praw
 
 bot_token = os.environ['TOKEN']
 bot_prefix = os.environ['PREFIX']
-bot_color = os.environ['COLOR']
 reddit_id = os.environ['REDDIT_CLIENT_ID']
 reddit_secret = os.environ['REDDIT_CLIENT_SECRET']
 
@@ -63,7 +62,7 @@ class user(commands.Cog):
       else:
         embed = discord.Embed(description=admin_help, color=bot_color)
         embed.set_author(name="Admin commands", icon_url="https://i.imgur.com/QEKptpH.png")
-        embed.set_footer(text=f'{self.bot.user}  •  Commands are still work in progress!', icon_url=self.bot.user.avatar_url)
+        embed.set_footer(text=f'{self.bot.user}', icon_url=self.bot.user.avatar_url)
         await inter.reply(embed=embed)
 
     elif command == "music":
