@@ -194,9 +194,9 @@ class mod(commands.Cog):
     embed.add_field(name="User ID", value=f"||{member.id}||", inline=True)
     embed.add_field(name="Nitro user", value=f'```{bool(member.premium_since)}```', inline=True)
     roles = " ".join([role.mention for role in member.roles])
-    embed.add_field(name="Roles:", value=f"{roles}", inline=False)
-    embed.add_field(name="Account created",value=f'```{member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")}```', inline=False)
-    embed.add_field(name="Joined",value=f'```{member.joined_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")}```', inline=False)
+    embed.add_field(name="Roles", value=f"{roles}", inline=False)
+    embed.add_field(name="Account created on",value=f'```{member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")}```', inline=False)
+    embed.add_field(name="Joined on",value=f'```{member.joined_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")}```', inline=False)
     await ctx.reply(embed=embed, mention_author=False)
 
 

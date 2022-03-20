@@ -9,7 +9,7 @@ log.setLevel(logging.ERROR)
 
 @app.route('/')
 def main():
-  return "Server is online!"
+  return "Oh you found me! This page was made, so i can check when my discord bot is down. For more info check out my github page!"
   print("Server is online")
 
 def run():

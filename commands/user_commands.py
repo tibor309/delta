@@ -111,14 +111,16 @@ class user(commands.Cog):
     ]
   )
   async def avatar(self, inter, member=None):
-    avatar_messages = [f"Heres {member.name}'s avatar", "Here", f"As you requested, {member.name}'s avatar", "There you go ^w^"]
-    await inter.reply(f'{random.choice(avatar_messages)}\n{member.avatar_url}')
+    embed = discord.Embed(color=bot_color)
+    embed.set_image(url=member.avatar_url)
+    await inter.reply(embed=embed)
 
   ##ContextMenu
   @user_command(name="Grab avatar")
   async def grab_avatar(self, inter: ContextMenuInteraction):
-    avatar_messages = [f"Heres {inter.user.name}'s avatar", "Here", f"As you requested, {inter.user.name}'s avatar", "There you go ^w^"]
-    await inter.respond(f"{random.choice(avatar_messages)}\n{inter.user.avatar_url}", ephemeral=False)
+    embed = discord.Embed(color=bot_color)
+    embed.set_image(url=inter.user.avatar_url)
+    await inter.reply(embed=embed)
 
 
 

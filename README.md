@@ -1,20 +1,20 @@
-# Splash
-This discord bot was made for me and my friends using discord.py. Splash is an advanced discord bot with moderation, general, fun, and antivirus functionalities.
+# :ocean: Splash
+This discord bot was made for me and my friends using discord.py. Splash is an advanced discord bot with moderation, general and funfunctionalities.
 
 ## Setup
 Install all dependecies with the command below. Rename the `.env.example` file to simply `.env`, and edit it. Thats all.
 ```
 pip install -r requirements.txt
 ```
-## Antivirus
-Splash is able to filter out [malicious links](https://github.com/Tibor309/splash/blob/main/utils/blacklist.txt), and kick the message author. *Theres gonna be a spam based filter too in the near furure.*
+
+## Memes
+If you want to see some memes, you can use the `/meme` command to post one directly from reddit!
 
 ## Discord activities
-Discord has released a beta feature that allows users to create vc activities. At least one person needs to click on the <strong>blue link</strong>, in order to start the activity! Once the activity is started, people can join by clicking **`Play`**. All the generated invite links are valid for 15 mins!
+Discord has released a beta feature that allows users to create vc activities. At least one person needs to click on the <strong>blue link</strong>, in order to start the activity! Once the activity is started, people can join by clicking <kbd>Join</kbd>. All the generated invite links are valid for 15 mins!
  
 The activities feature is only supported on web and updated PC app versions of Discord and is not supported on mobile.
 Multiple people clicking the blue link at once can cause a "Activity Ended" error screen, however it's not a common occurence.
-
 
 ![YouTube Together](https://cdn.discordapp.com/attachments/678298437854298122/860210751448547328/msedge_HpqALcJCcD.png)
 
@@ -23,6 +23,12 @@ To start activities use the `/activity` command and optional commands. If the in
 # Commands
 These commands can be used by the server members. The default prefix is `.`!
 
+<details>
+<summary>
+  Show
+</summary>
+
+## General commands
 
 | Command | Description |
 | --- | --- | 
@@ -32,6 +38,7 @@ These commands can be used by the server members. The default prefix is `.`!
 | `/meme <subreddit>` | Send memes |
 
 ## Moderator commands
+
 | Command | Description | Required perm |
 | --- | --- | --- |
 | `.kick [member] (reason)` | Kick a member from the server | KICK_MEMBERS |
@@ -49,6 +56,7 @@ These commands can be used by the server members. The default prefix is `.`!
 | `.slowmode` | Set channel slowmode | MANAGE_CHANNELS |
 
 ## Admin commands
+
 | Command | Description | Required perm |
 | --- | --- | --- |
 | `.servername [name]` | Change the server name | MANAGE_GULD |
@@ -58,3 +66,5 @@ These commands can be used by the server members. The default prefix is `.`!
 | `.channeldel [channel name]` | Delete a channel | MANAGE_ROLES |
 
 To generate a permission id, use [this](https://discordapi.com/permissions.html) website!
+
+</details>

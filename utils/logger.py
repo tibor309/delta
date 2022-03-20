@@ -19,10 +19,10 @@ class logger(commands.Cog):
 
 
   ##### Errors
-  @commands.Cog.listener()
-  async def on_command_error(self, ctx, error):
-    if isinstance(error, commands.CommandNotFound):
-      pass
+  #commands.Cog.listener()
+  #async def on_command_error(self, ctx, error):
+  #  if isinstance(error, commands.CommandNotFound):
+  #    pass
 
 
 

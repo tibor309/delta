@@ -42,7 +42,7 @@ async def on_ready():
 ##### Ping
 @client.command()
 async def ping(ctx):
-  embed=discord.Embed(description=f"<:folder2:902564322847383592> Base `{round(client.latency * 1000)}ms`",color=bot_color)
+  embed=discord.Embed(description=f"<:folder2:902564322847383592> **Commands** `{round(client.latency * 1000)}ms`",color=bot_color)
   await asyncio.sleep(0.3)
   await ctx.send(embed=embed)
 
