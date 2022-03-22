@@ -1,12 +1,19 @@
 import discord
 from discord.ext import commands
-import random
 
-guild_id = 380315051879432202
+guild_id = 380315051879432202 # My server
+
+#
+# Custom commands for servers
+# These commands can't be used in other servers
+#
+
+
 
 class da_server(commands.Cog):
   def __init__(self, client):
     self.client = client
+
 
 
   @commands.command(pass_context=True)

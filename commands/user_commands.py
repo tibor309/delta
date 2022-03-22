@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord_together import DiscordTogether
 from dislash import *
-from messages import *
+from config import *
 import random
 import os
 import praw
@@ -45,7 +45,7 @@ class user(commands.Cog):
 
     elif command == "mod":
       if isinstance(inter.channel, discord.channel.DMChannel):
-        await inter.reply(random.choice(unusable_cmd_in_dms_messages))  
+        await inter.reply(random.choice(unusable_cmd_in_dms))  
       elif not inter.author.guild_permissions.manage_permissions:
         await inter.reply(random.choice(no_mod_messages))
       else:
@@ -56,7 +56,7 @@ class user(commands.Cog):
 
     elif command == "admin":
       if isinstance(inter.channel, discord.channel.DMChannel):
-        await inter.respond(random.choice(unusable_cmd_in_dms_messages))  
+        await inter.respond(random.choice(unusable_cmd_in_dms))  
       if not inter.author.guild_permissions.manage_guild:
         await inter.respond(random.choice(no_admin_messages))
       else:

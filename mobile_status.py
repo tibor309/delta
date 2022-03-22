@@ -10,6 +10,7 @@ but those 2 seem to trigger the mobile indicator.
 
 w/ Hikari: https://github.com/norinorin/nokari/blob/master/nokari/utils/monkey_patch.py
 """
+
 import ast
 import inspect
 import re
@@ -27,7 +28,7 @@ def source(o):
 source_ = source(discord.gateway.DiscordWebSocket.identify)
 patched = re.sub(
     r'([\'"]\$browser[\'"]:\s?[\'"]).+([\'"])',  # hh this regex
-    r"\1Discord Android\2",  # s: https://luna.gitlab.io/discord-unofficial-docs/mobile_indicator.html
+    r"\1Discord iOS\2",  # s: https://luna.gitlab.io/discord-unofficial-docs/mobile_indicator.html
     source_
 )
 

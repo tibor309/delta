@@ -7,6 +7,7 @@ class logger(commands.Cog):
     self.client = client
 
 
+
   ##### Logs
   @commands.Cog.listener()
   async def on_command(self, ctx):
@@ -19,10 +20,10 @@ class logger(commands.Cog):
 
 
   ##### Errors
-  #commands.Cog.listener()
-  #async def on_command_error(self, ctx, error):
-  #  if isinstance(error, commands.CommandNotFound):
-  #    pass
+  commands.Cog.listener()
+  async def on_command_error(self, ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+      pass
 
 
 

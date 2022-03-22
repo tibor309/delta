@@ -8,13 +8,13 @@ pip install -r requirements.txt
 ```
 
 ## Memes
-If you want to see some memes, you can use the `/meme` command to post one directly from reddit!
+If you want to see some memes, you can use the `/meme` command to post one directly from reddit! I don't know if you can use it in general chat tho.
 
 ## Discord activities
 Discord has released a beta feature that allows users to create vc activities. At least one person needs to click on the <strong>blue link</strong>, in order to start the activity! Once the activity is started, people can join by clicking <kbd>Join</kbd>. All the generated invite links are valid for 15 mins!
  
 The activities feature is only supported on web and updated PC app versions of Discord and is not supported on mobile.
-Multiple people clicking the blue link at once can cause a "Activity Ended" error screen, however it's not a common occurence.
+Multiple people clicking the blue link at once can cause an "Activity Ended" error screen, however it's not a common occurence.
 
 ![YouTube Together](https://cdn.discordapp.com/attachments/678298437854298122/860210751448547328/msedge_HpqALcJCcD.png)
 
