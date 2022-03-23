@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from datetime import datetime
+from config import time
 
 class logger(commands.Cog):
   def __init__(self, client):
@@ -11,12 +12,12 @@ class logger(commands.Cog):
   ##### Logs
   @commands.Cog.listener()
   async def on_command(self, ctx):
-    print((datetime.now().strftime('[%Y-%m-%d %H:%M:%S %p UTC]')), f'[CLIENT] User {ctx.author} used the \'{ctx.command}\' command in the \'{ctx.guild.name}\' server! (server_id: {ctx.guild.id})')
+    print((datetime.now().strftime(f"{time}")), f'[CLIENT] User {ctx.author} used the \'{ctx.command}\' command in the \'{ctx.guild.name}\' (ID: {ctx.guild.id}) server!')
     return
 
   @commands.Cog.listener()
   async def on_server_join(self, server):
-    print((datetime.now().strftime('[%Y-%m-%d %H:%M:%S %p UTC]')), "[CLIENT] Joined the \'{0}\' server".format(server.name))
+    print((datetime.now().strftime(f"{time}")), "[CLIENT] Joined the \'{0}\' server".format(server.name))
 
 
   ##### Errors

@@ -2,9 +2,20 @@
 This discord bot was made for me and my friends using discord.py. Splash is an advanced discord bot with moderation, general and funfunctionalities.
 
 ## Setup
-Install all dependecies with the command below. Rename the `.env.example` file to simply `.env`, and edit it. Thats all.
+Install all dependecies with the command below. And create a `.env` file. Go to reddit, and create an application.
 ```
 pip install -r requirements.txt
+```
+
+Fill out the `.env` file, and host it somewhere. I recommend repl.it or heroku for free hosting.
+
+```
+TOKEN=
+PREFIX=
+OWNER_ID=
+
+REDDIT_CLIENT_ID=
+REDDIT_CLIENT_SECRET=
 ```
 
 ## Memes

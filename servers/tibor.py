@@ -4,7 +4,7 @@ from discord.ext import commands
 guild_id = 380315051879432202 # My server
 
 #
-# Custom commands for servers
+# Custom commands for specific servers
 # These commands can't be used in other servers
 #
 

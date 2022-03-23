@@ -5,5 +5,3 @@ Flask
 discord-together
 praw
 PyNaCl
-youtube_dl
-pafy

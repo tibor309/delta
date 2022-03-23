@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 from dislash import InteractionClient
-import random
 from datetime import datetime
 import os
 import asyncio
@@ -26,9 +25,9 @@ for f in os.listdir("./commands"):
 	if f.endswith(".py"):
 		client.load_extension("commands." + f[:-3])
 
-for f in os.listdir("./server_commands"):
+for f in os.listdir("./servers"):
 	if f.endswith(".py"):
-		client.load_extension("server_commands." + f[:-3])
+		client.load_extension("servers." + f[:-3])
 
 for f in os.listdir("./utils"):
 	if f.endswith(".py"):
@@ -38,7 +37,7 @@ for f in os.listdir("./utils"):
 ##### Ready #####
 @client.event
 async def on_ready():
-  print((datetime.now().strftime(time)), f"[CLIENT] {client.user} is online")
+  print((datetime.now().strftime(f"{time}")), f"[CLIENT] {client.user} is online")
 
 
 ##### Ping
