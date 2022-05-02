@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord_together import DiscordTogether
 from dislash import *
-from config import *
+from config import bot_color, basic_help, mod_help, admin_help, music_help, unusable_cmd_in_dms, no_mod_messages, no_admin_messages, activity_messages
 import random
 import os
 import praw
@@ -81,9 +81,9 @@ class user(commands.Cog):
           OptionChoice("Poker Night", "poker"),
           OptionChoice("Chess In The Park", "chess"),
           OptionChoice("Checkers In The Park", "checkers"),
-          OptionChoice("Doodle Crew", "doodle-crew"),
+          OptionChoice("Sketch Heads", "sketch-heads"),
           OptionChoice("World Snacks", "word-snack"),
-          OptionChoice("Letter Tile", "letter-tile"),
+          OptionChoice("Letter League", "letter-league"),
           OptionChoice("SpellCast", "spellcast"),
           OptionChoice("Watch Together", "youtube"),
           OptionChoice("Betrayal.io", "betrayal"),
@@ -96,7 +96,7 @@ class user(commands.Cog):
 
   async def activity(self, inter: SlashInteraction, activity: str):
     try:
-      link = await self.togetherControl.create_link(inter.author.voice.channel.id, '' + activity, max_age = 900)
+      link = await self.togetherControl.create_link(inter.author.voice.channel.id, '' + activity, max_age=900)
       await inter.reply(f"{link}")
     except:
       await inter.reply(random.choice(activity_messages))
@@ -160,36 +160,42 @@ class user(commands.Cog):
       for i in range(0, post_to_pick):
         submission = next(x for x in memes_submissions if not x.stickied)
       await inter.reply(f'{submission.title}\n{submission.url}')
+      
     elif subreddit == "dank":
       memes_submissions = reddit.subreddit('dankmemes').hot()
       post_to_pick = random.randint(1, 100)
       for i in range(0, post_to_pick):
         submission = next(x for x in memes_submissions if not x.stickied)
       await inter.reply(f'{submission.title}\n{submission.url}')
+      
     elif subreddit == "pooppost":
       memes_submissions = reddit.subreddit('shitposting').hot()
       post_to_pick = random.randint(1, 100)
       for i in range(0, post_to_pick):
         submission = next(x for x in memes_submissions if not x.stickied)
       await inter.reply(f'{submission.title}\n{submission.url}')
+      
     elif subreddit == "software":
       memes_submissions = reddit.subreddit('softwaregore').hot()
       post_to_pick = random.randint(1, 100)
       for i in range(0, post_to_pick):
         submission = next(x for x in memes_submissions if not x.stickied)
       await inter.reply(f'{submission.title}\n{submission.url}')
+      
     elif subreddit == "program":
       memes_submissions = reddit.subreddit('ProgrammerHumor').hot()
       post_to_pick = random.randint(1, 100)
       for i in range(0, post_to_pick):
         submission = next(x for x in memes_submissions if not x.stickied)
       await inter.reply(f'{submission.title}\n{submission.url}')
+      
     elif subreddit == "irl":
       memes_submissions = reddit.subreddit('me_irl').hot()
       post_to_pick = random.randint(1, 100)
       for i in range(0, post_to_pick):
         submission = next(x for x in memes_submissions if not x.stickied)
       await inter.reply(f'{submission.title}\n{submission.url}')
+      
     elif subreddit == "owo":
       memes_submissions = reddit.subreddit('furrymemes').hot()
       post_to_pick = random.randint(1, 100)

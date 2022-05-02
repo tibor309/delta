@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 import asyncio
 
-import keepAlive # Server
+import server # Server
 from config import time, bot_color # Import config
 import mobile_status # Mobile status patch
 
@@ -39,7 +39,11 @@ for f in os.listdir("./utils"):
 async def on_ready():
   print((datetime.now().strftime(f"{time}")), f"[CLIENT] {client.user} is online")
 
-
+@client.event
+async def on_message(message):
+  if message.author != client.user:
+    return
+  
 ##### Ping
 @client.command()
 async def ping(ctx):
@@ -52,5 +56,11 @@ async def ping(ctx):
 
 ##############################
 
-keepAlive.run_server()
-client.run(bot_token)
+  
+try:
+  server.run_server()
+  client.run(bot_token)
+except discord.errors.HTTPException:
+  print("\n\n\nBLOCKED BY RATE LIMITS\nRESTARTING NOW\n\n\n")
+  os.system("python restarter.py")
+  os.system('kill 1')

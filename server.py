@@ -16,9 +16,9 @@ def run():
     app.run(host="0.0.0.0", port=8080)
 
 def run_server():
-    keepAlive = Thread(target=run)
-    keepAlive.start()
+    server = Thread(target=run)
+    server.start()
 
 def stop():
-    keepAlive = Thread(target=run)
-    keepAlive.stop()
+    server = Thread(target=run)
+    server.stop()
