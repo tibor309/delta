@@ -1,7 +1,9 @@
 aiohttp
-discord.py
-dislash.py
-Flask
+py-cord
 discord-together
 praw
-PyNaCl
+psutil
+cpuinfo
+platform
+Flask
+dotenv
