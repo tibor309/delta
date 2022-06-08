@@ -1,9 +1,0 @@
-aiohttp
-py-cord
-discord-together
-praw
-psutil
-cpuinfo
-platform
-Flask
-dotenv

@@ -213,12 +213,12 @@ class Slash_commands(commands.Cog):
 
 
     # RTD command
-    @discord.slash_command(name="rtd", description="Roll the dice", ephemeral=False)
+    @discord.slash_command(name="rtd", description="Roll the dice", hidden=False)
     async def rtd(self, ctx):
-        await ctx.respond(f'🎲 You got, {random.randint(1,6)}!')
+        await ctx.respond(f'🎲 You got, {random.randint(1,6)}!', ephemeral=False)
 
     # Flip command
-    @discord.slash_command(name="flip", description="Flip a coin")
+    @discord.slash_command(name="flip", description="Flip a coin", hidden=False)
     async def flip(self, ctx):
         coin = ["tails", "heads"]
         await ctx.respond(f'🪙 You flipped, {random.choice(coin)}!', ephemeral=False)
@@ -229,7 +229,7 @@ class Slash_commands(commands.Cog):
     async def neofetch(self, ctx):
         current_time = time.time()
         difference = int(round(current_time - start_time))
-        uptime = str(datetime.timedelta(seconds=difference))
+        uptime = str(datetime.timedelta(seconds=difference), ephemeral=True)
 
         #cpu_usage = psutil.cpu_percent()
         cpu_name = cpuinfo.get_cpu_info()['brand_raw']

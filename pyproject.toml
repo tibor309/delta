@@ -16,6 +16,7 @@ discord = "^1.7.3"
 py-cord = {git = "https://github.com/Pycord-Development/pycord"}
 discord-together = "^1.2.4"
 psutil = "^5.9.1"
+python-dotenv = "^0.20.0"
 
 
 [tool.poetry.dev-dependencies]

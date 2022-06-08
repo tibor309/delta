@@ -1,16 +1,14 @@
 import os
-#from dotenv import load_dotenv
-#load_dotenv()
-
+from dotenv import load_dotenv
+load_dotenv()
 
 bot_color = 0x17c6ff
 bot_color2 = 0x1e1e1e
 
-bot_prefix = "."bot_token = os.environ['TOKEN']
+bot_prefix = "."bot_token = os.getenv("TOKEN")
 
-
-reddit_id = os.environ["REDDIT_APP_ID"]
-reddit_secret = os.environ["REDDIT_APP_SECRET"]
+reddit_id = os.getenv("REDDIT_APP_ID")
+reddit_secret = os.getenv("REDDIT_APP_SECRET")
 
 bot_time = ["%Y-%m-%d %H:%M:%S %p UTC"] # Time structure for logs
 
