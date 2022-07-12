@@ -15,9 +15,9 @@ class User_commands(commands.Cog):
 
 
     # User avatar command
-    @discord.user_command(name="Show user avatar and banner", hidden=False)  # create a user command for the supplied guilds
+    @discord.user_command(name="Show user avatar and banner", guild_only=True)
     @commands.guild_only()
-    async def useravatar(self, ctx, member: discord.Member):  # user commands return the member
+    async def useravatar(self, ctx, member: discord.Member):
         embed = discord.Embed(color=bot_color)
         embed.set_author(name=f'{member.name}#{member.discriminator}', icon_url=user_icon)
 
@@ -26,7 +26,7 @@ class User_commands(commands.Cog):
             embed.set_thumbnail(url=member.avatar)
             
         if member.banner is None:
-            embed.set_image(url=member.avatar)
+            embed.set_image(url=member.avatar) # if the memebr doesn't have a banner, display a message instead
             embed.set_footer(text=f"{member.name} doesn't have a banner yet")
 
         await ctx.respond(embed=embed, ephemeral=False)
@@ -34,7 +34,7 @@ class User_commands(commands.Cog):
 
 
     # User info command
-    @discord.user_command(name="Show user info", hidden=False)
+    @discord.user_command(name="Show user info")
     async def userinfo(self, ctx, member: discord.Member):
         embed = discord.Embed(color=bot_color)
         embed.set_thumbnail(url=member.avatar)

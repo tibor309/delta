@@ -1,6 +1,7 @@
 import discord, random
+from discord import option
 from discord.ext import commands
-from discord.commands import SlashCommandGroup, Option
+from discord.commands import SlashCommandGroup
 from config import cmd_dms, no_perm, bot_time
 import datetime
 
@@ -15,14 +16,12 @@ class Mod_commands(commands.Cog):
         print((datetime.datetime.now().strftime(f"{bot_time}")), "Loaded moderator commands")
 
 
-    channel = SlashCommandGroup("channel", "Commands for channel moderation")
+    channel = SlashCommandGroup("channel", "Commands for channel moderation") # create group for channel commands
 
-
-    @channel.command(name="slowmode", description="Configure slowmode for channel")
-    @commands.guild_only()
-    #@commands.has_permissions(manage_channels=True)
-    #@commands.bot_has_permissions(manage_channels=True)
-    async def slowmode(self, ctx, sec: Option(int, "Slowmode delay in seconds", required=True)):
+    # Set custom slowmode command
+    @channel.command(name="slowmode", description="Configure slowmode for channel", guild_only=True)
+    @option("sec", int, description="Slowmode delay in seconds", required=True)
+    async def slowmode(self, ctx, sec: int, required=True)):
         if isinstance(ctx.channel, discord.channel.DMChannel):
             await ctx.respond(random.choice(cmd_dms), ephemeral=True)
             return
@@ -30,17 +29,13 @@ class Mod_commands(commands.Cog):
             if ctx.author.guild_permissions.manage_channels is False:
                 await ctx.respond(random.choice(no_perm), ephemeral=True)
             else: 
-                if sec == "0":
-                    await ctx.channel.edit(slowmode_delay=sec)
-                    await ctx.respond("Turned off slowmode", ephemeral=False)
-                else:
-                    await ctx.channel.edit(slowmode_delay=sec)
+                await ctx.channel.edit(slowmode_delay=sec)
                 await ctx.respond(f"Set channel slowmode to {sec} sec", ephemeral=False)
 
-
-    @channel.command(name="lock", description="Lock and unlock chat")
-    @commands.guild_only()
-    async def lock(self, ctx, locked: Option(bool, "True or false", required=True)):
+    # Lock and unlock chat
+    @channel.command(name="lock", description="Lock and unlock chat", guild_only=True)
+    @option("locked", bool, description="True or False", required=True)
+    async def lock(self, ctx, locked: bool):
         if isinstance(ctx.channel, discord.channel.DMChannel):
             await ctx.respond(random.choice(cmd_dms), ephemeral=True)
             return
@@ -57,11 +52,10 @@ class Mod_commands(commands.Cog):
                     await ctx.respond("Unlocked chat")
                 
 
-
-
-    @discord.slash_command(name="rm", description="Remove messages")
-    @commands.guild_only()
-    async def rm(self, ctx, messages: Option(int, "Number of messages", required=True)):
+    # Remove messages
+    @discord.slash_command(name="rm", description="Remove messages", guild_only=True)
+    @option("messages", int, description="Number of messages", required=True)
+    async def rm(self, ctx, messages: int):
         if isinstance(ctx.channel, discord.channel.DMChannel):
             await ctx.respond(random.choice(cmd_dms), ephemeral=True)
             return
@@ -71,7 +65,31 @@ class Mod_commands(commands.Cog):
                 return
             else:
                 await ctx.channel.purge(limit=messages)
-                await ctx.respond(f"Deleted {messages} messages", ephemeral=True)
+                await ctx.respond(f"Deleted {messages} messages", ephemeral=True) 
+
+  
+    # Move a user to a different voice channel
+    @discord.slash_command(name="mv", description="Move a user to a different vc", guild_only=True)
+    @option("member", discord.Member, description="Select a user", required=True)
+    @option("channel", discord.VoiceChannel, description="Select a channel to move a member to", required=True)
+    async def mv(self, ctx, member: discord.Member, channel: discord.VoiceChannel):
+        voice_state = member.voice
+        
+        if isinstance(ctx.channel, discord.channel.DMChannel):
+            await ctx.respond(random.choice(cmd_dms), ephemeral=True)
+            return
+        else:
+            if ctx.author.guild_permissions.move_members is False:
+                await ctx.respond(random.choice(no_perm), ephemeral=True)
+                return
+            else:
+                if voice_state is None:
+                    await ctx.respond(f"{member.name} is not in a voice channel", ephemeral=True)
+                else:
+                    await member.move_to(channel)
+                    await ctx.respond(f"Moved {member.mention} to {channel.mention}", ephemeral=True)
+
+
 
 
 

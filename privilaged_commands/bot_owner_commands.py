@@ -15,6 +15,7 @@ class Bot_Owner_commands(commands.Cog):
 
 
     # Status commands
+    # Allows the bot owner to chane the bot's status
     @commands.group(invoke_without_command=True, pass_context=True)
     @commands.is_owner()
     async def status(self, ctx):
@@ -48,6 +49,7 @@ class Bot_Owner_commands(commands.Cog):
 
 
     # Activity
+    # And this allows the bot owner to thange the bot's activity
     @commands.group(invoke_without_command=True, pass_context=True)
     @commands.is_owner()
     async def activity(self, ctx):
