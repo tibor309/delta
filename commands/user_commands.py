@@ -3,6 +3,8 @@ from discord.ext import commands
 from config import bot_color, user_icon, bot_time
 import datetime
 
+# These commands are in the user popout menu
+
 
 class User_commands(commands.Cog):
     def __init__(self, bot):
@@ -30,7 +32,6 @@ class User_commands(commands.Cog):
             embed.set_footer(text=f"{member.name} doesn't have a banner yet")
 
         await ctx.respond(embed=embed, ephemeral=False)
-
 
 
     # User info command

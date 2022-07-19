@@ -21,7 +21,7 @@ class Mod_commands(commands.Cog):
     # Set custom slowmode command
     @channel.command(name="slowmode", description="Configure slowmode for channel", guild_only=True)
     @option("sec", int, description="Slowmode delay in seconds", required=True)
-    async def slowmode(self, ctx, sec: int, required=True)):
+    async def slowmode(self, ctx, sec: int, required=True):
         if isinstance(ctx.channel, discord.channel.DMChannel):
             await ctx.respond(random.choice(cmd_dms), ephemeral=True)
             return

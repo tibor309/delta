@@ -3,7 +3,6 @@ from discord.ext import commands
 from config import bot_prefix, bot_token, bot_time
 import datetime
 
-import utils.mobile_status
 
 # Set intents
 # Make sure to enabale these on the discord dev portal!

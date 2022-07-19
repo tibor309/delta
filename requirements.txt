@@ -1,0 +1,11 @@
+youtube_dl
+praw
+PyNaCl
+psutil
+python-dotenv
+aiohttp
+ffmpeg
+discord
+discord-together
+py-cord
+py-cpuinfo

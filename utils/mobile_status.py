@@ -3,6 +3,7 @@ import inspect
 import re
 import discord
 
+# This allows the bot to have different status indicators, like mobile
 
 def source(o):
     s = inspect.getsource(o).split("\n")
