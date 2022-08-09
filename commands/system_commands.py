@@ -17,15 +17,6 @@ class Slash_commands(commands.Cog):
 
 
 
-    # Help command
-    @discord.slash_command(name="help", description="Displays help message", hidden=False, guild_only=False)
-    async def help(self, ctx):
-        name = ctx.author.name
-        version = "GNU bash, version 5.1.16(1)-release (x86_64-redhat-linux-gnu)"
-        help_message = f"```ansi\n[{name.lower()}@splash ~]$ help\n{version}\nThese bot commands are defined internally.  Type 'help' to see this list.\n\nA star (*) next to a name means that the command is disabled.\n\nactivity [channel] [activity] - Start a voice chat activity\nmeme [subreddit] - Post a random meme from reddit\nneofetch - Show system info\nflip - Flip a coin\nrtd - Roll a dice\nmv [member] [channel] - Move a member to a voice channel\nrm [number] - Remove a number of messages\nchannel slowmode [seconds] - Set slowmode in current channel\nchannel lock [bool] - Toggle channel lock```"
-        await ctx.respond(f'{help_message}', ephemeral=True)
-
-
 
     # Neofetch command
     @discord.slash_command(name="neofetch", description="Some info about the system")

@@ -21,7 +21,7 @@ class Slash_commands(commands.Cog):
 
 
     # Activity command
-    @discord.slash_command(name="activity", description="Start or join a voice channel activity", guild_only=True, guild_ids=[380315051879432202])
+    @discord.slash_command(name="activity", description="Start or join a voice channel activity", guild_only=True)
     @option("channel", discord.VoiceChannel, description="Select a channel to start the activity in", required=True)
     @option("activity", description="Select an activity",
         choices=[
@@ -81,11 +81,12 @@ class Slash_commands(commands.Cog):
 
     # Facts command
     @discord.slash_command(name="fact", description="He do speaking facts doe")
-    async def fact(self, ctx):
+    async def facts(self, ctx):
         api = "https://api.popcat.xyz/fact"
         response = requests.get(api, verify=True)
         data = response.json()
         await ctx.respond(data['fact'])
+
 
     # Flip command
     @discord.slash_command(name="flipcoin", description="Flip a coin")

@@ -1,5 +1,4 @@
-from ast import alias
-import discord, random, datetime
+import discord, datetime
 from discord.ext import commands
 from config import bot_time 
 
@@ -145,7 +144,7 @@ class Music_commands(commands.Cog):
         await self.vc.disconnect()
 
     @commands.command(name="stop", help="Stops music")
-    async def dc(self, ctx):
+    async def stop(self, ctx):
         self.vc.stop()
         self.is_playing = False
         self.is_paused = False

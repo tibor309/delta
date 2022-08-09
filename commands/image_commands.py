@@ -16,7 +16,7 @@ class image_commands(commands.Cog):
     image = SlashCommandGroup("imagemagick", "Edit images (images can take a while to load)")
 
     # Add overlays to uploaded images
-    @image.command(name="addoverlay", description="Add different overlays to user images", guild_ids=[380315051879432202])
+    @image.command(name="addoverlay", description="Add different overlays to user images")
     @option("overlay", str, description="Select an overlay", choices=["uncover", "ad", "m&m", "pet", "clown", "gun", "wanted", "communism", "drip"], required=True)
     @option("image", discord.Member, description="Upload an image to edit", required=True)
     async def overlay(self, ctx, overlay: str, image: discord.Member):
