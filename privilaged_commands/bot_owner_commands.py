@@ -4,7 +4,7 @@ from datetime import datetime
 from config import bot_time
 
 
-class Bot_Owner_commands(commands.Cog):
+class bot_owner_commands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -54,8 +54,8 @@ class Bot_Owner_commands(commands.Cog):
     @commands.is_owner()
     async def activity(self, ctx):
 
-        sudo_help = f"```\nactivity - change bot activity\n\nuseage: activity [activity] <command args>\nexample: activity watching Some servers\navailable activities: watching, playing, listening, streaming\n```"
-        await ctx.reply(sudo_help, mention_author=False)
+        activity_help = f"```\nactivity - change bot activity\n\nuseage: activity [activity] <command args>\nexample: activity watching Some servers\navailable activities: watching, playing, listening, streaming\n```"
+        await ctx.reply(activity_help, mention_author=False)
 
     @activity.command(pass_context=True)
     @commands.is_owner()
@@ -93,4 +93,4 @@ class Bot_Owner_commands(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Bot_Owner_commands(bot))
+    bot.add_cog(bot_owner_commands(bot))

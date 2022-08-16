@@ -1,0 +1,4 @@
+# ignore cache
+#commands/__pycache__/
+#privilaged_commands/__pycache__/
+#utils_/__pycache__/

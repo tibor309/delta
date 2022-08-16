@@ -15,7 +15,7 @@ class events(commands.Cog):
     # Guild join
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
-        print((datetime.datetime.now().strftime(f"{bot_time}")), f"Joined '{guild.name}' guild")
+        print((datetime.datetime.now().strftime(f"{bot_time}")), f"Joined '{guild.name}' guild (ID: {guild.id})")
         sent = False
         count = 0
 

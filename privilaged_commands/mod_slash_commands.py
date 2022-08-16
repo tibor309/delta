@@ -6,7 +6,7 @@ from config import cmd_dms, no_perm, bot_time
 import datetime
 
 
-class Mod_commands(commands.Cog):
+class mod_commands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -94,4 +94,4 @@ class Mod_commands(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Mod_commands(bot))
+    bot.add_cog(mod_commands(bot))

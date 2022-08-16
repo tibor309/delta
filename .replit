@@ -1,2 +1,4 @@
-planguage = "python3"
+language = "python3"
 run = "python main.py"
+
+hidden = ["**/*.class"]

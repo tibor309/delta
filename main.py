@@ -10,8 +10,7 @@ intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
 
-bot = commands.Bot(command_prefix=bot_prefix, intents=intents)
-bot.remove_command('help')
+bot = commands.Bot(command_prefix=bot_prefix, intents=intents, help_command=None)
 
 # Load commands
 for f in os.listdir("./commands"):
