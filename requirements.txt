@@ -1,6 +1,4 @@
-youtube_dl
 praw
-PyNaCl
 psutil
 python-dotenv
 aiohttp

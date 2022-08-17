@@ -1,4 +1,4 @@
-import discord, datetime
+import discord, datetime, aiohttp, io
 from discord.ext import commands
 from discord.commands import SlashCommandGroup
 from discord import option
@@ -26,35 +26,50 @@ class image_commands(commands.Cog):
         avatar = member.avatar
         
         if overlay == "uncover":
-            image = f"{api1}/uncover?image={avatar}"
+            url = f"{api1}/uncover?image={avatar}"
+            ext = "png"
         elif overlay == "ad":
-            image = f"{api1}/ad?image={avatar}"
+            url = f"{api1}/ad?image={avatar}"
+            ext = "png"
         elif overlay == "m&m":
-            image = f"{api1}/mnm?image={avatar}"
+            url = f"{api1}/mnm?image={avatar}"
+            ext = "png"
         elif overlay == "pet":
-            image = f"{api1}/pet?image={avatar}"
+            url = f"{api1}/pet?image={avatar}"
+            ext = "gif"
         elif overlay == "clown":
-            image = f"{api1}/clown?image={avatar}"
+            url = f"{api1}/clown?image={avatar}"
+            ext = "png"
         elif overlay == "gun":
-            image = f"{api1}/gun?image={avatar}"
+            url = f"{api1}/gun?image={avatar}"
+            ext = "png"
         elif overlay == "wanted":
-            image = f"{api1}/wanted?image={avatar}"
+            url = f"{api1}/wanted?image={avatar}"
+            ext = "png"
         elif overlay == "communism":
-            image = f"{api1}/communism?image={avatar}"
+            url = f"{api1}/communism?image={avatar}"
+            ext = "png"
         elif overlay == "drip":
-            image = f"{api1}/drip?image={avatar}"
+            url = f"{api1}/drip?image={avatar}"
+            ext = "png"
 
         elif overlay == "horny license":
-            image = f"{api2}/canvas/horny?avatar={avatar}"
+            url = f"{api2}/canvas/horny?avatar={avatar}"
+            ext = "png"
         elif overlay == "triggered":
-            image = f"{api2}/canvas/triggered?avatar={avatar}"
+            url = f"{api2}/canvas/triggered?avatar={avatar}"
+            ext = "gif"
         elif overlay == "jail":
-            image = f"{api2}/canvas/jail?avatar={avatar}"
+            url = f"{api2}/canvas/jail?avatar={avatar}"
+            ext = "png"
 
 
-        embed = discord.Embed(color=bot_color2)
-        embed.set_image(url=image)
-        await ctx.respond(embed=embed)
+        async with aiohttp.ClientSession() as trigSession:
+            async with trigSession.get(url) as trigImg: # get users avatar with the image
+                imageData = io.BytesIO(await trigImg.read()) # read the image/bytes
+                await trigSession.close() # closing the session
+                await ctx.respond(file=discord.File(imageData, f'image.{ext}')) # sending the file
+
 
 
     # Add filters to user images
@@ -65,20 +80,26 @@ class image_commands(commands.Cog):
         avatar = member.avatar
 
         if filter == "glass":
-            image = f"{api2}/canvas/glass?avatar={avatar}"
+            url = f"{api2}/canvas/glass?avatar={avatar}"
+            ext = "png"
         elif filter == "gay":
-            image = f"{api2}/canvas/gay?avatar={avatar}"
+            url = f"{api2}/canvas/gay?avatar={avatar}"
+            ext = "png"
         elif filter == "pixelate":
-            image = f"{api2}/canvas/pixelate?avatar={avatar}"
+            url = f"{api2}/canvas/pixelate?avatar={avatar}"
+            ext = "png"
         elif filter == "invert":
-            image = f"{api2}/canvas/invert?avatar={avatar}"
+            url = f"{api2}/canvas/invert?avatar={avatar}"
+            ext = "png"
         elif filter == "invertgrayscale":
-            image = f"{api2}/canvas/invertgreyscale?avatar={avatar}"
+            url = f"{api2}/canvas/invertgreyscale?avatar={avatar}"
+            ext = "png"
 
-        
-        embed = discord.Embed(color=bot_color2)
-        embed.set_image(url=image)
-        await ctx.respond(embed=embed)    
+        async with aiohttp.ClientSession() as trigSession:
+            async with trigSession.get(url) as trigImg:
+                imageData = io.BytesIO(await trigImg.read())
+                await trigSession.close()
+                await ctx.respond(file=discord.File(imageData, f'image0.{ext}'))  
 
 
 

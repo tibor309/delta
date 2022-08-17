@@ -1,4 +1,5 @@
 import discord, datetime
+import aiohttp, io
 from discord.ext import commands
 from discord.commands import SlashCommandGroup
 from discord import option
@@ -72,9 +73,18 @@ class meme_commands(commands.Cog):
             api = "https://api.popcat.xyz/caution"
 
         meme = text.replace(" ", "+")
-        embed = discord.Embed(color=bot_color2, title=title)
-        embed.set_image(url=f"{api}?text={meme}")
-        await ctx.respond(embed=embed)
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"{api}?text={meme}") as af:
+                if 300 > af.status >= 200:
+                    fp = io.BytesIO(await af.read())
+                    file = discord.File(fp, "meme.png")
+                    
+                    embed = discord.Embed(color=bot_color2, title=title)
+                    embed.set_image(url="attachment://meme.png")
+                    await ctx.respond(embed=embed, file=file)
+                else:
+                    await ctx.reply('Failed to get the image :(')
+                await session.close()
 
 
     # Two panel memes
@@ -92,11 +102,20 @@ class meme_commands(commands.Cog):
 
         panel1 = text1.replace(" ", "+")
         panel2 = text2.replace(" ", "+")
-        embed = discord.Embed(color=bot_color2, title=title)
-        embed.set_image(url=f"{api}?text1={panel1}&text2={panel2}")
-        await ctx.respond(embed=embed)
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"{api}?text1={panel1}&text2={panel2}") as af:
+                if 300 > af.status >= 200:
+                    fp = io.BytesIO(await af.read())
+                    file = discord.File(fp, "meme2.png")
+                    
+                    embed = discord.Embed(color=bot_color2, title=title)
+                    embed.set_image(url="attachment://meme2.png")
+                    await ctx.respond(embed=embed, file=file)
+                else:
+                    await ctx.reply('Failed to get the image :(')
+                await session.close()
 
-    
+
 
 
 def setup(bot):
