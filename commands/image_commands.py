@@ -1,8 +1,9 @@
-import discord, datetime, aiohttp, io
+import aiohttp, io
+import discord, datetime
 from discord.ext import commands
 from discord.commands import SlashCommandGroup
 from discord import option
-from config import bot_time, bot_color2
+from config import bot_time
 
 api1 = "https://api.popcat.xyz" # Apis for images
 api2 = "https://some-random-api.ml"
@@ -22,7 +23,7 @@ class image_commands(commands.Cog):
     @image.command(name="addoverlay", description="Add different overlays to user images")
     @option("overlay", str, description="Select an overlay", choices=["uncover", "ad", "m&m", "pet", "clown", "gun", "wanted", "communism", "drip", "horny license", "triggered", "jail", "glass", "gay"], required=True)
     @option("image", discord.Member, description="Upload an image to edit", required=True)
-    async def overlay(self, ctx, overlay: str, member: discord.Member):
+    async def imagemagik_overlay(self, ctx, overlay: str, member: discord.Member):
         avatar = member.avatar
         
         if overlay == "uncover":
@@ -76,7 +77,7 @@ class image_commands(commands.Cog):
     @image.command(name="addfilter", description="Add different filters to user images")
     @option("filter", str, description="Select filter", choices=["glass", "gay", "pixelate", "invert", "invertgrayscale"], required=True)
     @option("image", discord.Member, description="Upload an image to edit", required=True)
-    async def filter(self, ctx, filter: str, member: discord.Member):
+    async def imagemagik_filter(self, ctx, filter: str, member: discord.Member):
         avatar = member.avatar
 
         if filter == "glass":

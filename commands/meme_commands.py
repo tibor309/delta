@@ -54,7 +54,7 @@ class meme_commands(commands.Cog):
     @option("template", str, description="Choose a template", choices=["oogway", "pikachu", "biden", "facts", "sad cat", "iphone alert", "caution"], required=True)
     @option("title", str, description="An interesting title", required=True)
     @option("text", str, description="Meme text", required=True)
-    async def one_panel(self, ctx, template: str, title: str, text: str):
+    async def memegen_onepanel(self, ctx, template: str, title: str, text: str):
         global api
 
         if template == "oogway":
@@ -83,7 +83,7 @@ class meme_commands(commands.Cog):
                     embed.set_image(url="attachment://meme.png")
                     await ctx.respond(embed=embed, file=file)
                 else:
-                    await ctx.reply('Failed to get the image :(')
+                    await ctx.respond('Failed to get the image :(', ephemeral=False)
                 await session.close()
 
 
@@ -93,7 +93,7 @@ class meme_commands(commands.Cog):
     @option("title", str, description="A very interesting title", required=True)
     @option("text1", str, description="Top panel text", required=True)
     @option("text2", str, description="Bottom panel text", required=True)
-    async def two_panel(self, ctx, template: str, title: str, text1: str, text2:str):
+    async def memegen_twopanel(self, ctx, template: str, title: str, text1: str, text2:str):
 
         if template == "drake":
             api = "https://api.popcat.xyz/drake"
@@ -112,7 +112,7 @@ class meme_commands(commands.Cog):
                     embed.set_image(url="attachment://meme2.png")
                     await ctx.respond(embed=embed, file=file)
                 else:
-                    await ctx.reply('Failed to get the image :(')
+                    await ctx.respond('Failed to get the image :(', ephemeral=True)
                 await session.close()
 
 

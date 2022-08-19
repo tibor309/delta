@@ -9,7 +9,7 @@ import datetime, time
 
 start_time = time.time()
 
-class Slash_commands(commands.Cog):
+class slash_commands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -97,4 +97,4 @@ class Slash_commands(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Slash_commands(bot))
+    bot.add_cog(slash_commands(bot))

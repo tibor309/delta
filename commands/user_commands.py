@@ -6,7 +6,7 @@ import datetime
 # These commands are in the user popout menu
 
 
-class User_commands(commands.Cog):
+class user_commands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -58,4 +58,4 @@ class User_commands(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(User_commands(bot))
+    bot.add_cog(user_commands(bot))
