@@ -14,7 +14,7 @@ class image_commands(commands.Cog):
 
     @discord.Cog.listener()
     async def on_ready(self):
-        print((datetime.datetime.now().strftime(f"{bot_time}")), "Loaded image commands")
+        print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded image commands")
 
 
     image = SlashCommandGroup("imagemagick", "Edit images (images can take a while to load)")
@@ -66,7 +66,7 @@ class image_commands(commands.Cog):
 
 
         async with aiohttp.ClientSession() as trigSession:
-            async with trigSession.get(url) as trigImg: # get users avatar with the image
+            async with trigSession.get(url) as trigImg: # get user's avatar with the image
                 imageData = io.BytesIO(await trigImg.read()) # read the image/bytes
                 await trigSession.close() # closing the session
                 await ctx.respond(file=discord.File(imageData, f'image.{ext}')) # sending the file

@@ -13,7 +13,7 @@ class mod_commands(commands.Cog):
     
     @discord.Cog.listener()
     async def on_ready(self):
-        print((datetime.datetime.now().strftime(f"{bot_time}")), "Loaded moderator commands")
+        print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded moderator commands")
 
 
     channel = SlashCommandGroup("channel", "Commands for channel moderation") # create group for channel commands
@@ -54,7 +54,7 @@ class mod_commands(commands.Cog):
 
     # Remove messages
     @discord.slash_command(name="rm", description="Remove messages", guild_only=True)
-    @option("messages", int, description="Number of messages", required=True)
+    @option("msg", int, description="Number of messages", required=True)
     async def rm(self, ctx, messages: int):
         if isinstance(ctx.channel, discord.channel.DMChannel):
             await ctx.respond(random.choice(cmd_dms), ephemeral=True)
@@ -70,8 +70,8 @@ class mod_commands(commands.Cog):
   
     # Move a user to a different voice channel
     @discord.slash_command(name="mv", description="Move a user to a different vc", guild_only=True)
-    @option("member", discord.Member, description="Select a user", required=True)
-    @option("channel", discord.VoiceChannel, description="Select a channel to move a member to", required=True)
+    @option("user", discord.Member, description="Select a user", required=True)
+    @option("channel", discord.VoiceChannel, description="Select a channel to move the user to", required=True)
     async def mv(self, ctx, member: discord.Member, channel: discord.VoiceChannel):
         voice_state = member.voice
         
@@ -83,6 +83,7 @@ class mod_commands(commands.Cog):
                 await ctx.respond(random.choice(no_perm), ephemeral=True)
                 return
             else:
+                
                 if voice_state is None:
                     await ctx.respond(f"{member.name} is not in a voice channel", ephemeral=True)
                 else:

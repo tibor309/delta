@@ -2,7 +2,7 @@ import discord
 from discord import option
 from discord.ext import commands
 from discord.utils import get
-from config import cmd_dms, no_perm, bot_time
+from config import bot_time
 import datetime
 
 
@@ -15,7 +15,7 @@ class admin_commands(commands.Cog):
     
     @discord.Cog.listener()
     async def on_ready(self):
-        print((datetime.datetime.now().strftime(f"{bot_time}")), "Loaded admin commands")
+        print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded admin commands")
 
 
 

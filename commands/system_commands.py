@@ -13,7 +13,7 @@ class system_commands(commands.Cog):
 
     @discord.Cog.listener()
     async def on_ready(self):
-        print((datetime.datetime.now().strftime(f"{bot_time}")), "Loaded slash commands")
+        print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded system commands")
 
 
 

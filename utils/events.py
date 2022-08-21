@@ -9,13 +9,13 @@ class events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print((datetime.datetime.now().strftime(f"{bot_time}")), f"Loaded events")
+        print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"Loaded events")
 
 
     # Guild join
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
-        print((datetime.datetime.now().strftime(f"{bot_time}")), f"Joined '{guild.name}' guild (ID: {guild.id})")
+        print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"Joined '{guild.name}' guild (ID: {guild.id})")
         sent = False
         count = 0
 
@@ -34,12 +34,12 @@ class events(commands.Cog):
 
     # Commands
     @commands.Cog.listener()
-    async def on_command(self, ctx, guild):
-        print((datetime.datetime.now().strftime(f"{bot_time}")), f"{ctx.author} used the {ctx.command.name} command in '{guild.name}' guild (ID: {guild.id})")
+    async def on_command(self, ctx):
+        print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"{ctx.author} used the {ctx.command.name} command")
 
     @commands.Cog.listener()
     async def on_application_command(self, ctx, guild):
-        print((datetime.datetime.now().strftime(f"{bot_time}")), f"{ctx.author} used the {ctx.command.name} command in '{guild.name}' guild (ID: {guild.id})")
+        print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"{ctx.author} used the {ctx.command.name} command")
 
 
     # Command error

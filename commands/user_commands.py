@@ -13,7 +13,7 @@ class user_commands(commands.Cog):
     
     @discord.Cog.listener()
     async def on_ready(self):
-        print((datetime.datetime.now().strftime(f"{bot_time}")), "Loaded user commands")
+        print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded user commands")
 
 
     # User avatar command

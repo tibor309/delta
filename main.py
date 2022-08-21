@@ -10,7 +10,7 @@ intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
 
-bot = commands.Bot(command_prefix=bot_prefix, intents=intents, help_command=None)
+bot = commands.Bot(command_prefix=bot_prefix, intents=intents, help_command=None) # set prefix, intents, and remove the default help command
 
 # Load commands
 for f in os.listdir("./commands"):
@@ -26,7 +26,7 @@ bot.load_extension("utils.events") # and events
 
 @bot.event
 async def on_ready():
-    print((datetime.datetime.now().strftime(f"{bot_time}")), f"Logged in as {bot.user}")
+    print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"Logged in as {bot.user}")
 
 # Make bot not respond to it's owm messages
 @bot.event

@@ -10,7 +10,7 @@ bot_prefix = os.getenv("PREFIX")bot_token = os.getenv("TOKEN")
 reddit_id = os.getenv("REDDIT_APP_ID")
 reddit_secret = os.getenv("REDDIT_APP_SECRET")
 
-bot_time = ["%Y-%m-%d %H:%M:%S %p UTC"] # Time structure for logs
+bot_time = "%Y-%m-%d %H:%M:%S %p UTC" # Time structure for logs
 
 
 # Icons
