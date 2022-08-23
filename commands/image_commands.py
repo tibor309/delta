@@ -6,6 +6,7 @@ from config import bot_time
 
 api1 = "https://api.popcat.xyz" # Apis for images
 api2 = "https://some-random-api.ml"
+api3 = "https://api.jeyy.xyz"
 
 class image_commands(commands.Cog):
     def __init__(self, bot):
@@ -20,7 +21,7 @@ class image_commands(commands.Cog):
 
     # Add overlays to uploaded images
     @image.command(name="addoverlay", description="Add different overlays to user images")
-    @discord.option("overlay", str, description="Select an overlay", choices=["uncover", "ad", "m&m", "pet", "clown", "gun", "wanted", "communism", "drip", "horny license", "triggered", "jail", "glass", "gay"], required=True)
+    @discord.option("overlay", str, description="Select an overlay", choices=["uncover", "ad", "m&m", "pet", "clown", "gun", "wanted", "communism", "drip", "horny license", "triggered", "jail", "kanye"], required=True)
     @discord.option("image", discord.Member, description="Upload an image to edit", required=True)
     async def imagemagik_overlay(self, ctx, overlay: str, user: discord.Member):
         avatar = user.avatar
@@ -63,6 +64,10 @@ class image_commands(commands.Cog):
             url = f"{api2}/canvas/jail?avatar={avatar}"
             ext = "png"
 
+        elif overlay == "kanye":
+            url = f"{api3}/image/kanye?image_url={avatar}"
+            ext = "png"
+
 
         async with aiohttp.ClientSession() as trigSession:
             async with trigSession.get(url) as trigImg: # get user's avatar with the image
@@ -74,7 +79,7 @@ class image_commands(commands.Cog):
 
     # Add filters to user images
     @image.command(name="addfilter", description="Add different filters to user images")
-    @discord.option("filter", str, description="Select filter", choices=["glass", "gay", "pixelate", "invert", "invertgrayscale"], required=True)
+    @discord.option("filter", str, description="Select filter", choices=["glass", "gay", "pixelate", "invert", "invertgrayscale", "lines", "glitch", "stereo", "cartoon", "matrix"], required=True)
     @discord.option("image", discord.Member, description="Upload an image to edit", required=True)
     async def imagemagik_filter(self, ctx, filter: str, user: discord.Member):
         avatar = user.avatar
@@ -94,6 +99,22 @@ class image_commands(commands.Cog):
         elif filter == "invertgrayscale":
             url = f"{api2}/canvas/invertgreyscale?avatar={avatar}"
             ext = "png"
+
+        elif filter == "lines":
+            url = f"{api3}/image/lines?image_url={avatar}"
+            ext = "png"
+        elif filter == "glitch":
+            url = f"{api3}/image/glitch?image_url={avatar}&level=3"
+            ext = "gif"
+        elif filter == "stereo":
+            url = f"{api3}/image/stereo?image_url={avatar}"
+            ext = "png"
+        elif filter == "cartoon":
+            url = f"{api3}/image/cartoon?image_url={avatar}"
+            ext = "png"
+        elif filter == "matrix":
+            url = f"{api3}/image/matrix?image_url={avatar}"
+            ext = "gif"
 
         async with aiohttp.ClientSession() as trigSession:
             async with trigSession.get(url) as trigImg:
