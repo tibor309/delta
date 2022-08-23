@@ -40,7 +40,7 @@ class slash_commands(commands.Cog):
         ], required=True)
 
     async def activity(self, ctx: discord.ApplicationContext, channel: discord.VoiceChannel, activity: str):
-        invite_age = 900
+        invite_age = 900 # 15 mins age
         invite_uses = 0 # unlimited use
 
         if activity == "Watch Together":
