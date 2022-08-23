@@ -1,5 +1,4 @@
 import discord
-from discord import option
 from discord.ext import commands
 from discord.utils import get
 from config import bot_time
@@ -20,9 +19,9 @@ class admin_commands(commands.Cog):
 
 
     @discord.slash_command(name="add_private_emoji", description="Create role specific emojis", guild_only=True, guild_ids=[380315051879432202])
-    @option("name", str, description="Name of the emoji", required=True)
-    @option("image", discord.Attachment, description="Image", required=True)
-    @option("role", discord.Role, description="Whos gonna be able to use this emoji?", required=True)
+    @discord.option("name", str, description="Name of the emoji", required=True)
+    @discord.option("image", discord.Attachment, description="Image", required=True)
+    @discord.option("role", discord.Role, description="Whos gonna be able to use this emoji?", required=True)
     async def add_private_emoji(self, ctx, name: str, image: discord.Attachment, role: discord.Role):
         if image.content_type not in allowed_content_types:
             return await ctx.respond("Invalid attachment type!", ephemeral=True)

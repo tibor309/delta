@@ -2,7 +2,6 @@ import discord, datetime
 import aiohttp, io
 from discord.ext import commands
 from discord.commands import SlashCommandGroup
-from discord import option
 import praw, random
 from config import bot_time, bot_color2, reddit_id, reddit_secret
 
@@ -17,8 +16,8 @@ class meme_commands(commands.Cog):
 
     
     # Post memes from reddit
-    @discord.slash_command(name="meme", description="Post memes from reddit", hidden=False, guild_only=False)
-    @option("subreddit", description="Choose a subreddit", choices=["r/memes", "r/dankmemes", "r/shitposting", "r/me_irl", "r/ProgrammerHumor", "r/softwaregore", "r/furrymemes"], required=True)
+    @discord.slash_command(name="meme", description="Post memes from reddit")
+    @discord.option("subreddit", description="Choose a subreddit", choices=["r/memes", "r/dankmemes", "r/shitposting", "r/me_irl", "r/ProgrammerHumor", "r/softwaregore", "r/furrymemes"], required=True)
     async def meme(self, ctx: discord.ApplicationContext, subreddit: str):
         reddit = praw.Reddit(client_id=reddit_id, client_secret=reddit_secret, user_agent='Splash Discord Bot', check_for_async=False)
         post_to_pick = random.randint(1, 50)
@@ -51,9 +50,9 @@ class meme_commands(commands.Cog):
 
     # One panel memes
     @memegen.command(name="--onepanel", description="good memes")
-    @option("template", str, description="Choose a template", choices=["oogway", "pikachu", "biden", "facts", "sad cat", "iphone alert", "caution"], required=True)
-    @option("title", str, description="An interesting title", required=True)
-    @option("text", str, description="Meme text", required=True)
+    @discord.option("template", str, description="Choose a template", choices=["oogway", "pikachu", "biden", "facts", "sad cat", "iphone alert", "caution"], required=True)
+    @discord.option("title", str, description="An interesting title", required=True)
+    @discord.option("text", str, description="Meme text", required=True)
     async def memegen_onepanel(self, ctx, template: str, title: str, text: str):
         global api
 
@@ -89,10 +88,10 @@ class meme_commands(commands.Cog):
 
     # Two panel memes
     @memegen.command(name="--twopanel", description="very good memes")
-    @option("template", str, description="Choose a template", choices=["drake", "pooh"], required=True)
-    @option("title", str, description="A very interesting title", required=True)
-    @option("text1", str, description="Top panel text", required=True)
-    @option("text2", str, description="Bottom panel text", required=True)
+    @discord.option("template", str, description="Choose a template", choices=["drake", "pooh"], required=True)
+    @discord.option("title", str, description="A very interesting title", required=True)
+    @discord.option("text1", str, description="Top panel text", required=True)
+    @discord.option("text2", str, description="Bottom panel text", required=True)
     async def memegen_twopanel(self, ctx, template: str, title: str, text1: str, text2:str):
 
         if template == "drake":

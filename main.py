@@ -1,15 +1,11 @@
 import discord, os
 from discord.ext import commands
+import utils.mobile_status # set mobile status
 from config import bot_prefix, bot_token, bot_time
 import datetime
 
 
-# Set intents
-# Make sure to enabale these on the discord dev portal!
-intents = discord.Intents.default()
-intents.members = True
-intents.message_content = True
-
+intents = discord.Intents.all() # make sure to enable all intents on the discord dev portal!
 bot = commands.Bot(command_prefix=bot_prefix, intents=intents, help_command=None) # set prefix, intents, and remove the default help command
 
 # Load commands
@@ -41,6 +37,5 @@ except discord.HTTPException as err:  # If discord blocks the current ip, reques
     if err.status == 429:
         print("The Discord servers denied the connection for making too many requests")
         os.system("python utils/restarter.py")
-        os.system('kill 1')
     else:
         raise err

@@ -1,7 +1,7 @@
 import discord, random
 from discord.ext import commands
 import datetime
-from config import bot_join_msg, bot_no_perm, bot_time
+from config import bot_join_msg, bot_no_perm, no_perm, bot_time
 
 class events(commands.Cog):
     def __init__(self, bot):
@@ -38,7 +38,7 @@ class events(commands.Cog):
         print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"{ctx.author} used the {ctx.command.name} command")
 
     @commands.Cog.listener()
-    async def on_application_command(self, ctx, guild):
+    async def on_application_command(self, ctx):
         print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"{ctx.author} used the {ctx.command.name} command")
 
 
@@ -47,8 +47,12 @@ class events(commands.Cog):
     async def on_application_command_error(self, ctx, error):
         if isinstance(error, (commands.CommandNotFound, commands.NoPrivateMessage)):
             return
-        elif isinstance(error.original, commands.BotMissingPermissions):
-            await ctx.respond(random.choice(bot_no_perm))
+            
+        elif isinstance(error, commands.BotMissingPermissions):
+            return await ctx.respond(random.choice(bot_no_perm), ephemeral=True)
+
+        elif isinstance(error, commands.MissingPermissions):
+            return await ctx.respond(random.choice(no_perm), ephemeral=True)
         raise error
 
 

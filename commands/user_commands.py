@@ -17,8 +17,7 @@ class user_commands(commands.Cog):
 
 
     # User avatar command
-    @discord.user_command(name="Show user avatar and banner", guild_only=True)
-    @commands.guild_only()
+    @discord.user_command(name="Show user photos")
     async def useravatar(self, ctx, member: discord.Member):
         embed = discord.Embed(color=bot_color)
         embed.set_author(name=f'{member.name}#{member.discriminator}', icon_url=user_icon)
@@ -35,22 +34,25 @@ class user_commands(commands.Cog):
 
 
     # User info command
-    @discord.user_command(name="Show user info")
+    @discord.user_command(name="Show user profile", guild_only=True)
     async def userinfo(self, ctx, member: discord.Member):
+        roles = " ".join([role.mention for role in member.roles])
+        perm_string = ', '.join([str(p[0]).replace("_", " ").title() for p in member.guild_permissions if p[1]])
+        
         embed = discord.Embed(color=bot_color)
         embed.set_thumbnail(url=member.avatar)
         embed.set_author(name="User info", icon_url=user_icon)
         embed.add_field(name="Username", value=f'```{member.name}#{member.discriminator}```', inline=True)
         embed.add_field(name="Nickname", value=f'```{member.nick}```', inline=True)
-        embed.add_field(name="Status", value=f'```{member.status}```', inline=True)
+        embed.add_field(name="Status", value=f'```{member.raw_status}```', inline=True)
         embed.add_field(name="Bot", value=f'```{member.bot}```', inline=True)
         embed.add_field(name="Nitro user", value=f'```{bool(member.premium_since)}```', inline=True)
         embed.add_field(name="Highest role", value=member.top_role.mention, inline=True)
         embed.add_field(name="Account created",value=f'```{member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")}```', inline=False)
         embed.add_field(name="Joined on",value=f'```{member.joined_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")}```', inline=False)
         
-        roles = " ".join([role.mention for role in member.roles])
         embed.add_field(name="Roles", value=f"{roles}", inline=False)
+        embed.add_field(name="Guild permissions", value=f"```{perm_string}```", inline=False)
         
         embed.set_footer(text='User ID: ' + str(member.id))
         await ctx.respond(embed=embed, ephemeral=True)

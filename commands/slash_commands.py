@@ -1,9 +1,8 @@
 import discord, random
 import requests
 from discord.ext import commands
-from discord import option
 from discord_together import DiscordTogether
-from config import bot_token, bot_time, no_perm, activity_link
+from config import bot_token, bot_time, activity_link
 import datetime, time
 
 
@@ -22,8 +21,9 @@ class slash_commands(commands.Cog):
 
     # Activity command
     @discord.slash_command(name="activity", description="Start or join a voice channel activity", guild_only=True)
-    @option("channel", discord.VoiceChannel, description="Select a channel to start the activity in", required=True)
-    @option("activity", description="Select an activity",
+    @commands.has_guild_permissions(start_embedded_activities=True)
+    @discord.option("channel", discord.VoiceChannel, description="Select a channel to start the activity in", required=True)
+    @discord.option("activity", description="Select an activity",
         choices=[
         "Watch Together",
         "Poker Night (Boost Lvl 1)",
@@ -40,42 +40,39 @@ class slash_commands(commands.Cog):
         ], required=True)
 
     async def activity(self, ctx: discord.ApplicationContext, channel: discord.VoiceChannel, activity: str):
-        if ctx.author.guild_permissions.start_embedded_activities is False:
-            await ctx.respond(random.choice(no_perm), ephemeral=True)
-        else:
-            invite_age = 900
-            invite_uses = 0 # unlimited use
+        invite_age = 900
+        invite_uses = 0 # unlimited use
 
-            if activity == "Watch Together":
-                selected = 'youtube'
-            elif activity == "Poker Night (Boost Lvl 1)":
-                selected = 'poker'
-            elif activity == "Chess In The Park (Boost Lvl 1)":
-                selected = 'chess'
-            elif activity == "Letter League (Boost Lvl 1)":
-                selected = 'letter-league'
-            elif activity == "Word Snacks":
-                selected = 'wold-snack'
-            elif activity == "Sketch Heads":
-                selected = 'sketch-heads'
-            elif activity == "SpellCast (Boost Lvl 1)":
-                selected = 'spellcast'
-            elif activity == "Awkword (Boost Lvl 1)":
-                selected = 'awkword'
-            elif activity == "Checkers In The Park (Boost Lvl 1)":
-                selected = 'checkers'
-            elif activity == "Blazing 8s (Boost Lvl 1)":
-                selected = 'blazing-8s'
-            elif activity == "Land-io (Boost Lvl 1)":
-                selected = 'land-io'
-            elif activity == "Putt Party (Boost Lvl 1)":
-                selected = 'putt-party'
+        if activity == "Watch Together":
+            selected = 'youtube'
+        elif activity == "Poker Night (Boost Lvl 1)":
+            selected = 'poker'
+        elif activity == "Chess In The Park (Boost Lvl 1)":
+            selected = 'chess'
+        elif activity == "Letter League (Boost Lvl 1)":
+            selected = 'letter-league'
+        elif activity == "Word Snacks":
+            selected = 'wold-snack'
+        elif activity == "Sketch Heads":
+            selected = 'sketch-heads'
+        elif activity == "SpellCast (Boost Lvl 1)":
+            selected = 'spellcast'
+        elif activity == "Awkword (Boost Lvl 1)":
+            selected = 'awkword'
+        elif activity == "Checkers In The Park (Boost Lvl 1)":
+            selected = 'checkers'
+        elif activity == "Blazing 8s (Boost Lvl 1)":
+            selected = 'blazing-8s'
+        elif activity == "Land-io (Boost Lvl 1)":
+            selected = 'land-io'
+        elif activity == "Putt Party (Boost Lvl 1)":
+            selected = 'putt-party'
 
-            try:
-                link = await self.togetherControl.create_link(channel.id, selected, max_age=invite_age, max_uses=invite_uses) # generate link and send it
-                await ctx.respond(f"{random.choice(activity_link)}\n{link}")
-            except:
-                await ctx.respond("Failed to create activity", ephemeral=True)
+        try:
+            link = await self.togetherControl.create_link(channel.id, selected, max_age=invite_age, max_uses=invite_uses) # generate link and send it
+            await ctx.respond(f"{random.choice(activity_link)}\n{link}")
+        except:
+            await ctx.respond("Failed to create activity", ephemeral=True)
 
 
 

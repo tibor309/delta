@@ -1,7 +1,8 @@
 from time import sleep
+import os
 from os import system
 
-# Start after a few seconds while getting a new ip
 print("Restarting repl")
-sleep(7)
-system("python main.py")
+os.system('kill 1') # get a new ip
+sleep(7) # wait a few seconds
+system("python main.py") # then start the bot
