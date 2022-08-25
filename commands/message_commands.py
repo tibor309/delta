@@ -27,8 +27,13 @@ class message_commands(commands.Cog):
         response = requests.get(url, verify=True)
         data = response.json()
         message = data['base64']
-        await ctx.respond(message, ephemeral=True)
+        
+        try: 
+            await ctx.respond(message, ephemeral=True)
+        except:
+            await ctx.respond("something went wrong", ephemeral=True)
 
+            
     # Decode from base64
     @discord.message_command(name="Decode from Base64")
     async def decode_base64(self, ctx, message: discord.Message):
@@ -37,7 +42,11 @@ class message_commands(commands.Cog):
         response = requests.get(url, verify=True)
         data = response.json()
         message = data['text']
-        await ctx.respond(message, ephemeral=True)
+
+        try: 
+            await ctx.respond(message, ephemeral=True)
+        except:
+            await ctx.respond("something went wrong", ephemeral=True)
 
 
 
