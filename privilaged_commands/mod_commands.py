@@ -14,12 +14,11 @@ class mod_commands(commands.Cog):
     async def on_ready(self):
         print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded moderator commands")
 
-
     channel = SlashCommandGroup("channel", "Commands for channel moderation", guild_only=True) # create group for channel commands
 
     # Set custom slowmode command
     @channel.command(name="slowmode", description="Configure slowmode for channel")
-    @commands.has_guild_permissions(manage_channels=True)
+    @commands.has_permissions(manage_channels=True)
     @discord.option("sec", int, description="Slowmode delay in seconds", required=True)
     async def channel_slowmode(self, ctx, sec: int):
         await ctx.channel.edit(slowmode_delay=sec)
@@ -27,7 +26,7 @@ class mod_commands(commands.Cog):
 
     # Lock and unlock chat
     @channel.command(name="lock", description="Lock and unlock chat")
-    @commands.has_guild_permissions(manage_channels=True)
+    @commands.has_permissions(manage_channels=True)
     @discord.option("locked", bool, description="True or False", required=True)
     async def channel_lock(self, ctx, locked: bool):
         if locked == True:
@@ -40,7 +39,7 @@ class mod_commands(commands.Cog):
 
     # Remove messages
     @discord.slash_command(name="rm", description="Remove messages", guild_only=True)
-    @commands.has_guild_permissions(manage_messages=True)
+    @commands.has_permissions(manage_messages=True)
     @discord.option("msg", int, description="Number of messages", required=True)
     async def remove_messages(self, ctx, messages: int):
         await ctx.channel.purge(limit=messages)

@@ -86,21 +86,21 @@ class music_commands(commands.Cog):
         if seconds > 0:
             duration.append('{}s'.format(seconds))
 
-        return ', '.join(duration)
+        return ' '.join(duration)
 
 
 
     @discord.Cog.listener()
     async def on_ready(self):
+        discord.opus.load_opus("./libopus.so.0.8.0")
         print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded music commands")
 
     
     music = discord.SlashCommandGroup("ffmpeg", "Music playback", guild_only=True) # create command group
     
-    @music.command(name="play", description="Play a selected song from youtube (it may be inaccurate)")
+    @music.command(name="play", description="Play a selected song from youtube (it may be inaccurate)", guild_only=True)
     @discord.option("args", str, description="Search for a song, or imput a yt url", required=True)
     async def play(self, ctx, args: str):
-        discord.opus.load_opus("./libopus.so.0.8.0")
         query = " ".join(args)
 
         voice_channel = ctx.author.voice.channel
@@ -124,7 +124,7 @@ class music_commands(commands.Cog):
                     await self.play_music(ctx)
 
     
-    @music.command(name="pause", description="Pause the currenty playing song")
+    @music.command(name="pause", description="Pause the currenty playing song", guild_only=True)
     async def pause(self, ctx):
         if self.is_playing:
             self.is_playing = False
@@ -149,7 +149,7 @@ class music_commands(commands.Cog):
             await ctx.respond("Player is already playing", ephemeral=True)
 
     
-    @music.command(name="skip", description="Skips current song")
+    @music.command(name="skip", description="Skips current song", guild_only=True)
     async def skip(self, ctx):
         if self.vc != None and self.vc:
             self.vc.stop()
@@ -160,7 +160,7 @@ class music_commands(commands.Cog):
             await ctx.respond("Theres nothing to skip", ephemeral=True)
 
 
-    @music.command(name="queue", description="Displays the current songs in queue")
+    @music.command(name="queue", description="Displays the current songs in queue", guild_only=True)
     async def queue(self, ctx):
         name = ctx.author.name
         botname = self.bot.user.name
@@ -175,7 +175,7 @@ class music_commands(commands.Cog):
             await ctx.respond("There are no more songs in queue")
 
     
-    @music.command(name="clearq", description="Stop player and clears queue")
+    @music.command(name="clearq", description="Stop player and clears queue", guild_only=True)
     async def qclear(self, ctx):
         if self.vc != None and self.is_playing:
             self.vc.stop()
@@ -183,9 +183,8 @@ class music_commands(commands.Cog):
         await ctx.respond("Cleared music queue")
 
     
-    @music.command(name="stop", description="Stop playback, and leave vc")
+    @music.command(name="stop", description="Stop playback and leave vc", guild_only=True)
     async def stop(self, ctx):
-        discord.opus.load_opus("./libopus.so.0.8.0")
         self.vc.stop()
         self.is_playing = False
         self.is_paused = False

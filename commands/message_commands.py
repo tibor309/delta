@@ -26,9 +26,9 @@ class message_commands(commands.Cog):
         
         response = requests.get(url, verify=True)
         data = response.json()
-        message = data['base64']
         
         try: 
+            message = data['base64']
             await ctx.respond(message, ephemeral=True)
         except:
             await ctx.respond("something went wrong", ephemeral=True)
@@ -41,9 +41,9 @@ class message_commands(commands.Cog):
         
         response = requests.get(url, verify=True)
         data = response.json()
-        message = data['text']
-
+        
         try: 
+            message = data['text']
             await ctx.respond(message, ephemeral=True)
         except:
             await ctx.respond("something went wrong", ephemeral=True)

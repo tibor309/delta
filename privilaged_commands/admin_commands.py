@@ -19,6 +19,7 @@ class admin_commands(commands.Cog):
 
 
     @discord.slash_command(name="add_private_emoji", description="Create role specific emojis", guild_only=True, guild_ids=[380315051879432202])
+    @commands.has_permissions(administrator=True)
     @discord.option("name", str, description="Name of the emoji", required=True)
     @discord.option("image", discord.Attachment, description="Image", required=True)
     @discord.option("role", discord.Role, description="Whos gonna be able to use this emoji?", required=True)
