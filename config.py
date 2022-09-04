@@ -27,3 +27,5 @@ bot_no_perm = ["I don't have perms!", "i don't have enough perms for this", "i c
 cmd_dms = ["You can't use this command here.", "No", "You can only use these commands in servers.", "Nope", "you can't use this command in dms!"]
 activity_link = ["use the link to join", "join with the link", "here's the link"]
 bot_join_msg = ["Hi everyone!", "Hi", "hi everyone", "hi", "Hello everyone!"]
+no_vc = ["Join a vc first!", "Connect to a voice channel!"]
+no_same_vc = ["You're not in the same vc as me!"]

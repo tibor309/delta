@@ -1,7 +1,7 @@
-import discord, datetime
+import discord, random, datetime
 from discord.ext import commands
 from youtube_dl import YoutubeDL
-from config import bot_time
+from config import bot_time, no_vc, no_same_vc
 
 class music_commands(commands.Cog):
     def __init__(self, bot):
@@ -106,7 +106,8 @@ class music_commands(commands.Cog):
         voice_channel = ctx.author.voice.channel
         if voice_channel is None:
             #you need to be connected so that the bot knows where to go
-            await ctx.respond("Connect to a voice channel!", ephemeral=True)
+            await ctx.respond(random.choice(no_vc), ephemeral=True)
+            
         elif self.is_paused:
             self.vc.resume()
         else:
@@ -126,7 +127,12 @@ class music_commands(commands.Cog):
     
     @music.command(name="pause", description="Pause the currenty playing song", guild_only=True)
     async def pause(self, ctx):
-        if self.is_playing:
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            await ctx.respond(random.choice(no_vc), ephemeral=True)
+            
+            
+        elif self.is_playing:
             self.is_playing = False
             self.is_paused = True
             self.vc.pause()
@@ -140,7 +146,12 @@ class music_commands(commands.Cog):
             
     @music.command(name = "resume", description="Resume player")
     async def resume(self, ctx):
-        if self.is_paused:
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            await ctx.respond(random.choice(no_vc), ephemeral=True)
+            
+            
+        elif self.is_paused:
             self.is_paused = False
             self.is_playing = True
             self.vc.resume()
@@ -151,7 +162,12 @@ class music_commands(commands.Cog):
     
     @music.command(name="skip", description="Skips current song", guild_only=True)
     async def skip(self, ctx):
-        if self.vc != None and self.vc:
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            await ctx.respond(random.choice(no_vc), ephemeral=True)
+            
+            
+        elif self.vc != None and self.vc:
             self.vc.stop()
             #try to play next in the queue if it exists
             await self.play_music(ctx)
@@ -177,7 +193,12 @@ class music_commands(commands.Cog):
     
     @music.command(name="clearq", description="Stop player and clears queue", guild_only=True)
     async def qclear(self, ctx):
-        if self.vc != None and self.is_playing:
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            await ctx.respond(random.choice(no_vc), ephemeral=True)
+            
+            
+        elif self.vc != None and self.is_playing:
             self.vc.stop()
         self.music_queue = []
         await ctx.respond("Cleared music queue")
@@ -185,11 +206,17 @@ class music_commands(commands.Cog):
     
     @music.command(name="stop", description="Stop playback and leave vc", guild_only=True)
     async def stop(self, ctx):
-        self.vc.stop()
-        self.is_playing = False
-        self.is_paused = False
-        await self.vc.disconnect()
-        await ctx.respond("Stopped player, and left vc")
+        voice_channel = ctx.author.voice.channel
+        if voice_channel is None:
+            await ctx.respond(random.choice(no_vc), ephemeral=True)
+            
+            
+        else: 
+            self.vc.stop()
+            self.is_playing = False
+            self.is_paused = False
+            await self.vc.disconnect()
+            await ctx.respond("Stopped player, and left vc")
 
 
 def setup(bot):
