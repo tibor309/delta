@@ -36,7 +36,9 @@ class slash_commands(commands.Cog):
         "Checkers In The Park (Boost Lvl 1)",
         "Blazing 8s (Boost Lvl 1)",
         "Land-io (Boost Lvl 1)",
-        "Putt Party (Boost Lvl 1)"
+        "Putt Party (Boost Lvl 1)",
+        "Bobble League (Boost Lvl 1)",
+        "Ask Away"
         ], required=True)
 
     async def activity(self, ctx: discord.ApplicationContext, channel: discord.VoiceChannel, activity: str):
@@ -67,6 +69,10 @@ class slash_commands(commands.Cog):
             selected = 'land-io'
         elif activity == "Putt Party (Boost Lvl 1)":
             selected = 'putt-party'
+        elif activity == "Bobble League (Boost Lvl 1)":
+            selected = 'bobble-league'
+        elif activity == "Ask Away":
+            selected = 'ask-away'
 
         try:
             link = await self.togetherControl.create_link(channel.id, selected, max_age=invite_age, max_uses=invite_uses) # generate link and send it

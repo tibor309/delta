@@ -7,3 +7,8 @@ utils_/__pycache__/
 # Ignore replit files
 .replit
 replit.nix
+
+# Ignore package files
+.env # ignore secrets
+.config
+venv

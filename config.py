@@ -10,7 +10,7 @@ bot_prefix = os.getenv("PREFIX")bot_token = os.getenv("TOKEN")
 reddit_id = os.getenv("REDDIT_APP_ID")
 reddit_secret = os.getenv("REDDIT_APP_SECRET")
 
-bot_time = "%Y-%m-%d %H:%M:%S %p UTC" # Time structure for logs
+bot_time = "%Y-%m-%d %H:%M:%S %p UTC" # Time structure for logs (i should implement a proper logger later)
 
 
 # Icons
@@ -27,5 +27,5 @@ bot_no_perm = ["I don't have perms!", "i don't have enough perms for this", "i c
 cmd_dms = ["You can't use this command here.", "No", "You can only use these commands in servers.", "Nope", "you can't use this command in dms!"]
 activity_link = ["use the link to join", "join with the link", "here's the link"]
 bot_join_msg = ["Hi everyone!", "Hi", "hi everyone", "hi", "Hello everyone!"]
-no_vc = ["Join a vc first!", "Connect to a voice channel!"]
-no_same_vc = ["You're not in the same vc as me!"]
+no_vc = ["Join a vc first!", "Connect to a voice channel!", "connect to a vc!", "vc?"]
+no_same_vc = ["You're not in the same vc as me!", "you're not in our voice channel!", "you're not in the same vc as me"]

@@ -67,7 +67,7 @@ class music_commands(commands.Cog):
             self.vc.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
         else:
             self.is_playing = False
-
+        
             
     # convert time
     @staticmethod
@@ -125,12 +125,14 @@ class music_commands(commands.Cog):
                     await self.play_music(ctx)
 
     
-    @music.command(name="pause", description="Pause the currenty playing song", guild_only=True)
+    @music.command(name="pause", description="Pause/unpause the currenty playing song", guild_only=True)
     async def pause(self, ctx):
-        voice_channel = ctx.author.voice.channel
-        if voice_channel is None:
-            await ctx.respond(random.choice(no_vc), ephemeral=True)
-            
+        if ctx.author.voice == None:
+            #you need to be connected to a vc, so that the bot knows where you are
+            return await ctx.respond(random.choice(no_vc), ephemeral=True)
+        elif not ctx.author.voice.channel == ctx.voice_client.channel:
+            #you need to be in the same vc as the bot
+            return await ctx.respond(random.choice(no_same_vc), ephemeral=True)
             
         elif self.is_playing:
             self.is_playing = False
@@ -144,27 +146,15 @@ class music_commands(commands.Cog):
             await ctx.respond("Resumed player")
 
             
-    @music.command(name = "resume", description="Resume player")
-    async def resume(self, ctx):
-        voice_channel = ctx.author.voice.channel
-        if voice_channel is None:
-            await ctx.respond(random.choice(no_vc), ephemeral=True)
-            
-            
-        elif self.is_paused:
-            self.is_paused = False
-            self.is_playing = True
-            self.vc.resume()
-            await ctx.respond("Resumed player")
-        else:
-            await ctx.respond("Player is already playing", ephemeral=True)
-
     
     @music.command(name="skip", description="Skips current song", guild_only=True)
     async def skip(self, ctx):
-        voice_channel = ctx.author.voice.channel
-        if voice_channel is None:
-            await ctx.respond(random.choice(no_vc), ephemeral=True)
+        if ctx.author.voice == None:
+            #you need to be connected to a vc, so that the bot knows where you are
+            return await ctx.respond(random.choice(no_vc), ephemeral=True)
+        elif not ctx.author.voice.channel == ctx.voice_client.channel:
+            #you need to be in the same vc as the bot
+            return await ctx.respond(random.choice(no_same_vc), ephemeral=True)
             
             
         elif self.vc != None and self.vc:
@@ -193,9 +183,12 @@ class music_commands(commands.Cog):
     
     @music.command(name="clearq", description="Stop player and clears queue", guild_only=True)
     async def qclear(self, ctx):
-        voice_channel = ctx.author.voice.channel
-        if voice_channel is None:
-            await ctx.respond(random.choice(no_vc), ephemeral=True)
+        if ctx.author.voice == None:
+            #you need to be connected to a vc, so that the bot knows where you are
+            return await ctx.respond(random.choice(no_vc), ephemeral=True)
+        elif not ctx.author.voice.channel == ctx.voice_client.channel:
+            #you need to be in the same vc as the bot
+            return await ctx.respond(random.choice(no_same_vc), ephemeral=True)
             
             
         elif self.vc != None and self.is_playing:
@@ -204,11 +197,14 @@ class music_commands(commands.Cog):
         await ctx.respond("Cleared music queue")
 
     
-    @music.command(name="stop", description="Stop playback and leave vc", guild_only=True)
+    @music.command(name="stop", description="Stop playback and leave vc (you can manualy disconnect the bot too)", guild_only=True)
     async def stop(self, ctx):
-        voice_channel = ctx.author.voice.channel
-        if voice_channel is None:
-            await ctx.respond(random.choice(no_vc), ephemeral=True)
+        if ctx.author.voice == None:
+            #you need to be connected to a vc, so that the bot knows where you are
+            return await ctx.respond(random.choice(no_vc), ephemeral=True)
+        elif not ctx.author.voice.channel == ctx.voice_client.channel:
+            #you need to be in the same vc as the bot
+            return await ctx.respond(random.choice(no_same_vc), ephemeral=True)
             
             
         else: 
