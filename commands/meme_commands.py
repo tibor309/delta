@@ -37,11 +37,12 @@ class meme_commands(commands.Cog):
         elif subreddit == "r/furrymemes":
             memes_submissions = reddit.subreddit('furrymemes').hot()
 
+        await ctx.defer()
         for i in range(0, post_to_pick):
             submission = next(x for x in memes_submissions if not x.stickied)
         embed = discord.Embed(color=bot_color2, title=submission.title)
         embed.set_image(url=submission.url)
-        await ctx.respond(embed=embed)
+        await ctx.followup.send(embed=embed)
 
 
         
@@ -72,6 +73,8 @@ class meme_commands(commands.Cog):
             api = "https://api.popcat.xyz/caution"
 
         meme = text.replace(" ", "+")
+
+        await ctx.defer()
         async with aiohttp.ClientSession() as session:
             async with session.get(f"{api}?text={meme}") as af:
                 if 300 > af.status >= 200:
@@ -80,9 +83,9 @@ class meme_commands(commands.Cog):
                     
                     embed = discord.Embed(color=bot_color2, title=title)
                     embed.set_image(url="attachment://meme.png")
-                    await ctx.respond(embed=embed, file=file)
+                    await ctx.followup.send(embed=embed, file=file)
                 else:
-                    await ctx.respond('Failed to get the image :(', ephemeral=False)
+                    await ctx.followup.send('Failed to get the image :(', ephemeral=False)
                 await session.close()
 
 
@@ -101,6 +104,8 @@ class meme_commands(commands.Cog):
 
         panel1 = text1.replace(" ", "+")
         panel2 = text2.replace(" ", "+")
+
+        await ctx.defer()
         async with aiohttp.ClientSession() as session:
             async with session.get(f"{api}?text1={panel1}&text2={panel2}") as af:
                 if 300 > af.status >= 200:
@@ -109,9 +114,9 @@ class meme_commands(commands.Cog):
                     
                     embed = discord.Embed(color=bot_color2, title=title)
                     embed.set_image(url="attachment://meme2.png")
-                    await ctx.respond(embed=embed, file=file)
+                    await ctx.followup.send(embed=embed, file=file)
                 else:
-                    await ctx.respond('Failed to get the image :(', ephemeral=True)
+                    await ctx.followup.send('Failed to get the image :(', ephemeral=True)
                 await session.close()
 
 

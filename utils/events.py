@@ -47,11 +47,14 @@ class events(commands.Cog):
     async def on_application_command_error(self, ctx, error): # app command error
         if isinstance(error, (commands.CommandNotFound, commands.NoPrivateMessage)):
             return
+
+        elif isinstance(error, commands.CommandOnCooldown): # user doesn't have perms
+            return await ctx.respond(error, ephemeral=True)
             
         elif isinstance(error, commands.BotMissingPermissions): # bot doesn't have perms
             return await ctx.respond(random.choice(bot_no_perm), ephemeral=True)
 
-        elif isinstance(error, commands.MissingPermissions): # user 
+        elif isinstance(error, commands.MissingPermissions): # user doesn't have perms
             return await ctx.respond(random.choice(no_perm), ephemeral=True)
         raise error
 
