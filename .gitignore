@@ -2,7 +2,7 @@
 __pycache__
 commands/__pycache__/
 privilaged_commands/__pycache__/
-utils_/__pycache__/
+utils/__pycache__/
 .cache
 
 # Ignore replit files
@@ -11,5 +11,5 @@ replit.nix
 
 # Ignore package files
 .env # ignore secrets
-.config
+.config/
 venv
