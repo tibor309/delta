@@ -56,7 +56,7 @@ class music_commands(commands.Cog):
 
                 #in case we fail to connect
                 if self.vc == None:
-                    await ctx.respond("Could not connect to the voice channel", ephemeral=True)
+                    await ctx.followup.send("Could not connect to the voice channel", ephemeral=True)
                     return
             else:
                 await self.vc.move_to(self.music_queue[0][1])
@@ -101,25 +101,26 @@ class music_commands(commands.Cog):
     @music.command(name="play", description="Play a selected song from youtube (it may be inaccurate)", guild_only=True)
     @discord.option("args", str, description="Search for a song, or imput a yt url", required=True)
     async def play(self, ctx, args: str):
+        await ctx.defer()
         query = " ".join(args)
 
         voice_channel = ctx.author.voice.channel
         if voice_channel is None:
             #you need to be connected so that the bot knows where to go
-            await ctx.respond(random.choice(no_vc), ephemeral=True)
+            await ctx.followup.send(random.choice(no_vc), ephemeral=True)
             
         elif self.is_paused:
             self.vc.resume()
         else:
             song = self.search_yt(query)
             if type(song) == type(True):
-                await ctx.respond("Failed to download the song! Incorrect format, try another keyword. This could be due to playlist or a livestream format.", ephemeral=True)
+                await ctx.followup.send("Failed to download the song! Incorrect format, try another keyword. This could be due to playlist or a livestream format.", ephemeral=True)
             else:
                 self.music_queue.append([song, voice_channel])
 
                 title = song.get('title')
                 duration = self.parse_duration(int(song.get('duration')))
-                await ctx.respond(f"Added `{title}` `[{duration}]` to the queue")
+                await ctx.followup.send(f"Added `{title}` `[{duration}]` to the queue")
                 
                 if self.is_playing == False:
                     await self.play_music(ctx)
@@ -127,43 +128,45 @@ class music_commands(commands.Cog):
     
     @music.command(name="pause", description="Pause/unpause the currenty playing song", guild_only=True)
     async def pause(self, ctx):
+        await ctx.defer()
         if ctx.author.voice == None:
             #you need to be connected to a vc, so that the bot knows where you are
-            return await ctx.respond(random.choice(no_vc), ephemeral=True)
+            return await ctx.followup.send(random.choice(no_vc), ephemeral=True)
         elif not ctx.author.voice.channel == ctx.voice_client.channel:
             #you need to be in the same vc as the bot
-            return await ctx.respond(random.choice(no_same_vc), ephemeral=True)
+            return await ctx.followup.send(random.choice(no_same_vc), ephemeral=True)
             
         elif self.is_playing:
             self.is_playing = False
             self.is_paused = True
             self.vc.pause()
-            await ctx.respond("Paused player")
+            await ctx.followup.send("Paused player")
         elif self.is_paused:
             self.is_paused = False
             self.is_playing = True
             self.vc.resume()
-            await ctx.respond("Resumed player")
+            await ctx.followup.send("Resumed player")
 
             
     
     @music.command(name="skip", description="Skips current song", guild_only=True)
     async def skip(self, ctx):
+        await ctx.defer()
         if ctx.author.voice == None:
             #you need to be connected to a vc, so that the bot knows where you are
-            return await ctx.respond(random.choice(no_vc), ephemeral=True)
+            return await ctx.followup.send(random.choice(no_vc), ephemeral=True)
         elif not ctx.author.voice.channel == ctx.voice_client.channel:
             #you need to be in the same vc as the bot
-            return await ctx.respond(random.choice(no_same_vc), ephemeral=True)
+            return await ctx.followup.send(random.choice(no_same_vc), ephemeral=True)
             
             
         elif self.vc != None and self.vc:
             self.vc.stop()
             #try to play next in the queue if it exists
             await self.play_music(ctx)
-            await ctx.respond("Skipped current song")
+            await ctx.followup.send("Skipped current song")
         else:
-            await ctx.respond("Theres nothing to skip", ephemeral=True)
+            await ctx.followup.send("Theres nothing to skip", ephemeral=True)
 
 
     @music.command(name="queue", description="Displays the current songs in queue", guild_only=True)
@@ -171,40 +174,43 @@ class music_commands(commands.Cog):
         name = ctx.author.name
         botname = self.bot.user.name
         retval = ""
-        
+
+        await ctx.defer()
         for i in range(0, len(self.music_queue)):
             retval += f"{i + 1}. {self.music_queue[i][0]['title']}\n"
 
         if retval != "":
-            await ctx.respond(f"```[{name.lower()}@{botname.lower()} ~]$ ffmpeg -queue\nTotal songs: {len(self.music_queue)} songs\n{retval}```", ephemeral=True)
+            await ctx.followup.send(f"```[{name.lower()}@{botname.lower()} ~]$ ffmpeg queue\nTotal songs: {len(self.music_queue)} songs\n{retval}```", ephemeral=True)
         else:
-            await ctx.respond("There are no more songs in queue")
+            await ctx.followup.send("There are no more songs in queue")
 
     
     @music.command(name="clearq", description="Stop player and clears queue", guild_only=True)
     async def qclear(self, ctx):
+        await ctx.defer()
         if ctx.author.voice == None:
             #you need to be connected to a vc, so that the bot knows where you are
-            return await ctx.respond(random.choice(no_vc), ephemeral=True)
+            return await ctx.followup.send(random.choice(no_vc), ephemeral=True)
         elif not ctx.author.voice.channel == ctx.voice_client.channel:
             #you need to be in the same vc as the bot
-            return await ctx.respond(random.choice(no_same_vc), ephemeral=True)
+            return await ctx.followup.send(random.choice(no_same_vc), ephemeral=True)
             
             
         elif self.vc != None and self.is_playing:
             self.vc.stop()
         self.music_queue = []
-        await ctx.respond("Cleared music queue")
+        await ctx.followup.send("Cleared music queue")
 
     
     @music.command(name="stop", description="Stop playback and leave vc (you can manualy disconnect the bot too)", guild_only=True)
     async def stop(self, ctx):
+        await ctx.defer()
         if ctx.author.voice == None:
             #you need to be connected to a vc, so that the bot knows where you are
-            return await ctx.respond(random.choice(no_vc), ephemeral=True)
+            return await ctx.followup.send(random.choice(no_vc), ephemeral=True)
         elif not ctx.author.voice.channel == ctx.voice_client.channel:
             #you need to be in the same vc as the bot
-            return await ctx.respond(random.choice(no_same_vc), ephemeral=True)
+            return await ctx.followup.send(random.choice(no_same_vc), ephemeral=True)
             
             
         else: 
@@ -212,7 +218,7 @@ class music_commands(commands.Cog):
             self.is_playing = False
             self.is_paused = False
             await self.vc.disconnect()
-            await ctx.respond("Stopped player, and left vc")
+            await ctx.followup.send("Stopped player, and left vc")
 
 
 def setup(bot):
