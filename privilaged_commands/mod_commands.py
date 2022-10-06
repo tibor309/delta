@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord.commands import SlashCommandGroup
 from config import bot_time
 import datetime
+from typing import Union
 
 
 class mod_commands(commands.Cog):
@@ -13,39 +14,72 @@ class mod_commands(commands.Cog):
     @discord.Cog.listener()
     async def on_ready(self):
         print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded moderator commands")
-
-    channel = SlashCommandGroup("channel", "Commands for channel moderation", guild_only=True) # create group for channel commands
+        
 
     # Set custom slowmode command
-    @channel.command(name="slowmode", description="Configure slowmode for channel")
+    @discord.slash_command(name="dirmd", description="Configure slowmode for channel", guild_only=True)
     @commands.has_permissions(manage_channels=True)
     @discord.option("sec", int, description="Slowmode delay in seconds", required=True)
-    async def channel_slowmode(self, ctx, sec: int):
-        await ctx.channel.edit(slowmode_delay=sec)
-        await ctx.respond(f"Set channel slowmode to {sec} sec")
+    @discord.option("channel", discord.TextChannel, description="Select a channel if you want too", required=False)
+    async def channel_slowmode(self, ctx, sec: int, channel: discord.TextChannel = None):
+        try:
+            channel = channel if channel else ctx.channel
+            await channel.edit(slowmode_delay=sec)
+            await ctx.respond(f"Set slowmode for {channel.mention} to {sec} sec")
+        except:
+            await ctx.respond("I don't have access to that channel", ephemeral=True)
 
     # Lock and unlock chat
-    @channel.command(name="lock", description="Lock and unlock chat")
+    @discord.slash_command(name="lockdir", description="Lock and unlock chat", guild_only=True)
     @commands.has_permissions(manage_channels=True)
-    @discord.option("locked", bool, description="True or False", required=True)
-    async def channel_lock(self, ctx, locked: bool):
-        if locked == True:
-            await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=False)
-            await ctx.respond("Locked chat")
-        if locked == False:
-            await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=True)
-            await ctx.respond("Unlocked chat")
+    @discord.option("locked", bool, description="Change channel lock", required=True)
+    @discord.option("channel", discord.TextChannel, description="Select a channel if you want too", required=False)
+    async def channel_lock(self, ctx, locked: bool, channel: discord.TextChannel = None):
+        try:
+            channel = channel if channel else ctx.channel
                 
+            if locked == True:
+                await channel.set_permissions(ctx.guild.default_role, send_messages=False)
+                await ctx.respond(f"Locked {channel.mention} >:3")
+            elif locked == False:
+                await channel.set_permissions(ctx.guild.default_role, send_messages=True)
+                await ctx.respond(f"Unlocked {channel.mention}")
+        except:
+            await ctx.respond("I don't have access to that channel", ephemeral=True)
 
+            
     # Remove messages
-    @discord.slash_command(name="rm", description="Remove messages", guild_only=True)
+    @discord.slash_command(name="rm", description="Delete messages", guild_only=True)
     @commands.has_permissions(manage_messages=True)
     @discord.option("msg", int, description="Number of messages", required=True)
     async def remove_messages(self, ctx, messages: int):
         await ctx.channel.purge(limit=messages)
         await ctx.respond(f"Deleted {messages} messages", ephemeral=True) 
 
-  
+
+    # Create channel
+    @discord.slash_command(name="mkdir", description="Create a channel", guild_only=True)
+    @commands.has_permissions(manage_channels=True)
+    @discord.option("name", str, description="name of the channel", required=True)
+    @discord.option("type", str, description="type of the channel", required=True, choices=["text", "voice"])
+    async def create_channel(self, ctx, name: str, type: str):
+        if type == "text":
+            await ctx.guild.create_text_channel(name=name, reason=f"created text channel by {ctx.author.name}#{ctx.author.discriminator}")
+            return await ctx.respond("Created new text channel")
+        elif type == "voice":
+            await ctx.guild.create_voice_channel(name=name, reason=f"created voice channel by {ctx.author.name}#{ctx.author.discriminator}")
+            return await ctx.respond("Created new voice channel")
+        
+
+    # Delete channel
+    @discord.slash_command(name="rmdir", description="Delete a channel", guild_only=True)
+    @commands.has_permissions(manage_channels=True)
+    @discord.option("channel", Union[discord.TextChannel, discord.VoiceChannel], description="Select a channel", required=True)
+    async def delete_channel(self, ctx, channel: Union[discord.TextChannel, discord.VoiceChannel]):
+        await ctx.respond(f"Deleted #{channel.name}")
+        await channel.delete(reason=f"deleted channel by {ctx.author.name}#{ctx.author.discriminator}")
+
+            
     # Move a user to a different voice channel
     @discord.slash_command(name="mv", description="Move a user to a different vc", guild_only=True)
     @commands.has_guild_permissions(move_members=True)
@@ -62,6 +96,7 @@ class mod_commands(commands.Cog):
 
 
 
+        
 
 
 def setup(bot):

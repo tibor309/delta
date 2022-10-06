@@ -36,6 +36,7 @@ class user_commands(commands.Cog):
     # User info command
     @discord.user_command(name="Show user profile", guild_only=True)
     async def userinfo(self, ctx, member: discord.Member):
+        await ctx.defer(ephemeral=True)
         roles = " ".join([role.mention for role in member.roles])
         perm_string = ', '.join([str(p[0]).replace("_", " ").title() for p in member.guild_permissions if p[1]])
         
@@ -44,7 +45,7 @@ class user_commands(commands.Cog):
         embed.set_author(name="User info", icon_url=user_icon)
         embed.add_field(name="Username", value=f'```{member.name}#{member.discriminator}```', inline=True)
         embed.add_field(name="Nickname", value=f'```{member.nick}```', inline=True)
-        embed.add_field(name="Status", value=f'```{member.raw_status}```', inline=True)
+        embed.add_field(name="Status", value=f'```{member.status}```', inline=True)
         embed.add_field(name="Bot", value=f'```{member.bot}```', inline=True)
         embed.add_field(name="Nitro user", value=f'```{bool(member.premium_since)}```', inline=True)
         embed.add_field(name="Highest role", value=member.top_role.mention, inline=True)
@@ -55,7 +56,7 @@ class user_commands(commands.Cog):
         embed.add_field(name="Guild permissions", value=f"```{perm_string}```", inline=False)
         
         embed.set_footer(text='User ID: ' + str(member.id))
-        await ctx.respond(embed=embed, ephemeral=True)
+        await ctx.followup.send(embed=embed, ephemeral=True)
 
 
 
