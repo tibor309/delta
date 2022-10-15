@@ -44,7 +44,7 @@ class system_commands(commands.Cog):
         name = ctx.author.name
         botname = self.bot.user.name
         
-        neofetch = (f"```ansi\n[{name.lower()}@{botname.lower()} ~]$ neofetch --nologo\n"
+        neofetch = (f"```ansi\n"
         f"[2;34m{name.lower()}[0m@[2;34m{botname.lower()}[0m\n-------------\n"
         f"[1;2m[1;37mOS[0m[0m: Fedora Linux 36 (Workstation Edition)\n"
         f"[1;2m[1;37mKernel[0m[0m: 5.18.17-200.fc36.x86_64\n"

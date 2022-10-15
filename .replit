@@ -1,5 +1,5 @@
 language = "python3"
-run = "poetry install && python3 main.py"
+run = "python3 main.py"
 
 [env]
 VIRTUAL_ENV = "/home/runner/${REPL_SLUG}/venv"

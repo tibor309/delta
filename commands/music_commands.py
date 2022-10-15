@@ -171,8 +171,6 @@ class music_commands(commands.Cog):
 
     @music.command(name="queue", description="Displays the current songs in queue", guild_only=True)
     async def queue(self, ctx):
-        name = ctx.author.name
-        botname = self.bot.user.name
         retval = ""
 
         await ctx.defer()
@@ -180,7 +178,7 @@ class music_commands(commands.Cog):
             retval += f"{i + 1}. {self.music_queue[i][0]['title']}\n"
 
         if retval != "":
-            await ctx.followup.send(f"```[{name.lower()}@{botname.lower()} ~]$ ffmpeg queue\nTotal songs: {len(self.music_queue)} songs\n{retval}```", ephemeral=True)
+            await ctx.followup.send(f"```Total songs: {len(self.music_queue)} song(s)\n{retval}```", ephemeral=True)
         else:
             await ctx.followup.send("There are no more songs in queue")
 
