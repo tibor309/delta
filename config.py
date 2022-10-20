@@ -9,7 +9,7 @@ bot_color2 = 0x2F3136
 reddit_id = os.getenv("REDDIT_APP_ID")
 reddit_secret = os.getenv("REDDIT_APP_SECRET")
 
-bot_time = "%Y-%m-%d %H:%M:%S %p UTC" # Time structure for logs (i should implement a proper logger later)
+bot_time = "%d/%b/%Y %H:%M:%S" # Time structure for logs (i should implement a proper logger later)
 
 
 # Icons
@@ -18,7 +18,7 @@ settings_icon1 = "https://i.imgur.com/jbJFUeG.png"
 settings_icon2 = "https://i.imgur.com/QEKptpH.png"
 settings_folder_icon = "https://i.imgur.com/PiFG9ng.png"
 folder_icon = "https://i.imgur.com/E90UgPB.png"
-cpu_folder_icon = "https://i.imgur.com/zGVdnZ5.png"
+cpu_folder_icon = "https://i.imgur.com/jW1kIa7.png"
 
 # Emojis
 yes_emoji = "<:ye:935798200621760533>"

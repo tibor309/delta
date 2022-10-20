@@ -2,7 +2,7 @@ import discord, random
 import requests
 from discord.ext import commands
 from discord_together import DiscordTogether
-from config import bot_token, bot_color, bot_color2, bot_time, activity_link, yes_emoji, no_emoji, cpu_folder_icon
+from config import bot_token, bot_color, bot_color2, bot_time, activity_link, yes_emoji, no_emoji, cpu_folder_icon, user_icon
 import datetime, time
 
 
@@ -120,7 +120,7 @@ class slash_commands(commands.Cog):
     async def serverinfo(self, ctx):
         await ctx.defer(ephemeral=True)
         guild = ctx.guild
-        member_count = len([m for m in guild.members if not m.bot])
+        user_count = len([m for m in guild.members if not m.bot])
         bot_count = len([b for b in guild.members if b.bot])
         category_count = len(guild.categories)
         text_count = len(guild.text_channels)
@@ -154,12 +154,12 @@ class slash_commands(commands.Cog):
         embed.add_field(name="Region", value=f"```{guild.preferred_locale}```", inline=True)
         embed.add_field(name="Verification lvl", value=f"```{mfa_level}```", inline=True)
         embed.add_field(name="Server Boosts", value=f"```{guild.premium_subscription_count} boosts\n{len(guild.premium_subscribers)} boosted```", inline=True)
-        embed.add_field(name="AFK Channel", value=f"```{afk_timeout} Minutes timeout```\n{afk_channel}", inline=True)
+        embed.add_field(name="AFK Channel", value=f"{afk_channel}\n```{afk_timeout} Minutes timeout```", inline=True)
         embed.add_field(name="Roles", value=f"```{len(guild.roles)} roles```", inline=True)
         embed.add_field(name="Channels", value=f"```{category_count} categories\n{text_count} text\n{voice_count} voice\n{forum_count} forum\n{stage_count} stage```", inline=True)
         embed.add_field(name="Limits", value=f"```{file_limit}MB files\n{guild.sticker_limit} stickers\n{guild.emoji_limit} emojis\n{guild.max_members} users```", inline=True)
         embed.add_field(name="Emojis", value=f"```{len(guild.emojis)} emojis\n{len(guild.stickers)} stickers```")
-        embed.add_field(name="Users", value=f"```{member_count} users\n{bot_count} bots```", inline=True)
+        embed.add_field(name="Users", value=f"```{user_count} users\n{bot_count} bots```", inline=True)
         embed.add_field(name="Created at", value=f"```{guild_date}```", inline=True)
 
         if guild.icon != None:
@@ -168,7 +168,41 @@ class slash_commands(commands.Cog):
             embed.set_image(url=guild.banner)
             
         embed.set_footer(text=f"Guild ID: {guild.id}")
-        await ctx.followup.send(embed=embed)
+        await ctx.followup.send(embed=embed, ephemeral=True)
+
+
+    # User info command
+    @discord.slash_command(name="userinfo", description="Show a more detailed profile", guild_only=True)
+    @discord.option("user", discord.Member, description="Select a user", required=True)
+    async def userinfo(self, ctx, user: discord.user):
+        await ctx.defer(ephemeral=True)
+        roles = " ".join([role.mention for role in user.roles if role != ctx.guild.default_role])
+        perms = ', '.join([str(perm[0]).upper() for perm in user.guild_permissions if perm[1]])
+    
+        embed = discord.Embed(color=bot_color)
+        embed.set_thumbnail(url=user.avatar)
+        embed.set_author(name="User info", icon_url=user_icon)
+        embed.add_field(name="Username", value=f'```{user.name}#{user.discriminator}```', inline=True)
+        embed.add_field(name="Nickname", value=f'```{user.nick}```', inline=True)
+    
+        embed.add_field(name="Activity", value=user.activity, inline=False)
+        embed.add_field(name="Bot", value=f'```{user.bot}```', inline=True)
+        embed.add_field(name="Nitro booster", value=f'```{bool(user.premium_since)}```', inline=True)
+        embed.add_field(name="Highest role", value=user.top_role.mention, inline=True)
+        
+        embed.add_field(name="Status", value=f'```Desktop: {user.desktop_status}\nWeb: {user.web_status}\nMobile: {user.mobile_status}```', inline=True)
+        
+        embed.add_field(name="Account created", value=f'```{user.created_at.strftime("%A, %#d %B %Y %H:%M")}```', inline=False)
+        embed.add_field(name="Joined on", value=f'```{user.joined_at.strftime("%A, %#d %B %Y %H:%M")}```', inline=False)
+        
+        embed.add_field(name="Roles", value=f"{roles}", inline=False)
+        embed.add_field(name="Guild permissions", value=f"```{perms}```", inline=False)
+    
+        if user.banner != None:
+            embed.set_image(url=user.banner)
+        
+        embed.set_footer(text=f"User ID: {user.id}")
+        await ctx.followup.send(embed=embed, ephemeral=True)
 
 
 
