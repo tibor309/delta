@@ -1,13 +1,15 @@
 import discord, os
 from discord.ext import commands
 import utils.mobile_status # set mobile status
-from config import bot_prefix, bot_token, bot_time
+from config import bot_token, bot_time
 import datetime
 
 from keep_alive import keep_alive # this makes the bot "always" run
 
-intents = discord.Intents.all() # make sure to enable all intents on the discord dev portal!
-bot = commands.Bot(command_prefix=bot_prefix, intents=intents, help_command=None) # set prefix, intents, and remove the default help command
+intents = discord.Intents.default() # make sure to enable all intents on the discord dev portal!
+intents.presences = True
+intents.members = True
+bot = commands.Bot(intents=intents, help_command=None) # set prefix, intents, and remove the default help command
 
 # Load commands
 for f in os.listdir("./commands"):
@@ -37,6 +39,6 @@ try:
 except discord.HTTPException as err:  # If discord blocks the current ip, request a new one then restart the bot.
     if err.status == 429:
         print("The Discord servers denied the connection for making too many requests")
-        os.system("python utils/restarter.py")
+        #os.system("python utils/restarter.py")
     else:
         raise err

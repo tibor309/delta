@@ -3,9 +3,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 bot_color = 0x17c6ff
-bot_color2 = 0x2F3136 # For meme command
-
-bot_prefix = os.getenv("PREFIX")bot_token = os.getenv("TOKEN")
+bot_color2 = 0x2F3136
+bot_token = os.getenv("TOKEN")
 
 reddit_id = os.getenv("REDDIT_APP_ID")
 reddit_secret = os.getenv("REDDIT_APP_SECRET")
@@ -19,6 +18,11 @@ settings_icon1 = "https://i.imgur.com/jbJFUeG.png"
 settings_icon2 = "https://i.imgur.com/QEKptpH.png"
 settings_folder_icon = "https://i.imgur.com/PiFG9ng.png"
 folder_icon = "https://i.imgur.com/E90UgPB.png"
+cpu_folder_icon = "https://i.imgur.com/zGVdnZ5.png"
+
+# Emojis
+yes_emoji = "<:ye:935798200621760533>"
+no_emoji = "<:nah:935798200869208074>"
 
 
 # Messages
