@@ -26,10 +26,11 @@ no_emoji = "<:nah:935798200869208074>"
 
 
 # Messages
-no_perm = ["nope", "you don't have perms for this!", "access denied", "You don't have enough perms for this"]
+no_perm = ["nope", "you don't have perms for this!", "access denied", "You don't have enough perms for this", "skill issue"]
 bot_no_perm = ["I don't have perms!", "i don't have enough perms for this", "i can't help you with that. i don't have perms"]
 cmd_dms = ["You can't use this command here.", "No", "You can only use these commands in servers.", "Nope", "you can't use this command in dms!"]
 activity_link = ["use the link to join", "join with the link", "here's the link"]
 bot_join_msg = ["Hi everyone!", "Hi", "hi everyone", "hi", "Hello everyone!"]
 no_vc = ["Join a vc first!", "Connect to a voice channel!", "connect to a vc!", "vc?"]
 no_same_vc = ["You're not in the same vc as me!", "you're not in our voice channel!", "you're not in the same vc as me"]
+err_msg = ["something went wrong", "well that didn't work", "uh i got an error"]

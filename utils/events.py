@@ -45,8 +45,8 @@ class events(commands.Cog):
     # Command error
     @commands.Cog.listener()
     async def on_application_command_error(self, ctx, error): # app command error
-        #if isinstance(error, (commands.CommandNotFound, commands.NoPrivateMessage)):
-         #   return
+        if isinstance(error, (commands.CommandNotFound, commands.NoPrivateMessage)):
+            return
 
         if isinstance(error, commands.CommandOnCooldown): # user doesn't have perms
             return await ctx.respond(error, ephemeral=True)

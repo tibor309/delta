@@ -1,8 +1,9 @@
 import discord
 from discord.ext import commands
 import requests
-from config import bot_time
+from config import bot_time, err_msg
 import datetime
+from random import choice
 
 # These commands are in the message popout menu
 
@@ -31,7 +32,7 @@ class message_commands(commands.Cog):
             message = data['base64']
             await ctx.respond(message, ephemeral=True)
         except:
-            await ctx.respond("something went wrong", ephemeral=True)
+            await ctx.respond(random.choice(err_msg), ephemeral=True)
 
             
     # Decode from base64
@@ -46,7 +47,7 @@ class message_commands(commands.Cog):
             message = data['text']
             await ctx.respond(message, ephemeral=True)
         except:
-            await ctx.respond("something went wrong", ephemeral=True)
+            await ctx.respond(random.choice(err_msg), ephemeral=True)
 
 
 

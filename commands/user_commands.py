@@ -33,6 +33,15 @@ class user_commands(commands.Cog):
         await ctx.respond(embed=embed, ephemeral=True)
 
 
+    # User perms command
+    @discord.user_command(name="Show user perms")
+    async def userperms(self, ctx, member: discord.Member):
+        perms = ', '.join([str(perm[0]).upper() for perm in member.guild_permissions if perm[1]])
+        embed = discord.Embed(color=bot_color, description=f"```{perms}```")
+        embed.set_author(name="User permissions", icon_url=user_icon)
+        embed.set_footer(text=f"{member.name}#{member.discriminator} • User ID: {member.id}", icon_url=member.avatar)
+        await ctx.respond(embed=embed, ephemeral=True)
+
 
 def setup(bot):
     bot.add_cog(user_commands(bot))

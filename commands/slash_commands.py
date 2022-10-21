@@ -118,7 +118,7 @@ class slash_commands(commands.Cog):
 
     @discord.slash_command(name="guildinfo", description="hack the mainframe", guild_only=True)
     async def serverinfo(self, ctx):
-        await ctx.defer(ephemeral=True)
+        #await ctx.defer(ephemeral=True)
         guild = ctx.guild
         user_count = len([m for m in guild.members if not m.bot])
         bot_count = len([b for b in guild.members if b.bot])
@@ -176,16 +176,18 @@ class slash_commands(commands.Cog):
     @discord.option("user", discord.Member, description="Select a user", required=True)
     async def userinfo(self, ctx, user: discord.user):
         await ctx.defer(ephemeral=True)
+        #roles = " ".join([role.mention for role in user.roles])
         roles = " ".join([role.mention for role in user.roles if role != ctx.guild.default_role])
-        perms = ', '.join([str(perm[0]).upper() for perm in user.guild_permissions if perm[1]])
     
         embed = discord.Embed(color=bot_color)
         embed.set_thumbnail(url=user.avatar)
         embed.set_author(name="User info", icon_url=user_icon)
         embed.add_field(name="Username", value=f'```{user.name}#{user.discriminator}```', inline=True)
         embed.add_field(name="Nickname", value=f'```{user.nick}```', inline=True)
-    
-        embed.add_field(name="Activity", value=user.activity, inline=False)
+
+        if user.activity != None:
+            embed.add_field(name="Activity", value=user.activity, inline=False)
+            
         embed.add_field(name="Bot", value=f'```{user.bot}```', inline=True)
         embed.add_field(name="Nitro booster", value=f'```{bool(user.premium_since)}```', inline=True)
         embed.add_field(name="Highest role", value=user.top_role.mention, inline=True)
@@ -194,9 +196,9 @@ class slash_commands(commands.Cog):
         
         embed.add_field(name="Account created", value=f'```{user.created_at.strftime("%A, %#d %B %Y %H:%M")}```', inline=False)
         embed.add_field(name="Joined on", value=f'```{user.joined_at.strftime("%A, %#d %B %Y %H:%M")}```', inline=False)
-        
-        embed.add_field(name="Roles", value=f"{roles}", inline=False)
-        embed.add_field(name="Guild permissions", value=f"```{perms}```", inline=False)
+
+        if roles != "":
+            embed.add_field(name="Roles", value=f"{roles}", inline=False)  
     
         if user.banner != None:
             embed.set_image(url=user.banner)
