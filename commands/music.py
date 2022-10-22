@@ -1,9 +1,10 @@
-import discord, random, datetime
+import discord
+from random import choice
 from discord.ext import commands
 from youtube_dl import YoutubeDL
-from config import bot_time, no_vc, no_same_vc
+from config import no_vc, no_same_vc
 
-class music_commands(commands.Cog):
+class music_cmds(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
@@ -93,7 +94,6 @@ class music_commands(commands.Cog):
     @discord.Cog.listener()
     async def on_ready(self):
         discord.opus.load_opus("./libopus.so.0.8.0")
-        print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded music commands")
 
     
     music = discord.SlashCommandGroup("ffmpeg", "Music playback", guild_only=True) # create command group
@@ -220,4 +220,4 @@ class music_commands(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(music_commands(bot))
+    bot.add_cog(music_cmds(bot))

@@ -1,15 +1,12 @@
-import discord, random
+import discord, datetime
+from random import choice
 from discord.ext import commands
-import datetime
-from config import bot_join_msg, bot_no_perm, no_perm, bot_time
+from config import bot_join_msg, bot_time
 
 class events(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"Loaded events")
 
 
     # Guild join
@@ -40,23 +37,7 @@ class events(commands.Cog):
     @commands.Cog.listener()
     async def on_application_command(self, ctx):
         print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"{ctx.author} used the {ctx.command.name} command")
-
-
-    # Command error
-    @commands.Cog.listener()
-    async def on_application_command_error(self, ctx, error): # app command error
-        if isinstance(error, (commands.CommandNotFound, commands.NoPrivateMessage)):
-            return
-
-        if isinstance(error, commands.CommandOnCooldown): # user doesn't have perms
-            return await ctx.respond(error, ephemeral=True)
-            
-        elif isinstance(error, commands.BotMissingPermissions): # bot doesn't have perms
-            return await ctx.respond(random.choice(bot_no_perm), ephemeral=True)
-
-        elif isinstance(error, commands.MissingPermissions): # user doesn't have perms
-            return await ctx.respond(random.choice(no_perm), ephemeral=True)
-        raise error
+        
 
 
 def setup(bot):

@@ -1,7 +1,6 @@
 import discord
 from discord.ui import Button, View
 from discord.ext import commands
-from config import bot_time
 import platform, psutil, cpuinfo
 import datetime, time
 
@@ -12,9 +11,6 @@ class system_commands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @discord.Cog.listener()
-    async def on_ready(self):
-        print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded system commands")
 
     # Neofetch command
     @discord.slash_command(name="neofetch", description="Some info about the system")

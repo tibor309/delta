@@ -1,19 +1,13 @@
 import discord
 from discord.ext import commands
-from config import bot_color, user_icon, bot_time
-import datetime
+from config import bot_color, user_icon
 
 # These commands are in the user popout menu
 
 
-class user_commands(commands.Cog):
+class user_cmds(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-    
-    @discord.Cog.listener()
-    async def on_ready(self):
-        print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded user commands")
 
 
     # User avatar command
@@ -44,4 +38,4 @@ class user_commands(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(user_commands(bot))
+    bot.add_cog(user_cmds(bot))

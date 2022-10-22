@@ -1,20 +1,16 @@
 import aiohttp, io
-import discord, datetime
+import discord
 from discord.ext import commands
 from discord.commands import SlashCommandGroup
-from config import bot_time
 
 api1 = "https://api.popcat.xyz" # Apis for images
 api2 = "https://some-random-api.ml"
 api3 = "https://api.jeyy.xyz"
 
-class image_commands(commands.Cog):
+class img_cmds(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @discord.Cog.listener()
-    async def on_ready(self):
-        print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded image commands")
 
 
     image = SlashCommandGroup("imagemagick", "Edit images (images can take a while to load)")
@@ -25,6 +21,7 @@ class image_commands(commands.Cog):
     @discord.option("overlay", str, description="Select an overlay", choices=["uncover", "ad", "m&m", "pet", "clown", "gun", "wanted", "communism", "drip", "horny license", "triggered", "jail", "kanye"], required=True)
     @discord.option("image", discord.Member, description="Upload an image to edit", required=True)
     async def imagemagik_overlay(self, ctx, overlay: str, user: discord.Member):
+        await ctx.defer()
         avatar = user.avatar
         
         if overlay == "uncover":
@@ -68,9 +65,7 @@ class image_commands(commands.Cog):
         elif overlay == "kanye":
             url = f"{api3}/image/kanye?image_url={avatar}"
             ext = "png"
-
-
-        await ctx.defer()
+            
         async with aiohttp.ClientSession() as trigSession:
             async with trigSession.get(url) as trigImg: # get user's avatar with the image
                 imageData = io.BytesIO(await trigImg.read()) # read the image/bytes
@@ -85,6 +80,7 @@ class image_commands(commands.Cog):
     @discord.option("filter", str, description="Select filter", choices=["glass", "gay", "pixelate", "invert", "invertgrayscale", "lines", "glitch", "stereo", "cartoon", "matrix"], required=True)
     @discord.option("image", discord.Member, description="Upload an image to edit", required=True)
     async def imagemagik_filter(self, ctx, filter: str, user: discord.Member):
+        await ctx.defer()
         avatar = user.avatar
 
         if filter == "glass":
@@ -119,7 +115,6 @@ class image_commands(commands.Cog):
             url = f"{api3}/image/matrix?image_url={avatar}"
             ext = "gif"
 
-        await ctx.defer()
         async with aiohttp.ClientSession() as trigSession:
             async with trigSession.get(url) as trigImg:
                 imageData = io.BytesIO(await trigImg.read())
@@ -129,4 +124,4 @@ class image_commands(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(image_commands(bot))
+    bot.add_cog(img_cmds(bot))

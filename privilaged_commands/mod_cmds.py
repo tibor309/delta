@@ -1,19 +1,11 @@
 import discord
 from discord.ext import commands
-from discord.commands import SlashCommandGroup
-from config import bot_time
-import datetime
 from typing import Union
 
 
-class mod_commands(commands.Cog):
+class mod_cmds(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-    
-    @discord.Cog.listener()
-    async def on_ready(self):
-        print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded moderator commands")
         
 
     # Set custom slowmode command
@@ -100,4 +92,4 @@ class mod_commands(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(mod_commands(bot))
+    bot.add_cog(mod_cmds(bot))

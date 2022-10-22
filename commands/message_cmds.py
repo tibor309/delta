@@ -1,22 +1,16 @@
 import discord
 from discord.ext import commands
 import requests
-from config import bot_time, err_msg
-import datetime
+from config import err_msg
 from random import choice
 
 # These commands are in the message popout menu
 
 api = "https://some-random-api.ml"
 
-class message_commands(commands.Cog):
+class message_cmds(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-    
-    @discord.Cog.listener()
-    async def on_ready(self):
-        print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Loaded message commands")
 
 
     # Encode to base64
@@ -51,7 +45,5 @@ class message_commands(commands.Cog):
 
 
 
-
-
 def setup(bot):
-    bot.add_cog(message_commands(bot))
+    bot.add_cog(message_cmds(bot))
