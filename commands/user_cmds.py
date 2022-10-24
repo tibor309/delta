@@ -31,9 +31,9 @@ class user_cmds(commands.Cog):
     @discord.user_command(name="Show user perms")
     async def userperms(self, ctx, member: discord.Member):
         perms = ', '.join([str(perm[0]).upper() for perm in member.guild_permissions if perm[1]])
-        embed = discord.Embed(color=bot_color, description=f"```{perms}```")
+        embed = discord.Embed(color=bot_color, description=f"**{member.name}'s permissions**\n```{perms}```")
         embed.set_author(name="User permissions", icon_url=user_icon)
-        embed.set_footer(text=f"{member.name}#{member.discriminator} • User ID: {member.id}", icon_url=member.avatar)
+        embed.set_footer(text=f"User ID: {member.id}")
         await ctx.respond(embed=embed, ephemeral=True)
 
 

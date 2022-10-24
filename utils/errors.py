@@ -1,6 +1,7 @@
 import discord
+import random
 from discord.ext import commands
-from config import bot_no_perm, no_perm, on_cooldown
+from config import bot_no_perm, no_perm, on_cooldown, err_msg
 
 class errors(commands.Cog):
     def __init__(self, bot):
@@ -25,7 +26,9 @@ class errors(commands.Cog):
             
         elif isinstance(error, commands.CommandOnCooldown): # user on cool down
             return await ctx.respond(random.choice(on_cooldown), ephemeral=True)
-        raise error
+        else:
+            return await ctx.respond(random.choice(err_msg), ephemeral=True)
+            raise error
 
 
 def setup(bot):

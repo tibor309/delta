@@ -1,5 +1,5 @@
 import discord
-from random import choice
+import random
 from discord.ext import commands
 from youtube_dl import YoutubeDL
 from config import no_vc, no_same_vc

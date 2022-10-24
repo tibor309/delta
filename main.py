@@ -59,6 +59,6 @@ try:
 except discord.HTTPException as err:  # If discord blocks the current ip, restart the bot.
     if err.status == 429:
         print("The Discord servers denied the connection for making too many requests")
-        #os.system("python utils/restarter.py")
+        os.system("python utils/restarter.py")
     else:
         raise err

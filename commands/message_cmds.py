@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import requests
 from config import err_msg
-from random import choice
+import random
 
 # These commands are in the message popout menu
 
