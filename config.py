@@ -33,6 +33,6 @@ activity_link = ["use the link to join", "join with the link", "here's the link"
 bot_join_msg = ["Hi everyone!", "Hi", "hi everyone", "hi", "Hello everyone!"]
 no_vc = ["Join a vc first!", "Connect to a voice channel!", "connect to a vc!", "vc?"]
 no_same_vc = ["You're not in the same vc as me!", "you're not in our voice channel!", "you're not in the same vc as me"]
-err_msg = ["something went wrong", "well that didn't work", "uh i got an error", "got an error"]
+err_msg = ["something went wrong", "well that didn't work", "uh.. i got an error", "got an error"]
 img_fail = ["I couldn't get the image", "Failed to get the image :("]
 on_cooldown = ["You're on cooldown!", "hey slow down", "not yet!"]

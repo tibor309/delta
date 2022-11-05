@@ -27,7 +27,7 @@ class errors(commands.Cog):
         elif isinstance(error, commands.CommandOnCooldown): # user on cool down
             return await ctx.respond(random.choice(on_cooldown), ephemeral=True)
         else:
-            return await ctx.respond(random.choice(err_msg), ephemeral=True)
+            await ctx.respond(random.choice(err_msg), ephemeral=True)
             raise error
 
 

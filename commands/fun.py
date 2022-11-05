@@ -86,6 +86,15 @@ class fun_cmds(commands.Cog):
         await ctx.respond(data['fact'])
 
 
+    # Tell a joke
+    @discord.slash_command(name="joke", description="for the funny")
+    async def joke(self, ctx):
+        api = "https://api.popcat.xyz/joke"
+        response = requests.get(api, verify=True)
+        data = response.json()
+        await ctx.respond(data['joke'])
+
+
     # Flip command
     @discord.slash_command(name="flipcoin", description="Flip a coin")
     async def flip(self, ctx):
@@ -109,6 +118,35 @@ class fun_cmds(commands.Cog):
         await message.add_reaction(yes_emoji) # yes
         await sleep(1) # wait before react
         await message.add_reaction(no_emoji) # no
+
+
+    # Get a random color
+    @discord.slash_command(name="randomcolor", description="Get a random color")
+    async def color(self, ctx):
+        api = "https://api.popcat.xyz/randomcolor"
+        response = requests.get(api, verify=True)
+        data = response.json()
+        hex = data['hex']
+        name = data['name']
+        icon = data['image']
+        color = discord.Color(int(hex, 16))
+
+        def rgb(hex): # convert to rgb
+          return tuple(int(hex[i:i+2], 16) for i in (0, 2, 4))
+        
+        embed = discord.Embed(color=color , title=name)
+        embed.add_field(name="HEX", value=f"```#{hex}```")
+        embed.add_field(name="RGB", value=f"```{rgb(hex)}```")
+        embed.set_thumbnail(url=icon)
+        await ctx.respond(embed=embed)
+
+
+    # RTD command
+    @discord.slash_command(name="rtd", description="Roll the dice")
+    async def rtd(self, ctx):
+        await ctx.respond(f'🎲 You got, {random.randint(1,6)}!', ephemeral=False)
+
+
 
 
 def setup(bot):

@@ -53,7 +53,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-keep_alive() # keep the bot alive
+#keep_alive() # keep the bot alive
 try:
   bot.run(bot_token)
 except discord.HTTPException as err:  # If discord blocks the current ip, restart the bot.
