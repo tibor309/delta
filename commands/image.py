@@ -12,7 +12,7 @@ class img_cmds(commands.Cog):
     @commands.cooldown(1, 3, commands.BucketType.user)
     async def fox(self, ctx):
         await ctx.defer()
-        url = f"{api4}/img?animal=fox"
+        url = "https://api.tinyfox.dev/img?animal=fox"
         async with aiohttp.ClientSession() as trigSession:
             async with trigSession.get(url) as trigImg:
                 imageData = io.BytesIO(await trigImg.read())
