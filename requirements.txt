@@ -2,11 +2,8 @@ praw
 psutil
 python-dotenv
 aiohttp
-ffmpeg
 discord.py=1.7.3
 discord-together
 py-cord=2.1.1
 py-cpuinfo
-ffmpeg
-youtube_dl
-PyNaCl
+flask

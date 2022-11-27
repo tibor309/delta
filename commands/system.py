@@ -24,6 +24,7 @@ class system_commands(commands.Cog):
         difference = int(round(current_time - start_time))
         uptime = str(datetime.timedelta(seconds=difference))
 
+        host_name = platform.uname()[1]
         cpu_name = cpuinfo.get_cpu_info()['brand_raw']
         ram_usage = round(psutil.virtual_memory().used / (1024**3), 1)
         total_ram = round(psutil.virtual_memory().total / (1024**3), 1)
@@ -42,22 +43,18 @@ class system_commands(commands.Cog):
         
         neofetch = (f"```ansi\n"
         f"[2;34m{name.lower()}[0m@[2;34m{botname.lower()}[0m\n-------------\n"
-        f"[1;2m[1;37mOS[0m[0m: Fedora Linux 36 (Workstation Edition)\n"
-        f"[1;2m[1;37mKernel[0m[0m: 5.18.17-200.fc36.x86_64\n"
+        f"[1;2m[1;37mOS[0m[0m: Fedora Linux 37 (Server Edition) x86_64\n"
+        f"[1;2m[1;37mHost[0m[0m: {host_name}\n"
+        f"[1;2m[1;37mKernel[0m[0m: 6.0.8-300.fc37.x86_64\n"
         f"[1;2m[1;37mUptime[0m[0m: {uptime} seconds\n"
         f"[1;2m[1;37mPing[0m[0m: {ping}ms\n"
-        f"[1;2m[1;37mPackages[0m[0m: {modules} (py), {cogs} (cog)\n"
-        f"[1;2m[1;37mPython[0m[0m: {python_version}\n"
-        f"[1;2m[1;37mPycord[0m[0m: {pycord_version}\n"
-        f"[1;2m[1;37mShell[0m[0m: bash 5.1.16\n"
-        f"[1;2m[1;37mGuilds[0m[0m: {guilds} guilds\n"
+        f"[1;2m[1;37mPackages[0m[0m: 798 (rpm), {modules} (py), {cogs} (cog)\n"
+        f"[1;2m[1;37mShell[0m[0m: bash 5.2.9\n"
         f"[1;2m[1;37mResolution[0m[0m: 3840x2160\n"
-        f"[2;37m[1;37mDE[0m[2;37m[0m: GNOME 42.4\n"
-        f"[1;2m[1;37mWM[0m[0m: Mutter\n"
-        f"[1;2m[1;37mWM Theme[0m[0m: Adwaita\n"
-        f"[1;2m[1;37mTheme[0m[0m: Adwaita [GTK2/3]\n"
-        f"[1;2m[1;37mIcons[0m[0m: Adwaita [GTK2/3]\n"
-        f"[1;2m[1;37mTerminal[0m[0m: gnome-terminal\n"
+        f"[1;2m[1;37mPython version[0m[0m: {python_version}\n"
+        f"[1;2m[1;37mPycord version[0m[0m: {pycord_version}\n"
+        f"[1;2m[1;37mGuilds[0m[0m: {guilds} guilds\n"
+        f"[1;2m[1;37mTerminal[0m[0m: pid1\n"
         f"[1;2m[1;37mCPU[0m[0m: {cpu_name}\n"
         f"[1;2m[1;37mMemory[0m[0m: {ram_usage}GB / {total_ram}GB\n"
         f"[1;2m[1;37mDisk[0m[0m: {disk_usage}GB / {total_disk}GB\n\n\n```")
