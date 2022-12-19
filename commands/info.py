@@ -45,15 +45,19 @@ class info_cmds(commands.Cog):
         embed.set_author(name="Guild info", icon_url=cpu_folder_icon)
         embed.add_field(name="Guild Name", value=f"```{guild.name}```", inline=False)
         embed.add_field(name="Owner", value=f"```{guild.owner}```", inline=True)
+        
         embed.add_field(name="Region", value=f"```{guild.preferred_locale}```", inline=True)
         embed.add_field(name="Verification lvl", value=f"```{mfa_level}```", inline=True)
         embed.add_field(name="Server Boosts", value=f"```{guild.premium_subscription_count} boosts\n{len(guild.premium_subscribers)} boosted```", inline=True)
+        
         embed.add_field(name="AFK Channel", value=f"{afk_channel}\n```{afk_timeout} Minutes timeout```", inline=True)
         embed.add_field(name="Roles", value=f"```{len(guild.roles)} roles```", inline=True)
         embed.add_field(name="Channels", value=f"```{category_count} categories\n{text_count} text\n{voice_count} voice\n{forum_count} forum\n{stage_count} stage```", inline=True)
+        
         embed.add_field(name="Limits", value=f"```{file_limit}MB files\n{guild.sticker_limit} stickers\n{guild.emoji_limit} emojis\n{guild.max_members} users```", inline=True)
         embed.add_field(name="Emojis", value=f"```{len(guild.emojis)} emojis\n{len(guild.stickers)} stickers```")
         embed.add_field(name="Users", value=f"```{user_count} users\n{bot_count} bots```", inline=True)
+        
         embed.add_field(name="Created", value=f"<t:{guild_date}:R>", inline=True)
 
         if guild.icon != None:
@@ -101,6 +105,39 @@ class info_cmds(commands.Cog):
         embed.set_footer(text=f"User ID: {user.id}")
         await ctx.followup.send(embed=embed, ephemeral=True)
 
+
+    # Role info command
+    @discord.slash_command(name="roleinfo", description="Get more info about a role", guild_only=True)
+    @discord.option("role", discord.Role, description="Select a role", required=True)
+    async def roleinfo(self, ctx, role: discord.Role):
+        await ctx.defer(ephemeral=True)
+        creation_time = int(role.created_at.timestamp())
+        assigned = len(role.members)
+        perms = ', '.join([str(perm[0]).upper() for perm in role.permissions if perm[1]])
+        color = role.color
+
+        embed = discord.Embed(color=bot_color, description=f"**Permissions**\n```{perms}```")
+        embed.set_author(name="Role info", icon_url=user_icon)
+        embed.add_field(name="Role name", value=f'```{role.name}```', inline=True)
+
+        if role.icon != None:
+            embed.set_thumbnail(url=role.icon)
+            
+        embed.add_field(name="Color", value=f'```{role.color}```', inline=True)
+        embed.add_field(name="Mentionable", value=f'```{bool(role.mentionable)}```', inline=True)
+        
+        embed.add_field(name="Assignable", value=f'```{bool(role.is_assignable)}```', inline=True)
+        embed.add_field(name="Assigned to", value=f'```{assigned} members```', inline=True)
+        embed.add_field(name="Position", value=f'```{role.position}```', inline=True)
+
+        embed.add_field(name="Hoist role", value=f'```{role.hoist}```', inline=True)
+        embed.add_field(name="Role created", value=f"<t:{creation_time}:R>", inline=True)
+        
+        embed.set_footer(text=f"Role ID: {role.id}")
+        await ctx.followup.send(embed=embed, ephemeral=True)
+        
+        
+    
 
 def setup(bot):
     bot.add_cog(info_cmds(bot))
