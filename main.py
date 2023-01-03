@@ -3,7 +3,7 @@ from discord.ext import commands
 import utils.mobile_status # set mobile status
 from config import bot_token, bot_time
 import datetime
-from keep_alive import keep_alive # this makes the bot "always" run
+#from keep_alive import keep_alive # this makes the bot "always" run
 
 intents = discord.Intents.all() # make sure to enable all intents on the discord dev portal!
 bot = commands.Bot(intents=intents, help_command=None) # set prefix, intents, and remove the default help command
@@ -53,12 +53,12 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-keep_alive() # keep the bot alive
+#keep_alive() # keep the bot alive
 try:
   bot.run(bot_token)
 except discord.HTTPException as err:  # If discord blocks the current ip, restart the bot.
     if err.status == 429:
         print("The Discord servers denied the connection for making too many requests")
-        os.system("python utils/restarter.py")
+        #os.system("python utils/restarter.py")
     else:
         raise err
