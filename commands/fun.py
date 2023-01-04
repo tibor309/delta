@@ -17,7 +17,8 @@ class fun_cmds(commands.Cog):
 
     # Activity command
     @discord.slash_command(name="activity", description="Start or join a voice channel activity", guild_only=True)
-    @commands.has_permissions(start_embedded_activities=True)
+    @discord.commands.default_permissions(start_embedded_activities=True)
+    #@commands.has_permissions(start_embedded_activities=True)
     @discord.option("channel", discord.VoiceChannel, description="Select a channel to start the activity in", required=True)
     @discord.option("activity", description="Select an activity",
         choices=[

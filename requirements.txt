@@ -2,8 +2,7 @@ praw
 psutil
 python-dotenv
 aiohttp
-discord.py=1.7.3
 discord-together
-py-cord=2.1.1
+py-cord
 py-cpuinfo
 flask

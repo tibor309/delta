@@ -4,7 +4,8 @@ load_dotenv()
 
 bot_color = 0x17c6ff
 bot_color2 = 0x2F3136
-bot_token = os.getenv("TOKEN")
+
+bot_prefix = "."bot_token = os.getenv("TOKEN")
 
 reddit_id = os.getenv("REDDIT_APP_ID")
 reddit_secret = os.getenv("REDDIT_APP_SECRET")

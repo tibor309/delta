@@ -1,12 +1,12 @@
 import discord, os
 from discord.ext import commands
 import utils.mobile_status # set mobile status
-from config import bot_token, bot_time
+from config import bot_prefix, bot_token, bot_time
 import datetime
 #from keep_alive import keep_alive # this makes the bot "always" run
 
 intents = discord.Intents.all() # make sure to enable all intents on the discord dev portal!
-bot = commands.Bot(intents=intents, help_command=None) # set prefix, intents, and remove the default help command
+bot = commands.Bot(command_prefix=bot_prefix, intents=intents, help_command=None) # set prefix, intents, and remove the default help command
 
 # Load commands and events
 for f in os.listdir("./commands"):

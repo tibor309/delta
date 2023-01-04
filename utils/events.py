@@ -1,5 +1,5 @@
 import discord, datetime
-from random import choice
+import random
 from discord.ext import commands
 from config import bot_join_msg, bot_time
 

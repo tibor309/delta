@@ -1,7 +1,6 @@
 import discord
-from discord.ui import Button, View
 from discord.ext import commands
-import platform, psutil, cpuinfo
+import os, platform, psutil, cpuinfo
 import datetime, time
 
 
@@ -16,8 +15,8 @@ class system_commands(commands.Cog):
     @discord.slash_command(name="neofetch", description="Some info about the system")
     async def neofetch(self, ctx):
         await ctx.defer()
-        invite = Button(label="invite me", emoji="<:love:1027605898593579118>", url="https://sh-ort.app/ym99l")
-        view = View()
+        invite = discord.ui.Button(label="invite me", emoji="<:love:1027605898593579118>", url="https://sh-ort.app/ym99l")
+        view = discord.ui.View()
         view.add_item(invite)
     
         current_time = time.time()
@@ -37,6 +36,7 @@ class system_commands(commands.Cog):
         modules = len(dir())
         ping = round(self.bot.latency * 1000)
         guilds = len(self.bot.guilds)
+        terminal = os.ctermid()
        
         name = ctx.author.name
         botname = self.bot.user.name
@@ -54,7 +54,7 @@ class system_commands(commands.Cog):
         f"[2;34m[1;34mPython version[0m[2;34m[0m: {python_version}\n"
         f"[2;34m[1;34mPycord version[0m[2;34m[0m: {pycord_version}\n"
         f"[2;34m[1;34mGuilds[0m[2;34m[0m: {guilds} guilds\n"
-        f"[2;34m[1;34mTerminal[0m[2;34m[0m: pid1\n"
+        f"[2;34m[1;34mTerminal[0m[2;34m[0m: {terminal}\n"
         f"[2;34m[1;34mCPU[0m[2;34m[0m: {cpu_name}\n"
         f"[2;34m[1;34mMemory[0m[2;34m[0m: {ram_usage}GB / {total_ram}GB\n"
         f"[2;34m[1;34mDisk[0m[2;34m[0m: {disk_usage}GB / {total_disk}GB\n\n\n```")

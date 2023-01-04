@@ -8,7 +8,7 @@ class img_cmds(commands.Cog):
 
 
 
-    @discord.slash_command(name="fox", description="Get images of foxes")
+    @discord.slash_command(name="fox", description="I like foxes :3")
     @commands.cooldown(1, 3, commands.BucketType.user)
     async def fox(self, ctx):
         await ctx.defer()
