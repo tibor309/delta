@@ -5,7 +5,7 @@ from config import bot_prefix, bot_token, bot_time
 import datetime
 #from keep_alive import keep_alive # this makes the bot "always" run
 
-intents = discord.Intents.all() # make sure to enable all intents on the discord dev portal!
+intents = discord.Intents.all() # require all intents
 bot = commands.Bot(command_prefix=bot_prefix, intents=intents, help_command=None) # set prefix, intents, and remove the default help command
 
 # Load commands and events
@@ -56,7 +56,7 @@ async def on_message(message):
 #keep_alive() # keep the bot alive
 try:
   bot.run(bot_token)
-except discord.HTTPException as err:  # If discord blocks the current ip, restart the bot.
+except discord.HTTPException as err:
     if err.status == 429:
         print("The Discord servers denied the connection for making too many requests")
         #os.system("python utils/restarter.py")

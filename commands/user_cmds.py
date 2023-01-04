@@ -11,7 +11,7 @@ class user_cmds(commands.Cog):
 
 
     # User avatar command
-    @discord.user_command(name="Show user images")
+    @discord.user_command(name="View user images")
     async def useravatar(self, ctx, member: discord.Member):
         embed = discord.Embed(color=bot_color)
         embed.set_author(name=f'{member.name}#{member.discriminator}', icon_url=user_icon)
@@ -28,7 +28,7 @@ class user_cmds(commands.Cog):
 
 
     # User perms command
-    @discord.user_command(name="Show user perms")
+    @discord.user_command(name="View permissions")
     async def userperms(self, ctx, member: discord.Member):
         perms = ', '.join([str(perm[0]).upper() for perm in member.guild_permissions if perm[1]])
         embed = discord.Embed(color=bot_color, description=f"**{member.name}'s permissions**\n```{perms}```")

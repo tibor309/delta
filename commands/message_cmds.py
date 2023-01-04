@@ -44,6 +44,19 @@ class message_cmds(commands.Cog):
             await ctx.respond(random.choice(err_msg), ephemeral=True)
 
 
+    # React with the funny emoji
+    @discord.message_command(name="React with \"🤓\"")
+    @discord.commands.default_permissions(administrator=True)
+    async def funny_react(self, ctx, message: discord.Message):
+        emoji = "🤓"
+        
+        try: 
+            await message.add_reaction(emoji)
+            await ctx.respond("did the funny", ephemeral=True)
+        except:
+            await ctx.respond(random.choice(err_msg), ephemeral=True)
+
+
 
 def setup(bot):
     bot.add_cog(message_cmds(bot))
