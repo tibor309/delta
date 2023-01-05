@@ -2,7 +2,7 @@ import discord, random
 import requests
 from discord.ext import commands
 from discord_together import DiscordTogether
-from config import bot_token, bot_color2, activity_link, yes_emoji, no_emoji
+from config import bot_token, bot_color, bot_color2, activity_link, yes_emoji, no_emoji
 from asyncio import sleep
 
 class fun_cmds(commands.Cog):
@@ -18,7 +18,6 @@ class fun_cmds(commands.Cog):
     # Activity command
     @discord.slash_command(name="activity", description="Start or join a voice channel activity", guild_only=True)
     @discord.commands.default_permissions(start_embedded_activities=True)
-    #@commands.has_permissions(start_embedded_activities=True)
     @discord.option("channel", discord.VoiceChannel, description="Select a channel to start the activity in", required=True)
     @discord.option("activity", description="Select an activity",
         choices=[
@@ -115,7 +114,7 @@ class fun_cmds(commands.Cog):
         embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar)
         
         interaction = await ctx.respond(embed=embed)
-        message = await interaction.original_message()
+        message = await interaction.original_respponse()
         await message.add_reaction(yes_emoji) # yes
         await sleep(1) # wait before react
         await message.add_reaction(no_emoji) # no
