@@ -1,5 +1,8 @@
 language = "python3"
 run = "python3 main.py"
+entrypoint = "main.py"
+
+hidden = [".upm", "venv", ".config", "**/__pycache__", "**/.mypy_cache", "**/*.pyc"]
 
 [env]
 VIRTUAL_ENV = "/home/runner/${REPL_SLUG}/venv"

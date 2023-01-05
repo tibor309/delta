@@ -1,9 +1,8 @@
-
-__pycache__
+__pycache__/
 commands/__pycache__/
 privilaged_commands/__pycache__/
 utils/__pycache__/
-.cache
+.cache/
 
 .replit
 replit.nix

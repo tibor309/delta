@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "Delta"
+version = "4.8"
+description = "A multipurpose discord bot for me and my friends made with pycord"
+authors = ["Tibor309 <tibormercs8@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+aiohttp = "^3.7.4"
+praw = "^7.4.0"
+py-cpuinfo = "^8.0.0"
+discord-together = "^1.2.6"
+psutil = "^5.9.1"
+python-dotenv = "^0.20.0"
+py-cord = "^2.1.1"
+requests = "^2.28.1"
+Flask = "^2.2.2"
+
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
