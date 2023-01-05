@@ -5,12 +5,13 @@ load_dotenv()
 bot_color = 0x17c6ff
 bot_color2 = 0x2F3136
 
-bot_prefix = "."bot_token = os.getenv("TOKEN")
+bot_prefix = "."
+bot_time = "%d/%b/%Y %H:%M:%S" # Time structure for logs (i should implement a proper logger later)
 
+bot_token = os.getenv("TOKEN")
+bot_invite = os.getenv("INVITE")
 reddit_id = os.getenv("REDDIT_APP_ID")
 reddit_secret = os.getenv("REDDIT_APP_SECRET")
-
-bot_time = "%d/%b/%Y %H:%M:%S" # Time structure for logs (i should implement a proper logger later)
 
 
 # Icons
@@ -24,6 +25,7 @@ cpu_folder_icon = "https://i.imgur.com/jW1kIa7.png"
 # Emojis
 yes_emoji = "<:ye:935798200621760533>"
 no_emoji = "<:nah:935798200869208074>"
+invite_emoji = "<:love:1027605898593579118>"
 
 
 # Messages

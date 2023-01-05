@@ -1,15 +1,12 @@
-# Ignore cache
-__pycache__
+__pycache__/
 commands/__pycache__/
 privilaged_commands/__pycache__/
 utils/__pycache__/
-.cache
+.cache/
 
-# Ignore replit files
 .replit
 replit.nix
-
-# Ignore package files
-.env # ignore secrets
+.breakpoints
 .config/
 venv
+.env
