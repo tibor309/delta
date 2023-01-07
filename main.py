@@ -48,7 +48,7 @@ async def on_ready():
     print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"Successfully logged in as {bot.user}")
 
 # Make bot not respond to it's owm messages
-@bot.event
+@bot.listen
 async def on_message(message):
     if message.author == bot.user:
         return

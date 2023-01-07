@@ -22,18 +22,18 @@ class fun_cmds(commands.Cog):
     @discord.option("activity", description="Select an activity",
         choices=[
         "Watch Together",
-        "Poker Night (Boost Lvl 1)",
-        "Chess In The Park (Boost Lvl 1)",
-        "Letter League (Boost Lvl 1)",
+        "Poker Night (Requires boost)",
+        "Chess In The Park (Requires boost)",
+        "Letter League (Requires boost)",
         "Word Snacks",
         "Sketch Heads",
-        "SpellCast (Boost Lvl 1)",
-        "Awkword (Boost Lvl 1)",
-        "Checkers In The Park (Boost Lvl 1)",
-        "Blazing 8s (Boost Lvl 1)",
-        "Land-io (Boost Lvl 1)",
-        "Putt Party (Boost Lvl 1)",
-        "Bobble League (Boost Lvl 1)",
+        "SpellCast (Requires boost)",
+        "Awkword (Requires boost)",
+        "Checkers In The Park (Requires boost)",
+        "Blazing 8s (Requires boost)",
+        "Land-io (Requires boost)",
+        "Putt Party (Requires boost)",
+        "Bobble League (Requires boost)",
         "Ask Away"
         ], required=True)
 
@@ -43,29 +43,29 @@ class fun_cmds(commands.Cog):
 
         if activity == "Watch Together":
             selected = 'youtube'
-        elif activity == "Poker Night (Boost Lvl 1)":
+        elif activity == "Poker Night (Requires boost)":
             selected = 'poker'
-        elif activity == "Chess In The Park (Boost Lvl 1)":
+        elif activity == "Chess In The Park (Requires boost)":
             selected = 'chess'
-        elif activity == "Letter League (Boost Lvl 1)":
+        elif activity == "Letter League (Requires boost)":
             selected = 'letter-league'
         elif activity == "Word Snacks":
             selected = 'wold-snack'
         elif activity == "Sketch Heads":
             selected = 'sketch-heads'
-        elif activity == "SpellCast (Boost Lvl 1)":
+        elif activity == "SpellCast (Requires boost)":
             selected = 'spellcast'
-        elif activity == "Awkword (Boost Lvl 1)":
+        elif activity == "Awkword (Requires boost)":
             selected = 'awkword'
-        elif activity == "Checkers In The Park (Boost Lvl 1)":
+        elif activity == "Checkers In The Park (Requires boost)":
             selected = 'checkers'
-        elif activity == "Blazing 8s (Boost Lvl 1)":
+        elif activity == "Blazing 8s (Requires boost)":
             selected = 'blazing-8s'
-        elif activity == "Land-io (Boost Lvl 1)":
+        elif activity == "Land-io (Requires boost)":
             selected = 'land-io'
-        elif activity == "Putt Party (Boost Lvl 1)":
+        elif activity == "Putt Party (Requires boost)":
             selected = 'putt-party'
-        elif activity == "Bobble League (Boost Lvl 1)":
+        elif activity == "Bobble League (Requires boost)":
             selected = 'bobble-league'
         elif activity == "Ask Away":
             selected = 'ask-away'
