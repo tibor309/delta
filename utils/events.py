@@ -36,7 +36,7 @@ class events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_application_command(self, ctx):
-        print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"{ctx.author} used the {ctx.command.name} command")
+        print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"{ctx.author} used the {ctx.command.name} app command")
         
 
 
