@@ -21,6 +21,7 @@ class mod_cmds(commands.Cog):
         except:
             await ctx.respond("I don't have access to that channel", ephemeral=True)
 
+            
     # Lock and unlock chat
     @discord.slash_command(name="lockdir", description="Lock and unlock chat", guild_only=True)
     @discord.commands.default_permissions(manage_messages=True, manage_channels=True)
@@ -52,8 +53,8 @@ class mod_cmds(commands.Cog):
     # Create channel
     @discord.slash_command(name="mkdir", description="Create a channel", guild_only=True)
     @discord.commands.default_permissions(manage_channels=True)
-    @discord.option("name", str, description="name of the channel", required=True)
-    @discord.option("type", str, description="type of the channel", required=True, choices=["text", "voice"])
+    @discord.option("name", str, description="Name of the channel", required=True)
+    @discord.option("type", str, description="Type of the channel", required=True, choices=["text", "voice"])
     async def create_channel(self, ctx, name: str, type: str):
         if type == "text":
             await ctx.guild.create_text_channel(name=name, reason=f"created text channel by {ctx.author.name}#{ctx.author.discriminator}")
@@ -86,9 +87,7 @@ class mod_cmds(commands.Cog):
         else:
             await user.move_to(channel)
             await ctx.respond(f"Moved {user.mention} to {channel.mention}", ephemeral=True)
-
-
-
+ 
         
 
 

@@ -16,9 +16,8 @@ class system_commands(commands.Cog):
     @discord.slash_command(name="neofetch", description="Some info about the system")
     async def neofetch(self, ctx):
         await ctx.defer()
-        invite = discord.ui.Button(label="invite me", emoji=invite_emoji, url=bot_invite)
         view = discord.ui.View()
-        view.add_item(invite)
+        view.add_item(discord.ui.Button(label="invite me", style=discord.ButtonStyle.gray, emoji=invite_emoji, url=bot_invite))
     
         current_time = time.time()
         difference = int(round(current_time - start_time))
@@ -59,7 +58,7 @@ class system_commands(commands.Cog):
         f"[2;34m[1;34mCPU[0m[2;34m[0m: {cpu_name}\n"
         f"[2;34m[1;34mMemory[0m[2;34m[0m: {ram_usage}GB / {total_ram}GB\n"
         f"[2;34m[1;34mDisk[0m[2;34m[0m: {disk_usage}GB / {total_disk}GB\n\n\n```")
-        await ctx.followup.send(neofetch, view=view,ephemeral=False)
+        await ctx.followup.send(neofetch, view=view, ephemeral=False)
 
 
 

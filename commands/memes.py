@@ -40,12 +40,13 @@ class meme_cmds(commands.Cog):
         embed.set_image(url=submission.url)
         await ctx.followup.send(embed=embed)
 
+
     
     memegen = discord.SlashCommandGroup("memegen", "Create memes") # Create memes
-    usermemegen = memegen.create_subgroup("user", "Create memes with others")
+    #usermemegen = memegen.create_subgroup("user", "Create memes with others")
 
     # One panel memes
-    @memegen.command(name="--onepanel", description="Make memes")
+    @memegen.command(name="onepanel", description="Create one panel memes")
     @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
     @discord.option("template", str, description="Choose a template", choices=["oogway", "pikachu", "biden", "facts", "sad cat", "iphone alert", "caution", "change my mind", "lisa", "worthless", "burn"], required=True)
     @discord.option("title", str, description="An interesting title", required=True)
@@ -94,13 +95,13 @@ class meme_cmds(commands.Cog):
 
 
     # Two panel memes
-    @memegen.command(name="--twopanel", description="Make better memes")
+    @memegen.command(name="twopanel", description="Create two panel memes")
     @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
     @discord.option("template", str, description="Choose a template", choices=["drake", "pooh", "npc"], required=True)
     @discord.option("title", str, description="A very interesting title", required=True)
     @discord.option("text1", str, description="Top panel text", required=True)
     @discord.option("text2", str, description="Bottom panel text", required=True)
-    async def usermemegen_twopanel(self, ctx, template: str, title: str, text1: str, text2:str):
+    async def memegen_twopanel(self, ctx, template: str, title: str, text1: str, text2:str):
         await ctx.defer()
 
         if template == "drake":
@@ -126,40 +127,9 @@ class meme_cmds(commands.Cog):
                 await session.close()
 
 
+        
     # User memes
-    @usermemegen.command(name="--twouser", description="Crate memes with someone")
-    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
-    @discord.option("template", str, description="Choose a template", choices=["confused cat", "milk"], required=True)
-    @discord.option("title", str, description="Post title", required=True)
-    @discord.option("user1", discord.Member, description="Select a user", required=True)
-    @discord.option("user2", discord.Member, description="and an another one", required=True)
-    async def memegen_twouser(self, ctx, template: str, title: str, user1: discord.Member, user2: discord.Member):
-        await ctx.defer()
-        global url
-        avatar1 = user1.avatar
-        avatar2 = user2.avatar
-
-        if template == "confused cat":
-            url = f"https://vacefron.nl/api/womanyellingatcat?woman={avatar1}&cat={avatar2}"
-        elif template == "milk":
-            url = f"https://vacefron.nl/api/icanmilkyou?user1={avatar1}&user2={avatar2}"
-
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as af:
-                if 300 > af.status >= 200:
-                    fp = io.BytesIO(await af.read())
-                    file = discord.File(fp, "meme3.png")
-                    
-                    embed = discord.Embed(color=bot_color2, title=title)
-                    embed.set_image(url="attachment://meme3.png")
-                    await ctx.followup.send(embed=embed, file=file)
-                else:
-                    await ctx.followup.send(random.choice(img_fail))
-                await session.close()
-
-                
-    # User memes
-    @usermemegen.command(name="--oneuser", description="man im dead 💀")
+    @memegen.command(name="user", description="Create memes with a user")
     @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
     @discord.option("template", str, description="Choose a template", choices=["adios", "first time", "drip", "clown", "horny license", "jail"], required=True)
     @discord.option("title", str, description="An interesting title", required=True)
@@ -196,6 +166,37 @@ class meme_cmds(commands.Cog):
                     await ctx.followup.send(random.choice(img_fail))
                 await session.close()
 
+
+    # User memes
+    @memegen.command(name="twouser", description="Crate memes with someone")
+    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
+    @discord.option("template", str, description="Choose a template", choices=["confused cat", "milk"], required=True)
+    @discord.option("title", str, description="Post title", required=True)
+    @discord.option("user1", discord.Member, description="Select a user", required=True)
+    @discord.option("user2", discord.Member, description="and an another one", required=True)
+    async def memegen_twouser(self, ctx, template: str, title: str, user1: discord.Member, user2: discord.Member):
+        await ctx.defer()
+        global url
+        avatar1 = user1.avatar
+        avatar2 = user2.avatar
+
+        if template == "confused cat":
+            url = f"https://vacefron.nl/api/womanyellingatcat?woman={avatar1}&cat={avatar2}"
+        elif template == "milk":
+            url = f"https://vacefron.nl/api/icanmilkyou?user1={avatar1}&user2={avatar2}"
+
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as af:
+                if 300 > af.status >= 200:
+                    fp = io.BytesIO(await af.read())
+                    file = discord.File(fp, "meme3.png")
+                    
+                    embed = discord.Embed(color=bot_color2, title=title)
+                    embed.set_image(url="attachment://meme3.png")
+                    await ctx.followup.send(embed=embed, file=file)
+                else:
+                    await ctx.followup.send(random.choice(img_fail))
+                await session.close()
 
 
 

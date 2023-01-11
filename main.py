@@ -44,8 +44,8 @@ else:
 
 @bot.event
 async def on_connect():
-    bot.auto_sync_commands = False
     await bot.sync_commands(delete_existing=True)
+    print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Synced commands")
 
 @bot.event
 async def on_ready():
