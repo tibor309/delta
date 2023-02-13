@@ -12,7 +12,7 @@ err_channel = os.getenv("ERR_CHANNEL") # Channel id for logging
 
 # Set these in your env file!
 bot_token = os.getenv("TOKEN")  # NEVER SHARE YOUR TOKEN WITH ANYONE!
-bot_invite = os.getenv("INVITE")
+bot_id = os.getenv("CLIENT_ID")
 reddit_id = os.getenv("REDDIT_APP_ID")
 reddit_secret = os.getenv("REDDIT_APP_SECRET")
 

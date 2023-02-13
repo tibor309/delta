@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from config import bot_invite, invite_emoji
+from config import bot_id, invite_emoji
 import os, platform, psutil, cpuinfo
 import datetime, time
 
@@ -17,7 +17,8 @@ class system_commands(commands.Cog):
     async def neofetch(self, ctx):
         await ctx.defer()
         view = discord.ui.View()
-        view.add_item(discord.ui.Button(label="invite me", style=discord.ButtonStyle.gray, emoji=invite_emoji, url=bot_invite))
+        invite = f"https://discord.com/api/oauth2/authorize?client_id={bot_id}&permissions=8&scope=bot%20applications.commands"
+        view.add_item(discord.ui.Button(label="invite me", style=discord.ButtonStyle.gray, emoji=invite_emoji, url=invite))
     
         current_time = time.time()
         difference = int(round(current_time - start_time))
