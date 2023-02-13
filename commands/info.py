@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from datetime import datetime
 import time
-from config import bot_color, cpu_folder_icon, user_icon
+from config import bot_color, guild_icon, user_icon
 
 class info_cmds(commands.Cog):
     def __init__(self, bot):
@@ -42,7 +42,7 @@ class info_cmds(commands.Cog):
             afk_channel = guild.afk_channel.mention
         
         embed = discord.Embed(description=guild.description, color=bot_color)
-        embed.set_author(name="Guild info", icon_url=cpu_folder_icon)
+        embed.set_author(name="Guild info", icon_url=guild_icon)
         embed.add_field(name="Guild Name", value=f"```{guild.name}```", inline=False)
         embed.add_field(name="Owner", value=f"```{guild.owner}```", inline=True)
         
