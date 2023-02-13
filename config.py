@@ -7,6 +7,7 @@ bot_color2 = 0x2F3136
 
 bot_prefix = "."
 bot_time = "%d/%b/%Y %H:%M:%S" # Time structure for logs (i should implement a proper logger later)
+err_channel = os.getenv("ERR_CHANNEL") # Channel id for logging
 
 bot_token = os.getenv("TOKEN")
 bot_invite = os.getenv("INVITE")

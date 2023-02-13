@@ -1,7 +1,8 @@
 import discord
 import random
+import datetime
 from discord.ext import commands
-from config import bot_no_perm, no_perm, on_cooldown, err_msg
+from config import bot_no_perm, bot_color, no_perm, on_cooldown, err_msg, err_channel
 
 class errors(commands.Cog):
     def __init__(self, bot):
@@ -26,6 +27,13 @@ class errors(commands.Cog):
             return await ctx.respond(random.choice(on_cooldown), ephemeral=True)
         else:
             await ctx.respond(random.choice(err_msg), ephemeral=True)
+
+            # Send error log to channel
+            channel = bot.get_channel(err_channel)
+            embed = discord.Embed(color=bot_color, title=f"An error occured", description=f"```{error}```")
+            embed.set_footer(text=f"{ctx.guild.name} • Guild ID: {ctx.guild.id}" , icon_url=ctx.guild.icon_url)
+            embed.timestamp = datetime.datetime.utcnow()
+            await channel.send(embed=embed)
             raise error
 
 
