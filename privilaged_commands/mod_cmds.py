@@ -119,8 +119,23 @@ class mod_cmds(commands.Cog):
 
         await ctx.respond(f"Removed the {role.mention} role from {user.mention}", ephemeral=True)
 
-        
 
+    # Kick user
+    @discord.slash_command(name="kick", description="Kick an user", guild_only=True)
+    @discord.commands.default_permissions(kick_members=True)
+    @discord.option("user", discord.Member, description="Select a user", required=True)
+    @discord.option("reason", str, description="Give a reason (optional)", required=False)
+    async def ban(self, ctx, user: discord.Member, reason: str = "*no reason given*"):
+        try:
+            embed = discord.Embed(color=bot_color, title=f"{user.name}#{user.discriminator} has been kicked!", description=f"**Reason:**\n{reason}")
+            embed.set_author(name="User kicked", icon_url=user_icon)
+            embed.set_thumbnail(url=user.avatar)
+            await user.kick(reason=f"{reason} - Kicked by {user.name}#{user.discriminator}")
+            await ctx.respond(embed=embed)
+        except:
+            await ctx.respond(f"Failed to kick {user.mention}", ephemeral=True)
+
+        
 
 def setup(bot):
     bot.add_cog(mod_cmds(bot))

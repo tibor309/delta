@@ -34,7 +34,7 @@ class errors(commands.Cog):
             embed = discord.Embed(color=bot_color, title=f"An error occured", description=f"```{error}```")
     
             if ctx.guild.icon != None:
-                embed.set_footer(text=f"{ctx.guild.name} • Guild ID: {ctx.guild.id}" , icon_url=ctx.guild.icon)
+                embed.set_footer(text=f"{ctx.guild.name} • Guild ID: {ctx.guild.id}", icon_url=ctx.guild.icon)
             else:
                 embed.set_footer(text=f"{ctx.guild.name} • Guild ID: {ctx.guild.id}")
                     
