@@ -1,6 +1,5 @@
 import discord
 import random
-import datetime
 from discord.ext import commands
 from config import bot_no_perm, bot_color, no_perm, on_cooldown, err_msg, err_channel
 
@@ -38,7 +37,7 @@ class errors(commands.Cog):
             else:
                 embed.set_footer(text=f"{ctx.guild.name} • Guild ID: {ctx.guild.id}")
                     
-            embed.timestamp = datetime.datetime.utcnow()
+            embed.timestamp = discord.utils.utcnow()
             await channel.send(embed=embed)
         except:
             print("Failed to send error log")

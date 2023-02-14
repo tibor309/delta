@@ -2,7 +2,6 @@ import discord, os
 from discord.ext import commands
 import utils.mobile_status # set mobile status
 from config import bot_prefix, bot_token, bot_time
-import datetime
 #from keep_alive import keep_alive # this makes the bot "always" run
 
 intents = discord.Intents.all() # require all intents
@@ -14,42 +13,42 @@ for f in os.listdir("./commands"):
         try:
             bot.load_extension("commands." + f[:-3]) # commands
         except Exception as error:
-            print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"ERROR {f} could not be loaded: {error}")
+            print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"ERROR {f} could not be loaded: {error}")
         else:
-            print((datetime.datetime.now().strftime(f"[{bot_time}]")),f"Loaded {f}")
+            print((discord.utils.utcnow().strftime(f"[{bot_time}]")),f"Loaded {f}")
 
 for f in os.listdir("./privilaged_commands"):
     if f.endswith(".py"):
         try:
             bot.load_extension("privilaged_commands." + f[:-3]) # privilaged commands
         except Exception as error:
-            print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"ERROR {f} could not be loaded: {error}")
+            print((discord.utils.utcnow().now().strftime(f"[{bot_time}]")), f"ERROR {f} could not be loaded: {error}")
         else:
-            print((datetime.datetime.now().strftime(f"[{bot_time}]")),f"Loaded {f}")
+            print((discord.utils.utcnow().strftime(f"[{bot_time}]")),f"Loaded {f}")
 
 try:
     bot.load_extension("utils.events") # events
 except Exception as error:
-    print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"ERROR events.py could not be loaded: {error}")
+    print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"ERROR events.py could not be loaded: {error}")
 else:
-    print((datetime.datetime.now().strftime(f"[{bot_time}]")),f"Loaded events.py")
+    print((discord.utils.utcnow().strftime(f"[{bot_time}]")),f"Loaded events.py")
 
 try:
     bot.load_extension("utils.errors") # and errors
 except Exception as error:
-    print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"ERROR errors.py could not be loaded: {error}")
+    print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"ERROR errors.py could not be loaded: {error}")
 else:
-    print((datetime.datetime.now().strftime(f"[{bot_time}]")),f"Loaded errors.py")
+    print((discord.utils.utcnow().strftime(f"[{bot_time}]")),f"Loaded errors.py")
 ## thats all
 
 @bot.event
 async def on_connect():
     await bot.sync_commands(delete_existing=True)
-    print((datetime.datetime.now().strftime(f"[{bot_time}]")), "Synced commands")
+    print((discord.utils.utcnow().strftime(f"[{bot_time}]")), "Synced commands")
 
 @bot.event
 async def on_ready():
-    print((datetime.datetime.now().strftime(f"[{bot_time}]")), f"Successfully logged in as {bot.user}")
+    print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"Successfully logged in as {bot.user}")
 
 # Make bot not respond to it's owm messages
 @bot.listen

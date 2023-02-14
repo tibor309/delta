@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-from datetime import datetime
 import time
 from config import bot_color, guild_icon, user_icon
 
