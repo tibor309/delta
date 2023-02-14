@@ -43,7 +43,6 @@ class meme_cmds(commands.Cog):
 
     
     memegen = discord.SlashCommandGroup("memegen", "Create memes") # Create memes
-    #usermemegen = memegen.create_subgroup("user", "Create memes with others")
 
     # One panel memes
     @memegen.command(name="onepanel", description="Create one panel memes")

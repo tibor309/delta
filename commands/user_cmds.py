@@ -21,7 +21,7 @@ class user_cmds(commands.Cog):
             embed.set_thumbnail(url=member.avatar)
             
         if member.banner == None:
-            embed.set_image(url=member.avatar) # if the memebr doesn't have a banner, display a message instead
+            embed.set_image(url=member.avatar) # if the member doesn't have a banner, display a message instead
             embed.set_footer(text=f"{member.name} doesn't have a banner yet")
 
         await ctx.respond(embed=embed, ephemeral=True)

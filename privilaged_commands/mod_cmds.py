@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from typing import Union
+from config import bot_color, user_icon
 
 
 class mod_cmds(commands.Cog):
@@ -117,7 +118,7 @@ class mod_cmds(commands.Cog):
             await ctx.respond(f"Failed to remove role\nprobably a higher role than mine, or {user.mention} doesn't have that role.", ephemeral=True)
 
         await ctx.respond(f"Removed the {role.mention} role from {user.mention}", ephemeral=True)
- 
+
         
 
 

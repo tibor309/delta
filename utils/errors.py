@@ -14,7 +14,7 @@ class errors(commands.Cog):
     @commands.Cog.listener()
     async def on_application_command_error(self, ctx, error): # app command error
         if isinstance(error, (commands.CommandNotFound, commands.NoPrivateMessage)): # not an exisiting command or executed in private messages
-            return
+            pass
             
             
         elif isinstance(error, commands.BotMissingPermissions): # bot doesn't have perms
@@ -28,13 +28,22 @@ class errors(commands.Cog):
         else:
             await ctx.respond(random.choice(err_msg), ephemeral=True)
 
-            # Send error log to channel
-            channel = bot.get_channel(err_channel)
+        # Send error log to channel
+        try:
+            channel = await self.bot.fetch_channel(err_channel)
             embed = discord.Embed(color=bot_color, title=f"An error occured", description=f"```{error}```")
-            embed.set_footer(text=f"{ctx.guild.name} • Guild ID: {ctx.guild.id}" , icon_url=ctx.guild.icon_url)
+    
+            if ctx.guild.icon != None:
+                embed.set_footer(text=f"{ctx.guild.name} • Guild ID: {ctx.guild.id}" , icon_url=ctx.guild.icon)
+            else:
+                embed.set_footer(text=f"{ctx.guild.name} • Guild ID: {ctx.guild.id}")
+                    
             embed.timestamp = datetime.datetime.utcnow()
             await channel.send(embed=embed)
-            raise error
+        except:
+            print("Failed to send error log")
+        raise error
+                
 
 
 def setup(bot):
