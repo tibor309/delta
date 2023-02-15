@@ -5,10 +5,9 @@ description = "A multipurpose discord bot for me and my friends made with pycord
 authors = ["Tibor309 <tibormercs8@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 aiohttp = "^3.7.4"
 praw = "^7.4.0"
-py-cpuinfo = "^8.0.0"
 discord-together = "^1.2.6"
 psutil = "^5.9.1"
 python-dotenv = "^0.20.0"

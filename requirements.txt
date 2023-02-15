@@ -4,5 +4,4 @@ python-dotenv
 aiohttp
 discord-together
 py-cord
-py-cpuinfo
-flask
+Flask
