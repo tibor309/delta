@@ -15,9 +15,9 @@ class system_commands(commands.Cog):
     # Neofetch command
     @discord.slash_command(name="neofetch", description="Some info about the system")
     async def neofetch(self, ctx):
-        await ctx.defer()
+        await ctx.defer(ephemeral=True)
         view = discord.ui.View()
-        invite = f"https://discord.com/api/oauth2/authorize?client_id={bot_id}&permissions=8&scope=bot%20applications.commands"
+        invite = f"https://discord.com/api/oauth2/authorize?client_id={self.bot.user.id}&permissions=8&scope=bot%20applications.commands"
         view.add_item(discord.ui.Button(label="invite me", style=discord.ButtonStyle.gray, emoji=invite_emoji, url=invite))
     
         current_time = time.time()
@@ -59,7 +59,7 @@ class system_commands(commands.Cog):
         f"[2;34m[1;34mCPU[0m[2;34m[0m: {cpu_name}\n"
         f"[2;34m[1;34mMemory[0m[2;34m[0m: {ram_usage}GB / {total_ram}GB\n"
         f"[2;34m[1;34mDisk[0m[2;34m[0m: {disk_usage}GB / {total_disk}GB\n\n\n```")
-        await ctx.followup.send(neofetch, view=view, ephemeral=True)
+        await ctx.followup.send(neofetch, view=view)
 
 
 

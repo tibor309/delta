@@ -17,7 +17,7 @@ channel = "stable-21_11"
 
 [packager]
 language = "python3"
-ignoredPackages = ["unit_tests"]
+ignoredPackages = ["unit_tests", "discord", "discord.py"]
 
 [packager.features]
 enabledForHosting = false

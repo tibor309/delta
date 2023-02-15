@@ -10,3 +10,4 @@ replit.nix
 .config/
 venv
 .env
+.upm/
