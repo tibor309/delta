@@ -12,14 +12,17 @@ Suggestions are always welcome! You can try to set it up by yourself, or you can
 </div>
 
 ## Setup
-Install all the required packages with this command. **Make sure you install [py-cord][py-cord] instead of discord.py!**
+### Replit
+Click on the Replit button above, and clone my repl. Then head over to the secrets tab and add fill it out using the `.env.example` file as template.
+After everything set up, just click on the run button to run the bot. You can change more stuff in the config if you want! Optionally you can enable the Flask server to make the bot run 24/7.
+
+### Source
+If you prefer it you can host your own copy of this bot! First, install all the required packages with this command. **Make sure you install [py-cord][py-cord] instead of discord.py!**
 ```
 pip3 install -r requirements.txt
 ```
-Then create an `.env` file, and change the config to your liking. After that just run the bot with this command:
-```
-python3 main.py
-```
+Then rename the `.env.example` file to `.env` and fill it out with your values. **Never share your token with anyone!**
+And if you're ready, run the bot with the `python3 main.py` command!
 
 ## Usage
 This bot uses the new discord permissions system. That means you can override the required permissions for commands however you like in discord's integrations menu.
