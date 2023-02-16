@@ -4,8 +4,6 @@ privilaged_commands/__pycache__/
 utils/__pycache__/
 .cache/
 
-.replit
-replit.nix
 .breakpoints
 .config/
 venv

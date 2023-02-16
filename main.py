@@ -5,7 +5,7 @@ from config import bot_prefix, bot_token, bot_time
 #from keep_alive import keep_alive # this makes the bot "always" run
 
 intents = discord.Intents.all() # require all intents
-bot = commands.Bot(command_prefix=bot_prefix, intents=intents, help_command=None) # set prefix, intents, and remove the default help command
+bot = commands.Bot(intents=intents, help_command=None) # set intents, and remove the default help command
 
 # Load commands and events
 for f in os.listdir("./commands"):
@@ -56,13 +56,13 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-#keep_alive() # keep the bot alive
+#keep_alive() # keep the bot alive (uncomment this too)
 try:
   bot.run(bot_token)
 except discord.HTTPException as err:
     if err.status == 429:
         print("The Discord servers denied the connection for making too many requests")
         print("Get help from https://stackoverflow.com/questions/66724687/in-discord-py-how-to-solve-the-error-for-toomanyrequests")
-        #os.system("python3 utils/restarter.py")
+        #os.system("python3 utils/restarter.py") # This auto kills the repl (uncomment if you're on replit)
     else:
         raise err
