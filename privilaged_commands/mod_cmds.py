@@ -126,14 +126,36 @@ class mod_cmds(commands.Cog):
     @discord.option("user", discord.Member, description="Select a user", required=True)
     @discord.option("reason", str, description="Give a reason (optional)", required=False)
     async def ban(self, ctx, user: discord.Member, reason: str = "*no reason given*"):
+        if user == ctx.message.author:
+            return await ctx.respond(f"You can't kick yourself", ephemeral=True)
+            
         try:
             embed = discord.Embed(color=bot_color, title=f"{user.name}#{user.discriminator} has been kicked!", description=f"**Reason:**\n{reason}")
             embed.set_author(name="User kicked", icon_url=user_icon)
             embed.set_thumbnail(url=user.avatar)
-            await user.kick(reason=f"{reason} - Kicked by {user.name}#{user.discriminator}")
+            await user.kick(reason=f"{reason} - Kicked by {ctx.message.author.name}#{ctx.message.author.discriminator}")
             await ctx.respond(embed=embed)
         except:
             await ctx.respond(f"Failed to kick {user.mention}", ephemeral=True)
+
+
+    # Ban user
+    @discord.slash_command(name="ban", description="Ban a user", guild_only=True)
+    @discord.commands.default_permissions(ban_members=True)
+    @discord.option("user", discord.Member, description="Select a user", required=True)
+    @discord.option("reason", str, description="Give a reason (optional)", required=False)
+    async def ban(self, ctx, user: discord.Member, reason: str = "*no reason given*"):
+        if user == ctx.message.author:
+            await ctx.respond(f"You can't ban yourself", ephemeral=True)          
+            
+        try:
+            embed = discord.Embed(color=bot_color, title=f"{user.name}#{user.discriminator} has been banned!", description=f"**Reason:**\n{reason}")
+            embed.set_author(name="User banned", icon_url=user_icon)
+            embed.set_thumbnail(url=user.avatar)
+            await ctx.guild.ban(user, reason=f"{reason} - Banned by {ctx.message.author.name}#{ctx.message.author.discriminator}")
+            await ctx.respond(embed=embed)
+        except:
+            await ctx.respond(f"Failed to ban {user.mention}", ephemeral=True)
 
         
 
