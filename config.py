@@ -10,6 +10,9 @@ bot_prefix = "." # Bot prefix (currenty unused)
 bot_time = "%d/%b/%Y %H:%M:%S" # Time structure for logs
 err_channel = os.getenv("ERR_CHANNEL") # Channel id for logging
 
+support_link = "https://discord.gg/invite/5YZrFCbTb2" # invite link for support server
+code_link = "https://github.com/tibor309/delta" # link for the code
+
 # Set these in your env file!
 bot_token = os.getenv("TOKEN")  # NEVER SHARE YOUR TOKEN WITH ANYONE!
 bot_id = os.getenv("CLIENT_ID")
@@ -26,17 +29,19 @@ guild_icon = "https://i.imgur.com/jW1kIa7.png" # icon for guild specific command
 yes_emoji = "<:ye:935798200621760533>" # emoji for upvote
 no_emoji = "<:nah:935798200869208074>" # emoji for downvote 
 invite_emoji = "<:love:1027605898593579118>" # emoji for invite button
+support_emoji = "<:message:1102166660959457281>" # emoji for support server invite
+code_emoji = "<:github:1102166658589655080>" # emoji for source code link 
 
 
 # Messages
 # One message is randomly selected to be sent
-no_perm = ["nope", "you don't have perms for this!", "access denied", "You don't have enough perms for this", "skill issue"]
+no_perm = ["nope", "you don't have perms for this!", "access denied", "You don't have enough perms for this", "skill issue", "https://i.imgur.com/TmudNRr.png", "you don't have perms"]
 bot_no_perm = ["I don't have perms!", "i don't have enough perms for this", "i can't help you with that. i don't have perms"]
 cmd_dms = ["You can't use this command here.", "No", "You can only use these commands in servers.", "Nope", "you can't use this command in dms!"]
-activity_link = ["use the link to join", "join with the link", "here's the link"]
+activity_link = ["use the link to join", "join with the link", "here's the link", "heres the invite"]
 bot_join_msg = ["Hi everyone!", "Hi", "hi everyone", "hi", "Hello everyone!"]
 no_vc = ["Join a vc first!", "Connect to a voice channel!", "connect to a vc!", "vc?"]
 no_same_vc = ["You're not in the same vc as me!", "you're not in our voice channel!", "you're not in the same vc as me"]
-err_msg = ["something went wrong", "well that didn't work", "uh.. i got an error", "got an error", "wrong"]
+err_msg = ["something went wrong", "well that didn't work", "uh.. i got an error", "got an error", "something didn't work"]
 img_fail = ["I couldn't get the image", "Failed to get the image :("]
 on_cooldown = ["You're on cooldown!", "hey slow down", "not yet!"]

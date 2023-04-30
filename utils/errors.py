@@ -30,12 +30,12 @@ class errors(commands.Cog):
         # Send error log to channel
         try:
             channel = await self.bot.fetch_channel(err_channel)
-            embed = discord.Embed(color=bot_color, title=f"An error occured", description=f"```{error}```")
+            embed = discord.Embed(color=bot_color, title=f"An error occured", description=f"**Command:** {ctx.command.name}\n**Guild ID:** ||{ctx.guild.id}||\n```{error}```")
     
             if ctx.guild.icon != None:
-                embed.set_footer(text=f"{ctx.guild.name} • Guild ID: {ctx.guild.id}", icon_url=ctx.guild.icon)
+                embed.set_footer(text=f"{ctx.guild.name}", icon_url=ctx.guild.icon)
             else:
-                embed.set_footer(text=f"{ctx.guild.name} • Guild ID: {ctx.guild.id}")
+                embed.set_footer(text=f"{ctx.guild.name}")
                     
             embed.timestamp = discord.utils.utcnow()
             await channel.send(embed=embed)

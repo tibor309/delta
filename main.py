@@ -50,6 +50,7 @@ async def on_connect():
 async def on_ready():
     print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"Successfully logged in as {bot.user}")
 
+
 # Make bot not respond to it's owm messages
 @bot.listen
 async def on_message(message):
