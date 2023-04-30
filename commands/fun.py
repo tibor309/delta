@@ -38,6 +38,7 @@ class fun_cmds(commands.Cog):
         ], required=True)
 
     async def activity(self, ctx: discord.ApplicationContext, channel: discord.VoiceChannel, activity: str):
+        await ctx.defer()
         invite_age = 900 # 15 mins age
         invite_uses = 0 # unlimited use
 
@@ -72,27 +73,29 @@ class fun_cmds(commands.Cog):
 
         try:
             link = await self.togetherControl.create_link(channel.id, selected, max_age=invite_age, max_uses=invite_uses) # generate link and send it
-            await ctx.respond(f"{random.choice(activity_link)}\n{link}")
+            await ctx.followup.send(f"{random.choice(activity_link)}\n{link}")
         except:
-            await ctx.respond("Failed to create activity", ephemeral=True)
+            await ctx.followup.send("Failed to create activity", ephemeral=True)
 
 
     # Facts command
     @discord.slash_command(name="fact", description="He do speaking facts doe")
     async def facts(self, ctx):
+        await ctx.defer()
         api = "https://api.popcat.xyz/fact"
         response = requests.get(api, verify=True)
         data = response.json()
-        await ctx.respond(data['fact'])
+        await ctx.followup.send(data['fact'])
 
 
     # Tell a joke
     @discord.slash_command(name="joke", description="for the funny")
     async def joke(self, ctx):
+        await ctx.defer()
         api = "https://api.popcat.xyz/joke"
         response = requests.get(api, verify=True)
         data = response.json()
-        await ctx.respond(data['joke'])
+        await ctx.followup.send(data['joke'])
 
 
     # Flip command
@@ -123,6 +126,7 @@ class fun_cmds(commands.Cog):
     # Get a random color
     @discord.slash_command(name="randomcolor", description="Get a random color")
     async def color(self, ctx):
+        await ctx.defer()
         api = "https://api.popcat.xyz/randomcolor"
         response = requests.get(api, verify=True)
         data = response.json()
@@ -138,7 +142,7 @@ class fun_cmds(commands.Cog):
         embed.add_field(name="HEX", value=f"```#{hex}```")
         embed.add_field(name="RGB", value=f"```{rgb(hex)}```")
         embed.set_thumbnail(url=icon)
-        await ctx.respond(embed=embed)
+        await ctx.followup.send(embed=embed)
 
 
     # RTD command

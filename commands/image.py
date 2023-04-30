@@ -7,7 +7,7 @@ class img_cmds(commands.Cog):
         self.bot = bot
 
 
-
+    # Post cool images of foxes
     @discord.slash_command(name="fox", description="I like foxes :3")
     @commands.cooldown(1, 3, commands.BucketType.user)
     async def fox(self, ctx):
@@ -18,6 +18,7 @@ class img_cmds(commands.Cog):
                 imageData = io.BytesIO(await trigImg.read())
                 await trigSession.close()
                 await ctx.followup.send(file=discord.File(imageData, f'fox.png'))
+
 
 
 

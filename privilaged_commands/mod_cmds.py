@@ -47,8 +47,9 @@ class mod_cmds(commands.Cog):
     @discord.commands.default_permissions(manage_messages=True)
     @discord.option("msg", int, description="Number of messages", required=True)
     async def remove_messages(self, ctx, messages: int):
+        await ctx.defer()
         await ctx.channel.purge(limit=messages)
-        await ctx.respond(f"Deleted {messages} messages", ephemeral=True) 
+        await ctx.followup.send(f"Deleted {messages} messages", ephemeral=True) 
 
 
     # Create channel

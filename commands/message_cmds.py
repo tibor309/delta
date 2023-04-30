@@ -16,6 +16,7 @@ class message_cmds(commands.Cog):
     # Encode to base64
     @discord.message_command(name="Encode to Base64")
     async def encode_base64(self, ctx, message: discord.Message):
+        await ctx.defer()
         text = message.content.replace(" ", "+")
         url = f"{api}/base64?encode={text}"
         
@@ -24,14 +25,15 @@ class message_cmds(commands.Cog):
         
         try: 
             message = data['base64']
-            await ctx.respond(message, ephemeral=True)
+            await ctx.followup.send(message, ephemeral=True)
         except:
-            await ctx.respond(random.choice(err_msg), ephemeral=True)
+            await ctx.followup.send(random.choice(err_msg), ephemeral=True)
 
             
     # Decode from base64
     @discord.message_command(name="Decode from Base64")
     async def decode_base64(self, ctx, message: discord.Message):
+        await ctx.defer()
         url = f"{api}/base64?decode={message.content}"
         
         response = requests.get(url, verify=True)
@@ -39,9 +41,9 @@ class message_cmds(commands.Cog):
         
         try: 
             message = data['text']
-            await ctx.respond(message, ephemeral=True)
+            await ctx.followup.send(message, ephemeral=True)
         except:
-            await ctx.respond(random.choice(err_msg), ephemeral=True)
+            await ctx.followup.send(random.choice(err_msg), ephemeral=True)
 
 
     # React with the funny emoji
