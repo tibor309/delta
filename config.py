@@ -10,12 +10,13 @@ bot_prefix = "." # Bot prefix (currenty unused)
 bot_time = "%d/%b/%Y %H:%M:%S" # Time structure for logs
 err_channel = os.getenv("ERR_CHANNEL") # Channel id for logging
 
-support_link = "https://discord.gg/invite/5YZrFCbTb2" # invite link for support server
-code_link = "https://github.com/tibor309/delta" # link for the code
 
 # Set these in your env file!
 bot_token = os.getenv("TOKEN")  # NEVER SHARE YOUR TOKEN WITH ANYONE!
 bot_id = os.getenv("CLIENT_ID")
+support_link = os.getenv("SUPPORT")
+code_link = os.getenv("CODE")
+
 reddit_id = os.getenv("REDDIT_APP_ID")
 reddit_secret = os.getenv("REDDIT_APP_SECRET")
 
