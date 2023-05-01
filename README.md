@@ -21,10 +21,13 @@ If you prefer it you can host your own copy of this bot! First, install all the 
 ```
 pip3 install -r requirements.txt
 ```
-Then rename the `.env.example` file to `.env` and fill it out with your values. **Never share your token with anyone!**
+Then rename the `.env.example` file to `.env` and fill it out with your values. **Never share your token or app secrets with anyone!**
 And if you're ready, run the bot with the `python3 main.py` command!
 
+## Config
+You can customize the bot in the `config.py` file. You can change the messages, icons, colors, and emojis used by the bot. Just remember to change the emojis if you're planning to make your own fork! If you use replit or similar, uncomment the `keep_alive` lines to make the bot run 24/7!
+
 ## Usage
-This bot uses the new discord permissions system. That means you can override the required permissions for commands however you like in discord's integrations menu.
+This bot uses the new slash commands and permissions system. That means you can override and restrict the required permissions for commands however you like in discord's integrations menu.
 
 [py-cord]: https://github.com/Pycord-Development/pycord/

@@ -2,7 +2,9 @@ import discord, os
 from discord.ext import commands
 import utils.mobile_status # set mobile status
 from config import bot_token, bot_time
-#from keep_alive import keep_alive # this makes the bot "always" run
+
+# If you're using replit or similar, uncomment this to make the bot run 24/7
+#from keep_alive import keep_alive 
 
 intents = discord.Intents.all() # require all intents
 bot = commands.Bot(intents=intents, help_command=None) # set intents, and remove the default help command
@@ -57,7 +59,8 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-#keep_alive() # keep the bot alive (uncomment this too)
+#keep_alive() # uncomment this too
+
 try:
   bot.run(bot_token)
 except discord.HTTPException as err:
