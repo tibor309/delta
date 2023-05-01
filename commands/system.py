@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from config import bot_id, invite_emoji, support_emoji, code_emoji
+from config import invite_emoji, support_emoji, code_emoji
 from config import support_link, code_link
 import os, platform, psutil
 import datetime, time
