@@ -25,7 +25,7 @@ class mod_cmds(commands.Cog):
             
     # Lock and unlock chat
     @discord.slash_command(name="lockdir", description="Lock and unlock chat", guild_only=True)
-    @discord.commands.default_permissions(manage_messages=True, manage_channels=True)
+    @discord.commands.default_permissions(manage_channels=True)
     @discord.option("locked", bool, description="Change channel lock", required=True)
     @discord.option("channel", discord.TextChannel, description="Select a channel if you want too", required=False)
     async def channel_lock(self, ctx, locked: bool, channel: discord.TextChannel = None):

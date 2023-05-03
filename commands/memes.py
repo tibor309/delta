@@ -128,7 +128,7 @@ class meme_cmds(commands.Cog):
 
         
     # User memes
-    @memegen.command(name="user", description="Create memes with a user")
+    @memegen.command(name="member", description="Create member memes")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("template", str, description="Choose a template", choices=["adios", "first time", "drip", "clown", "horny license", "jail"], required=True)
     @discord.option("title", str, description="An interesting title", required=True)
@@ -167,7 +167,7 @@ class meme_cmds(commands.Cog):
 
 
     # User memes
-    @memegen.command(name="users", description="Crate memes with someone")
+    @memegen.command(name="together", description="Create memes with someone")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("template", str, description="Choose a template", choices=["confused cat", "milk"], required=True)
     @discord.option("title", str, description="Post title", required=True)

@@ -62,7 +62,7 @@ class system_commands(commands.Cog):
         view.add_item(discord.ui.Button(label="support", style=discord.ButtonStyle.link, emoji=support_emoji, url=support_link))
         view.add_item(discord.ui.Button(label="code", style=discord.ButtonStyle.link, emoji=code_emoji, url=code_link))
         
-        await ctx.respond("Linux", view=view)
+        await ctx.respond("Linux", view=view, ephemeral=True)
 
 
 def setup(bot):
