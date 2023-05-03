@@ -12,7 +12,7 @@ class meme_cmds(commands.Cog):
     
     # Post memes from reddit
     @discord.slash_command(name="meme", description="Post memes from reddit")
-    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("subreddit", description="Choose a subreddit", choices=["r/memes", "r/dankmemes", "r/shitposting", "r/me_irl", "r/ProgrammerHumor", "r/softwaregore", "r/furrymemes"], required=True)
     async def meme(self, ctx: discord.ApplicationContext, subreddit: str):
         await ctx.defer()
@@ -46,7 +46,7 @@ class meme_cmds(commands.Cog):
 
     # One panel memes
     @memegen.command(name="onepanel", description="Create one panel memes")
-    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("template", str, description="Choose a template", choices=["oogway", "pikachu", "biden", "facts", "sad cat", "iphone alert", "caution", "change my mind", "lisa", "worthless", "burn"], required=True)
     @discord.option("title", str, description="An interesting title", required=True)
     @discord.option("text", str, description="Meme text", required=True)
@@ -95,7 +95,7 @@ class meme_cmds(commands.Cog):
 
     # Two panel memes
     @memegen.command(name="twopanel", description="Create two panel memes")
-    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("template", str, description="Choose a template", choices=["drake", "pooh", "npc"], required=True)
     @discord.option("title", str, description="A very interesting title", required=True)
     @discord.option("text1", str, description="Top panel text", required=True)
@@ -129,7 +129,7 @@ class meme_cmds(commands.Cog):
         
     # User memes
     @memegen.command(name="user", description="Create memes with a user")
-    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("template", str, description="Choose a template", choices=["adios", "first time", "drip", "clown", "horny license", "jail"], required=True)
     @discord.option("title", str, description="An interesting title", required=True)
     @discord.option("user", discord.Member, description="Select a user", required=True)
@@ -167,8 +167,8 @@ class meme_cmds(commands.Cog):
 
 
     # User memes
-    @memegen.command(name="twouser", description="Crate memes with someone")
-    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
+    @memegen.command(name="users", description="Crate memes with someone")
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("template", str, description="Choose a template", choices=["confused cat", "milk"], required=True)
     @discord.option("title", str, description="Post title", required=True)
     @discord.option("user1", discord.Member, description="Select a user", required=True)

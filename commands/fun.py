@@ -2,7 +2,8 @@ import discord, random
 import requests
 from discord.ext import commands
 from discord_together import DiscordTogether
-from config import bot_token, bot_color, bot_color2, activity_link, yes_emoji, no_emoji
+from config import bot_token, bot_color, bot_color2
+from config import activity_link, yes_emoji, no_emoji
 from asyncio import sleep
 
 class fun_cmds(commands.Cog):
@@ -125,6 +126,7 @@ class fun_cmds(commands.Cog):
 
     # Get a random color
     @discord.slash_command(name="randomcolor", description="Get a random color")
+    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
     async def color(self, ctx):
         await ctx.defer()
         api = "https://api.popcat.xyz/randomcolor"
@@ -150,6 +152,18 @@ class fun_cmds(commands.Cog):
     async def rtd(self, ctx):
         await ctx.respond(f'🎲 You got, {random.randint(1,6)}!', ephemeral=False)
 
+
+    # 8ball command
+    @discord.slash_command(name="8ball", description="Talk to the magic ball")
+    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
+    @discord.option("question", str, description="Ask something", required=True)
+    async def ball(self, ctx, question:str):
+        api = "https://api.popcat.xyz/8ball"
+        await ctx.defer()
+        response = requests.get(api, verify=True)
+        data = response.json()
+        embed = discord.Embed(color=bot_color, description=f"🎱 " + data['answer'])
+        await ctx.followup.send(f"> {question}", embed=embed)
 
 
 

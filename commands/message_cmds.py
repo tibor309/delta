@@ -15,6 +15,7 @@ class message_cmds(commands.Cog):
 
     # Encode to base64
     @discord.message_command(name="Encode to Base64")
+    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
     async def encode_base64(self, ctx, message: discord.Message):
         await ctx.defer()
         text = message.content.replace(" ", "+")
@@ -32,6 +33,7 @@ class message_cmds(commands.Cog):
             
     # Decode from base64
     @discord.message_command(name="Decode from Base64")
+    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
     async def decode_base64(self, ctx, message: discord.Message):
         await ctx.defer()
         url = f"{api}/base64?decode={message.content}"
