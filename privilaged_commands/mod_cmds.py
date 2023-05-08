@@ -3,7 +3,6 @@ from discord.ext import commands
 from typing import Union
 from config import bot_color, user_icon
 
-
 class mod_cmds(commands.Cog):
     def __init__(self, bot):
         self.bot = bot

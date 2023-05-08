@@ -169,7 +169,7 @@ class meme_cmds(commands.Cog):
     # User memes
     @memegen.command(name="together", description="Create memes with someone")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
-    @discord.option("template", str, description="Choose a template", choices=["confused cat", "milk"], required=True)
+    @discord.option("template", str, description="Choose a template", choices=["confused cat", "milk", "who would win"], required=True)
     @discord.option("title", str, description="Post title", required=True)
     @discord.option("user1", discord.Member, description="Select a user", required=True)
     @discord.option("user2", discord.Member, description="and an another one", required=True)
@@ -183,6 +183,8 @@ class meme_cmds(commands.Cog):
             url = f"https://vacefron.nl/api/womanyellingatcat?woman={avatar1}&cat={avatar2}"
         elif template == "milk":
             url = f"https://vacefron.nl/api/icanmilkyou?user1={avatar1}&user2={avatar2}"
+        elif template == "who would win":
+            url = f"https://api.popcat.xyz/whowouldwin?user1={avatar1}&user2={avatar1}"
 
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as af:
