@@ -118,7 +118,7 @@ class fun_cmds(commands.Cog):
         embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar)
         
         interaction = await ctx.respond(embed=embed)
-        message = await interaction.original_respponse()
+        message = await interaction.original_response()
         await message.add_reaction(yes_emoji) # yes
         await sleep(1) # wait before react
         await message.add_reaction(no_emoji) # no
