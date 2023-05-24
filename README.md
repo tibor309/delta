@@ -17,11 +17,11 @@ Click on the Replit button above, and clone my repl. Then head over to the secre
 After everything set up, just click on the run button to run the bot. You can change more stuff in the config if you want! Optionally you can enable the Flask server to make the bot run 24/7.
 
 ### Source
-If you prefer it you can host your own copy of this bot! First, install all the required packages with this command. **Make sure you install [py-cord][py-cord] instead of discord.py!**
+If you prefer it you can host your own copy of this bot! First, install all the required packages with this command. **Make sure to install [py-cord][py-cord] instead of discord.py!**
 ```
 pip3 install -r requirements.txt
 ```
-Then rename the `.env.example` file to `.env` and fill it out with your values. **Never share your token or app secrets with anyone!**
+Then rename the `.env.example` file to `.env` and fill it out with your values. **Never share your bot token or app secrets with anyone!**
 And if you're ready, run the bot with the `python3 main.py` command!
 
 ## Config
