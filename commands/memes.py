@@ -47,7 +47,7 @@ class meme_cmds(commands.Cog):
     # One panel memes
     @memegen.command(name="onepanel", description="Create one panel memes")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
-    @discord.option("template", str, description="Choose a template", choices=["oogway", "pikachu", "biden", "facts", "sad cat", "iphone alert", "caution", "change my mind", "lisa", "worthless", "burn"], required=True)
+    @discord.option("template", str, description="Choose a template", choices=["oogway", "pikachu", "biden", "facts", "sad cat", "iphone alert", "caution", "sad cat", "change my mind", "lisa", "worthless", "burn"], required=True)
     @discord.option("title", str, description="An interesting title", required=True)
     @discord.option("text", str, description="Meme text", required=True)
     async def memegen_onepanel(self, ctx, template: str, title: str, text: str):
@@ -68,6 +68,8 @@ class meme_cmds(commands.Cog):
             api = "https://api.popcat.xyz/alert"
         elif template == "caution":
             api = "https://api.popcat.xyz/caution"
+        elif template == "caution":
+            api = "https://api.popcat.xyz/sadcat"
 
         elif template == "change my mind":
             api = "https://frenchnoodles.xyz/api/endpoints/changemymind"
