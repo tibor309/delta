@@ -14,7 +14,7 @@ Suggestions are always welcome! You can try to set it up by yourself, or you can
 ## Setup
 ### Replit
 Click on the Replit button above, and clone my repl. Then head over to the secrets tab and add fill it out using the `.env.example` file as template.
-After everything set up, just click on the run button to run the bot. You can change more stuff in the config if you want! Optionally you can enable the Flask server to make the bot run 24/7. If you don't already have, you can create a reddit app [here][reddit]!
+After everything set up, just click on the run button to run the bot. You can change more stuff in the config if you want! Optionally you can enable the Flask server to make the bot run 24/7.
 
 ### Source
 If you prefer it you can host your own copy of this bot! First, install all the required packages with this command. **Make sure to install [py-cord][py-cord] instead of discord.py!**
@@ -31,4 +31,3 @@ You can customize the bot in the `config.py` file. You can change the messages, 
 This bot uses the new slash commands and permissions system. That means you can override and restrict the required permissions for commands however you like in discord's integrations menu.
 
 [py-cord]: https://github.com/Pycord-Development/pycord/
-[reddit]: https://www.reddit.com/prefs/apps/

@@ -1,45 +1,12 @@
 import discord
 import aiohttp, io
 from discord.ext import commands
-import praw, random
-from config import bot_color2, reddit_id, reddit_secret, img_fail
+import random
+from config import bot_color2, img_fail
 
 class meme_cmds(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-
-    
-    # Post memes from reddit
-    @discord.slash_command(name="meme", description="Post memes from reddit")
-    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
-    @discord.option("subreddit", description="Choose a subreddit", choices=["r/memes", "r/dankmemes", "r/shitposting", "r/me_irl", "r/ProgrammerHumor", "r/softwaregore", "r/furrymemes"], required=True)
-    async def meme(self, ctx: discord.ApplicationContext, subreddit: str):
-        await ctx.defer()
-        reddit = praw.Reddit(client_id=reddit_id, client_secret=reddit_secret, user_agent='Delta', check_for_async=False)
-        post_to_pick = random.randint(1, 50)
-
-        if subreddit == "r/memes":
-            memes_submissions = reddit.subreddit('memes').hot()
-        elif subreddit == "r/dankmemes":
-            memes_submissions = reddit.subreddit('dankmemes').hot()
-        elif subreddit == "r/shitposting":
-            memes_submissions = reddit.subreddit('shitposting').hot()
-        elif subreddit == "r/me_irl":
-            memes_submissions = reddit.subreddit('me_irl').hot()
-        elif subreddit == "r/ProgrammerHumor":
-            memes_submissions = reddit.subreddit('ProgrammerHumor').hot()
-        elif subreddit == "r/softwaregore":
-            memes_submissions = reddit.subreddit('softwaregore').hot()
-        elif subreddit == "r/furrymemes":
-            memes_submissions = reddit.subreddit('furrymemes').hot()
-
-        for i in range(0, post_to_pick):
-            submission = next(x for x in memes_submissions if not x.stickied)
-        embed = discord.Embed(color=bot_color2, title=submission.title)
-        embed.set_image(url=submission.url)
-        await ctx.followup.send(embed=embed)
-
 
     
     memegen = discord.SlashCommandGroup("memegen", "Create memes") # Create memes

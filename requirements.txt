@@ -1,4 +1,3 @@
-praw
 psutil
 python-dotenv
 aiohttp

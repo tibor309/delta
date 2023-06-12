@@ -15,9 +15,6 @@ err_channel = os.getenv("ERR_CHANNEL") # Channel id for logging
 support_link = os.getenv("SUPPORT")
 code_link = os.getenv("CODE")
 
-reddit_id = os.getenv("REDDIT_APP_ID")
-reddit_secret = os.getenv("REDDIT_APP_SECRET")
-
 
 # Icons for embeds
 user_icon = "https://i.imgur.com/zGVdnZ5.png" # for member specific commnds
