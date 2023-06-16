@@ -99,7 +99,7 @@ class meme_cmds(commands.Cog):
     # User memes
     @memegen.command(name="member", description="Create member memes")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
-    @discord.option("template", str, description="Choose a template", choices=["adios", "first time", "drip", "clown", "horny license", "jail"], required=True)
+    @discord.option("template", str, description="Choose a template", choices=["adios", "first time", "drip", "clown", "jail"], required=True)
     @discord.option("title", str, description="An interesting title", required=True)
     @discord.option("user", discord.Member, description="Select a user", required=True)
     async def memegen_user(self, ctx, template: str, title: str, user: discord.Member):
@@ -116,10 +116,8 @@ class meme_cmds(commands.Cog):
         elif template == "clown":
             url = f"https://api.popcat.xyz/clown?image={avatar}"
             
-        elif template == "horny license":
-            url = f"https://some-random-api.ml/canvas/horny?avatar={avatar}"
         elif template == "jail":
-            url = f"https://some-random-api.ml/canvas/jail?avatar={avatar}"
+            url = f"https://api.popcat.xyz/jail?image={avatar}"
 
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as af:
