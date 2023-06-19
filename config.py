@@ -17,8 +17,8 @@ code_link = os.getenv("CODE")
 
 
 # Icons for embeds
-user_icon = "https://image.tibor309.repl.co/icons/user.png" # for member specific commnds
-guild_icon = "https://image.tibor309.repl.co/icons/folder_cpu.png" # icon for guild specific commands
+user_icon = "https://images.tibor309.repl.co/icons/user.png" # for member specific commnds
+guild_icon = "https://images.tibor309.repl.co/icons/folder_cpu.png" # icon for guild specific commands
 
 # Emojis for commands
 # The bot needs access to the server to use custom emojs,
@@ -28,6 +28,7 @@ no_emoji = "<:nah:935798200869208074>" # emoji for downvote
 invite_emoji = "<:love:1027605898593579118>" # emoji for invite button
 support_emoji = "<:message:1102166660959457281>" # emoji for support server invite
 code_emoji = "<:github:1102166658589655080>" # emoji for source code link 
+
 
 
 # Messages
