@@ -36,7 +36,6 @@ code_emoji = "<:github:1102166658589655080>" # emoji for source code link
 no_perm = ["nope", "you don't have perms for this!", "access denied", "You don't have enough perms for this", "skill issue", "https://image.tibor309.repl.co/memes/no_perms.png", "you don't have perms", "https://tenor.com/view/nuh-uh-beocord-no-lol-gif-24435520", "nuh uh!"]
 bot_no_perm = ["I don't have perms!", "i don't have enough perms for this", "i can't help you with that. i don't have perms"]
 cmd_dms = ["You can't use this command here.", "No", "You can only use these commands in servers.", "Nope", "you can't use this command in dms!"]
-activity_link = ["use the link to join", "join with the link", "here's the link", "heres the invite"]
 bot_join_msg = ["Hi everyone!", "Hi", "hi everyone", "hi", "Hello everyone!", "https://tenor.com/view/hi-gif-25925938"]
 err_msg = ["something went wrong", "well that didn't work", "uh.. i got an error", "got an error", "something didn't work"]
 img_fail = ["I couldn't get the image", "Failed to get the image :(", "i couldn't download the image"]

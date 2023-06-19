@@ -1,6 +1,5 @@
 psutil
 python-dotenv
 aiohttp
-discord-together
 py-cord
 Flask

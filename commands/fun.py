@@ -1,82 +1,14 @@
 import discord, random
 import requests
 from discord.ext import commands
-from discord_together import DiscordTogether
-from config import bot_token, bot_color, bot_color2
-from config import activity_link, yes_emoji, no_emoji
+from config import bot_color, bot_color2
+from config import yes_emoji, no_emoji
 from asyncio import sleep
 
 class fun_cmds(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @discord.Cog.listener()
-    async def on_ready(self):
-        self.togetherControl = await DiscordTogether(bot_token)
-
-
-
-    # Activity command
-    @discord.slash_command(name="activity", description="Start or join a voice channel activity", guild_only=True)
-    @discord.commands.default_permissions(start_embedded_activities=True)
-    @discord.option("channel", discord.VoiceChannel, description="Select a channel to start the activity in", required=True)
-    @discord.option("activity", description="Select an activity",
-        choices=[
-        "Watch Together",
-        "Poker Night (Requires boost)",
-        "Chess In The Park (Requires boost)",
-        "Letter League (Requires boost)",
-        "Word Snacks",
-        "Sketch Heads",
-        "SpellCast (Requires boost)",
-        "Awkword (Requires boost)",
-        "Checkers In The Park (Requires boost)",
-        "Blazing 8s (Requires boost)",
-        "Land-io (Requires boost)",
-        "Putt Party (Requires boost)",
-        "Bobble League (Requires boost)",
-        "Ask Away"
-        ], required=True)
-
-    async def activity(self, ctx: discord.ApplicationContext, channel: discord.VoiceChannel, activity: str):
-        await ctx.defer()
-        invite_age = 900 # 15 mins age
-        invite_uses = 0 # unlimited use
-
-        if activity == "Watch Together":
-            selected = 'youtube'
-        elif activity == "Poker Night (Requires boost)":
-            selected = 'poker'
-        elif activity == "Chess In The Park (Requires boost)":
-            selected = 'chess'
-        elif activity == "Letter League (Requires boost)":
-            selected = 'letter-league'
-        elif activity == "Word Snacks":
-            selected = 'wold-snack'
-        elif activity == "Sketch Heads":
-            selected = 'sketch-heads'
-        elif activity == "SpellCast (Requires boost)":
-            selected = 'spellcast'
-        elif activity == "Awkword (Requires boost)":
-            selected = 'awkword'
-        elif activity == "Checkers In The Park (Requires boost)":
-            selected = 'checkers'
-        elif activity == "Blazing 8s (Requires boost)":
-            selected = 'blazing-8s'
-        elif activity == "Land-io (Requires boost)":
-            selected = 'land-io'
-        elif activity == "Putt Party (Requires boost)":
-            selected = 'putt-party'
-        elif activity == "Bobble League (Requires boost)":
-            selected = 'bobble-league'
-        elif activity == "Ask Away":
-            selected = 'ask-away'
-
-        try:
-            link = await self.togetherControl.create_link(channel.id, selected, max_age=invite_age, max_uses=invite_uses) # generate link and send it
-            await ctx.followup.send(f"{random.choice(activity_link)}\n{link}")
-        except:
-            await ctx.followup.send("Failed to create activity", ephemeral=True)
 
 
     # Facts command
