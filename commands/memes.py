@@ -65,7 +65,7 @@ class meme_cmds(commands.Cog):
     # Two panel memes
     @memegen.command(name="twopanel", description="Create two panel memes")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
-    @discord.option("template", str, description="Choose a template", choices=["drake", "pooh", "npc"], required=True)
+    @discord.option("template", str, description="Choose a template", choices=["drake", "pooh", "happysad", "npc"], required=True)
     @discord.option("title", str, description="A very interesting title", required=True)
     @discord.option("text1", str, description="Top panel text", required=True)
     @discord.option("text2", str, description="Bottom panel text", required=True)
@@ -76,6 +76,8 @@ class meme_cmds(commands.Cog):
             api = "https://api.popcat.xyz/drake"
         elif template == "pooh":
             api = "https://api.popcat.xyz/pooh"
+        elif template == "happysad":
+            api = "https://api.popcat.xyz/happysad"
         elif template == "npc":
             api = "https://vacefron.nl/api/npc"
 
