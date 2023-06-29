@@ -14,7 +14,7 @@ class role_commands(commands.Cog):
     async def give_role(self, ctx, user: discord.Member, role: discord.Role):
 
         try:
-            await user.add_roles(role, reason=f"Gave role by {ctx.author.name}#{ctx.author.discriminator}")
+            await user.add_roles(role, reason=f"Gave role by @{ctx.author.name}")
         except:
             await ctx.respond(f"Failed to give role\nprobably a higher role than mine, or {user.mention} already has that role", ephemeral=True)
 
@@ -29,7 +29,7 @@ class role_commands(commands.Cog):
     async def revoke_role(self, ctx, user: discord.Member, role: discord.Role):
 
         try:
-            await user.remove_roles(role, reason=f"Removed role by {ctx.author.name}#{ctx.author.discriminator}")
+            await user.remove_roles(role, reason=f"Removed role by @{ctx.author.name}")
         except:
             await ctx.respond(f"Failed to remove role\nprobably a higher role than mine, or {user.mention} doesn't have that role.", ephemeral=True)
 

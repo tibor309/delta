@@ -48,11 +48,11 @@ class channel_commands(commands.Cog):
     async def create_channel(self, ctx, name: str, type: str):
         try:
             if type == "text":
-                await ctx.guild.create_text_channel(name=name, reason=f"created text channel by {ctx.author.name}#{ctx.author.discriminator}")
+                await ctx.guild.create_text_channel(name=name, reason=f"Created text channel by @{ctx.author.name}")
                 return await ctx.respond("Created new text channel")
                 
             elif type == "voice":
-                await ctx.guild.create_voice_channel(name=name, reason=f"created voice channel by {ctx.author.name}#{ctx.author.discriminator}")
+                await ctx.guild.create_voice_channel(name=name, reason=f"Created voice channel by @{ctx.author.name}")
                 return await ctx.respond("Created new voice channel")
         except:
             await ctx.respond("Failed to create new channel", ephemeral=True)
@@ -64,7 +64,7 @@ class channel_commands(commands.Cog):
     @discord.option("channel", Union[discord.TextChannel, discord.VoiceChannel], description="Select a channel", required=True)
     async def delete_channel(self, ctx, channel: Union[discord.TextChannel, discord.VoiceChannel]):
         await ctx.respond(f"Deleted #{channel.name}")
-        await channel.delete(reason=f"deleted channel by {ctx.author.name}#{ctx.author.discriminator}")
+        await channel.delete(reason=f"Deleted channel by @{ctx.author.name}")
 
             
     # Move a user to a different voice channel

@@ -80,7 +80,7 @@ class info_cmds(commands.Cog):
         embed = discord.Embed(color=bot_color)
         embed.set_thumbnail(url=user.avatar)
         embed.set_author(name="User info", icon_url=user_icon)
-        embed.add_field(name="Username", value=f'```{user.name}#{user.discriminator}```', inline=True)
+        embed.add_field(name="Username", value=f'```{user.name}```', inline=True)
         embed.add_field(name="Nickname", value=f'```{user.nick}```', inline=True)
 
         if user.activity != None:

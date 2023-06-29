@@ -27,10 +27,10 @@ class mod_cmds(commands.Cog):
             return await ctx.respond(f"You can't kick yourself", ephemeral=True)
             
         try:
-            embed = discord.Embed(color=bot_color, title=f"{user.name}#{user.discriminator} has been kicked!", description=f"**Reason:**\n{reason}")
+            embed = discord.Embed(color=bot_color, title=f"{user.name} has been kicked!", description=f"**Reason:**\n{reason}")
             embed.set_author(name="User kicked", icon_url=user_icon)
             embed.set_thumbnail(url=user.avatar)
-            await user.kick(reason=f"{reason} - Kicked by {ctx.author.name}#{ctx.author.discriminator}")
+            await user.kick(reason=f"{reason} - Kicked by @{ctx.author.name}")
             await ctx.respond(embed=embed)
         except:
             await ctx.respond(f"Failed to kick {user.mention}", ephemeral=True)
@@ -46,10 +46,10 @@ class mod_cmds(commands.Cog):
             return await ctx.respond(f"You can't ban yourself", ephemeral=True)          
             
         try:
-            embed = discord.Embed(color=bot_color, title=f"{user.name}#{user.discriminator} has been banned!", description=f"**Reason:**\n{reason}")
+            embed = discord.Embed(color=bot_color, title=f"{user.name} has been banned!", description=f"**Reason:**\n{reason}")
             embed.set_author(name="User banned", icon_url=user_icon)
             embed.set_thumbnail(url=user.avatar)
-            await ctx.guild.ban(user, reason=f"{reason} - Banned by {ctx.author.name}#{ctx.author.discriminator}")
+            await ctx.guild.ban(user, reason=f"{reason} - Banned by @{ctx.author.name}")
             await ctx.respond(embed=embed)
         except:
             await ctx.respond(f"Failed to ban {user.mention}", ephemeral=True)

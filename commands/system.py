@@ -14,7 +14,7 @@ class system_commands(commands.Cog):
 
 
     # Neofetch command
-    @discord.slash_command(name="neofetch", description="Some info about the system")
+    @discord.slash_command(name="neofetch", description="System info")
     async def neofetch(self, ctx):
         await ctx.defer()
         
