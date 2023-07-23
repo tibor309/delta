@@ -31,10 +31,10 @@ class channel_commands(commands.Cog):
             channel = channel if channel else ctx.channel
                 
             if locked == True:
-                await channel.set_permissions(ctx.guild.default_role, send_messages=False)
+                await channel.set_permissions(ctx.guild.default_role, send_messages=False, reason=f"Locked channel by @{ctx.author.name}")
                 await ctx.respond(f"Locked {channel.mention} >:3")
             elif locked == False:
-                await channel.set_permissions(ctx.guild.default_role, send_messages=True)
+                await channel.set_permissions(ctx.guild.default_role, send_messages=True, reason=f"Unlocked channel by @{ctx.author.name}")
                 await ctx.respond(f"Unlocked {channel.mention}")
         except:
             await ctx.respond("I don't have access to that channel", ephemeral=True)
@@ -78,7 +78,7 @@ class channel_commands(commands.Cog):
         if voice_state is None:
             await ctx.respond(f"{user.name} is not in a voice channel", ephemeral=True)
         else:
-            await user.move_to(channel)
+            await user.move_to(channel, reason=f"Moved user by @{ctx.author.name}")
             await ctx.respond(f"Moved {user.mention} to {channel.mention}", ephemeral=True)
 
 

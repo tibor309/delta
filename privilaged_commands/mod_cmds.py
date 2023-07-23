@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from config import bot_color, user_icon
+from asyncio import sleep
 
 class mod_cmds(commands.Cog):
     def __init__(self, bot):
@@ -13,7 +14,8 @@ class mod_cmds(commands.Cog):
     @discord.option("msg", int, description="Number of messages", required=True)
     async def remove_messages(self, ctx, messages: int):
         await ctx.defer()
-        await ctx.channel.purge(limit=messages)
+        await ctx.channel.purge(limit=messages, reason=f"Deleted messages by @{ctx.author.name}")
+        await sleep(1)
         await ctx.followup.send(f"Deleted {messages} messages", ephemeral=True) 
 
 
