@@ -3,7 +3,7 @@ from discord.ext import commands
 from typing import Union
 
 class channel_commands(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
 
@@ -82,5 +82,5 @@ class channel_commands(commands.Cog):
             await ctx.respond(f"Moved {user.mention} to {channel.mention}", ephemeral=True)
 
 
-def setup(bot):
+def setup(bot: commands.Bot) -> None:
     bot.add_cog(channel_commands(bot))

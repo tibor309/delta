@@ -4,14 +4,14 @@ from discord.ext import commands
 from config import bot_join_msg, bot_time
 
 class events(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
 
 
     # Guild join
     @commands.Cog.listener()
-    async def on_guild_join(self, guild):
+    async def on_guild_join(self, guild: discord.Guild) -> None:
         print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"Joined {guild.name} guild (ID: {guild.id})")
         sent = False
         count = 0
@@ -31,14 +31,14 @@ class events(commands.Cog):
 
     # Commands
     @commands.Cog.listener()
-    async def on_command(self, ctx):
+    async def on_command(self, ctx: commands.Context) -> None:
         print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"@{ctx.author.name} used the {ctx.command.name} command")
 
     @commands.Cog.listener()
-    async def on_application_command(self, ctx):
+    async def on_application_command(self, ctx: commands.Context) -> None:
         print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"@{ctx.author.name} used the {ctx.command.name} app command")
         
 
 
-def setup(bot):
+def setup(bot: commands.Bot) -> None:
     bot.add_cog(events(bot))

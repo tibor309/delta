@@ -9,14 +9,14 @@ import random
 api = "https://some-random-api.ml"
 
 class message_cmds(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
 
     # Encode to base64
     @discord.message_command(name="Encode to Base64")
     @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
-    async def encode_base64(self, ctx, message: discord.Message):
+    async def encode_base64(self, ctx: commands.Context, message: discord.Message) -> None:
         await ctx.defer()
         text = message.content.replace(" ", "+")
         url = f"{api}/base64?encode={text}"
@@ -34,7 +34,7 @@ class message_cmds(commands.Cog):
     # Decode from base64
     @discord.message_command(name="Decode from Base64")
     @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
-    async def decode_base64(self, ctx, message: discord.Message):
+    async def decode_base64(self, ctx: commands.Context, message: discord.Message) -> None:
         await ctx.defer()
         url = f"{api}/base64?decode={message.content}"
         
@@ -51,7 +51,7 @@ class message_cmds(commands.Cog):
     # React with the funny emoji
     @discord.message_command(name="React with \"🤓\"")
     @discord.commands.default_permissions(administrator=True)
-    async def funny_react(self, ctx, message: discord.Message):
+    async def funny_react(self, ctx: commands.Context, message: discord.Message) -> None:
         emoji = "🤓"
         
         try: 
@@ -62,5 +62,5 @@ class message_cmds(commands.Cog):
 
 
 
-def setup(bot):
+def setup(bot: commands.Bot) -> None:
     bot.add_cog(message_cmds(bot))
