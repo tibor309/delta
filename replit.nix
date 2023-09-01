@@ -1,5 +1,6 @@
 { pkgs }: {
   deps = [
+    pkgs.docker
     pkgs.ffmpeg.bin
     pkgs.python38Full
   ];

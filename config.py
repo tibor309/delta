@@ -1,19 +1,16 @@
 import os
-from dotenv import load_dotenv
-load_dotenv()
 
 # Embed color for messages (#ffffff -> 0xffffff)
 bot_color = 0x17c6ff # General color
 bot_color2 = 0x2F3136 # Color for image commands
 
 bot_time = "%d/%b/%Y %H:%M:%S" # Time structure for logs
+code_link = "https://github.com/tibor309/delta" # Source code link
 
+# Environment variables
 # Set these in your env file!
-bot_token = os.getenv("TOKEN")  # Your bot token -- NEVER SHARE YOUR TOKEN WITH ANYONE!
-err_channel = os.getenv("ERR_CHANNEL") # Channel id for logging
-
-support_link = os.getenv("SUPPORT")
-code_link = os.getenv("CODE")
+bot_token = os.environ["TOKEN"]  # Your bot token -- NEVER SHARE YOUR TOKEN WITH ANYONE!
+err_channel = os.environ["ERR_CHANNEL"] # Channel id for error logging (for bot admin)
 
 
 # Icons for embeds
@@ -26,7 +23,6 @@ guild_icon = "https://images.tibor309.repl.co/icons/folder_cpu.png" # icon for g
 yes_emoji = "<:ye:935798200621760533>" # emoji for upvote
 no_emoji = "<:nah:935798200869208074>" # emoji for downvote 
 invite_emoji = "<:love:1027605898593579118>" # emoji for invite button
-support_emoji = "<:message:1102166660959457281>" # emoji for support server invite
 code_emoji = "<:github:1102166658589655080>" # emoji for source code link 
 
 
