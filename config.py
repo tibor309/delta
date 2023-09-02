@@ -12,7 +12,7 @@ code_link = "https://github.com/tibor309/delta" # Source code link
 
 # Environment variables
 # Set these in your env file!
-bot_token = os.getenv("TOKEN")  # Your bot token -- NEVER SHARE YOUR TOKEN WITH ANYONE!
+bot_token = os.getenv("TOKEN") # Your bot token -- NEVER SHARE YOUR TOKEN WITH ANYONE!
 err_channel = os.getenv("ERR_CHANNEL") # Channel id for error logging (for bot admin)
 
 
