@@ -4,13 +4,13 @@ import time
 from config import bot_color, guild_icon, user_icon
 
 class info_cmds(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
         
         
 
     @discord.slash_command(name="guildinfo", description="hack the mainframe", guild_only=True)
-    async def serverinfo(self, ctx):
+    async def serverinfo(self, ctx: commands.Context) -> None:
         await ctx.defer(ephemeral=True)
         guild = ctx.guild
         user_count = len([m for m in guild.members if not m.bot])
@@ -71,7 +71,7 @@ class info_cmds(commands.Cog):
     # User info command
     @discord.slash_command(name="userinfo", description="Show a more detailed profile", guild_only=True)
     @discord.option("user", discord.Member, description="Select a user", required=True)
-    async def userinfo(self, ctx, user: discord.user):
+    async def userinfo(self, ctx: commands.Context, user: discord.user) -> None:
         await ctx.defer(ephemeral=True)
         roles = " ".join([role.mention for role in user.roles if role != ctx.guild.default_role])
         creation_time = int(user.created_at.timestamp())
@@ -108,7 +108,7 @@ class info_cmds(commands.Cog):
     # Role info command
     @discord.slash_command(name="roleinfo", description="Get more info about a role", guild_only=True)
     @discord.option("role", discord.Role, description="Select a role", required=True)
-    async def roleinfo(self, ctx, role: discord.Role):
+    async def roleinfo(self, ctx: commands.Context, role: discord.Role) -> None:
         await ctx.defer(ephemeral=True)
         creation_time = int(role.created_at.timestamp())
         assigned = len(role.members)
@@ -138,5 +138,5 @@ class info_cmds(commands.Cog):
         
     
 
-def setup(bot):
+def setup(bot: commands.Bot) -> None:
     bot.add_cog(info_cmds(bot))

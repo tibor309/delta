@@ -6,13 +6,13 @@ from config import bot_color, user_icon
 
 
 class user_cmds(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
 
     # View user avatars
     @discord.user_command(name="View profile picture")
-    async def useravatar(self, ctx, member: discord.Member):
+    async def useravatar(self, ctx: commands.Context, member: discord.Member) -> None:
         embed = discord.Embed(color=bot_color)
         embed.set_author(name=f"{member.name}'s profile", icon_url=user_icon)
         
@@ -28,7 +28,7 @@ class user_cmds(commands.Cog):
 
     # View user banner
     @discord.user_command(name="View banner")
-    async def userbanner(self, ctx, member: discord.Member):
+    async def userbanner(self, ctx: commands.Context, member: discord.Member) -> None:
         embed = discord.Embed(color=bot_color)
         embed.set_author(name=f"{member.name}'s profile", icon_url=user_icon)
         embed.set_thumbnail(url=member.avatar)
@@ -44,7 +44,7 @@ class user_cmds(commands.Cog):
 
     # User perms command
     @discord.user_command(name="View permissions")
-    async def userperms(self, ctx, member: discord.Member):
+    async def userperms(self, ctx: commands.Context, member: discord.Member) -> None:
         await ctx.defer(ephemeral=True)
         perms = ', '.join([str(perm[0]).upper() for perm in member.guild_permissions if perm[1]])
         embed = discord.Embed(color=bot_color, description=f"**{member.name}'s permissions**\n```{perms}```")
@@ -53,5 +53,5 @@ class user_cmds(commands.Cog):
         await ctx.followup.send(embed=embed)
 
 
-def setup(bot):
+def setup(bot: commands.Bot) -> None:
     bot.add_cog(user_cmds(bot))

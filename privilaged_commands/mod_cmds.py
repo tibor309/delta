@@ -4,7 +4,7 @@ from config import bot_color, user_icon
 from asyncio import sleep
 
 class mod_cmds(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
             
@@ -58,5 +58,5 @@ class mod_cmds(commands.Cog):
 
         
 
-def setup(bot):
+def setup(bot: commands.Bot) -> None:
     bot.add_cog(mod_cmds(bot))

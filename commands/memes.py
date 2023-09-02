@@ -5,7 +5,7 @@ import random
 from config import bot_color2, img_fail
 
 class meme_cmds(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
     
@@ -17,7 +17,7 @@ class meme_cmds(commands.Cog):
     @discord.option("template", str, description="Choose a template", choices=["oogway", "pikachu", "biden", "facts", "sad cat", "iphone alert", "caution", "sad cat", "change my mind", "lisa", "worthless", "burn"], required=True)
     @discord.option("title", str, description="An interesting title", required=True)
     @discord.option("text", str, description="Meme text", required=True)
-    async def memegen_onepanel(self, ctx, template: str, title: str, text: str):
+    async def memegen_onepanel(self, ctx: commands.Context, template: str, title: str, text: str) -> None:
         await ctx.defer()
         #global api
 
@@ -69,7 +69,7 @@ class meme_cmds(commands.Cog):
     @discord.option("title", str, description="A very interesting title", required=True)
     @discord.option("text1", str, description="Top panel text", required=True)
     @discord.option("text2", str, description="Bottom panel text", required=True)
-    async def memegen_twopanel(self, ctx, template: str, title: str, text1: str, text2:str):
+    async def memegen_twopanel(self, ctx: commands.Context, template: str, title: str, text1: str, text2:str) -> None:
         await ctx.defer()
 
         if template == "drake":
@@ -104,7 +104,7 @@ class meme_cmds(commands.Cog):
     @discord.option("template", str, description="Choose a template", choices=["adios", "first time", "drip", "clown", "jail"], required=True)
     @discord.option("title", str, description="An interesting title", required=True)
     @discord.option("user", discord.Member, description="Select a user", required=True)
-    async def memegen_user(self, ctx, template: str, title: str, user: discord.Member):
+    async def memegen_user(self, ctx: commands.Context, template: str, title: str, user: discord.Member) -> None:
         await ctx.defer()
         avatar = user.avatar
 
@@ -142,7 +142,7 @@ class meme_cmds(commands.Cog):
     @discord.option("title", str, description="Post title", required=True)
     @discord.option("user1", discord.Member, description="Select a user", required=True)
     @discord.option("user2", discord.Member, description="and an another one", required=True)
-    async def memegen_twouser(self, ctx, template: str, title: str, user1: discord.Member, user2: discord.Member):
+    async def memegen_twouser(self, ctx: commands.Context, template: str, title: str, user1: discord.Member, user2: discord.Member) -> None:
         await ctx.defer()
         global url
         avatar1 = user1.avatar
@@ -170,5 +170,5 @@ class meme_cmds(commands.Cog):
 
 
 
-def setup(bot):
+def setup(bot: commands.Bot) -> None:
     bot.add_cog(meme_cmds(bot))

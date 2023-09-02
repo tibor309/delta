@@ -6,14 +6,14 @@ from config import yes_emoji, no_emoji
 from asyncio import sleep
 
 class fun_cmds(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
 
 
     # Facts command
     @discord.slash_command(name="fact", description="He do speaking facts doe")
-    async def facts(self, ctx):
+    async def facts(self, ctx: commands.Context) -> None:
         await ctx.defer()
         api = "https://api.popcat.xyz/fact"
         response = requests.get(api, verify=True)
@@ -23,7 +23,7 @@ class fun_cmds(commands.Cog):
 
     # Tell a joke
     @discord.slash_command(name="joke", description="for the funny")
-    async def joke(self, ctx):
+    async def joke(self, ctx: commands.Context) -> None:
         await ctx.defer()
         api = "https://api.popcat.xyz/joke"
         response = requests.get(api, verify=True)
@@ -33,7 +33,7 @@ class fun_cmds(commands.Cog):
 
     # Flip command
     @discord.slash_command(name="flipcoin", description="Flip a coin")
-    async def flip(self, ctx):
+    async def flip(self, ctx: commands.Context) -> None:
         coin = ["tails", "heads"]
         await ctx.respond(f'🪙 You flipped, {random.choice(coin)}!', ephemeral=False)
 
@@ -59,7 +59,7 @@ class fun_cmds(commands.Cog):
     # Get a random color
     @discord.slash_command(name="randomcolor", description="Get a random color")
     @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
-    async def color(self, ctx):
+    async def color(self, ctx: commands.Context) -> None:
         await ctx.defer()
         api = "https://api.popcat.xyz/randomcolor"
         response = requests.get(api, verify=True)
@@ -81,7 +81,7 @@ class fun_cmds(commands.Cog):
 
     # RTD command
     @discord.slash_command(name="rtd", description="Roll the dice")
-    async def rtd(self, ctx):
+    async def rtd(self, ctx: commands.Context) -> None:
         await ctx.respond(f'🎲 You got, {random.randint(1,6)}!', ephemeral=False)
 
 
@@ -99,5 +99,5 @@ class fun_cmds(commands.Cog):
 
 
 
-def setup(bot):
+def setup(bot: commands.Bot) -> None:
     bot.add_cog(fun_cmds(bot))

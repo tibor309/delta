@@ -1,6 +1,6 @@
 from discord.gateway import DiscordWebSocket
 
-async def identify(self):
+async def identify(self) -> None:
     payload = {
         "op": self.IDENTIFY,
         "d": {

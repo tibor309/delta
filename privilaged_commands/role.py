@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 class role_commands(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
 
@@ -36,5 +36,5 @@ class role_commands(commands.Cog):
         await ctx.respond(f"Removed the {role.mention} role from {user.mention}", ephemeral=True)
 
 
-def setup(bot):
+def setup(bot: commands.Bot) -> None:
     bot.add_cog(role_commands(bot))
