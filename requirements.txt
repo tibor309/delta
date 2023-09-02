@@ -1,4 +1,5 @@
 psutil
+python-dotenv
 aiohttp
 requests
 py-cord

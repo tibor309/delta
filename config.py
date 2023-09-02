@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # Embed color for messages (#ffffff -> 0xffffff)
 bot_color = 0x17c6ff # General color
@@ -9,8 +12,8 @@ code_link = "https://github.com/tibor309/delta" # Source code link
 
 # Environment variables
 # Set these in your env file!
-bot_token = os.environ["TOKEN"]  # Your bot token -- NEVER SHARE YOUR TOKEN WITH ANYONE!
-err_channel = os.environ["ERR_CHANNEL"] # Channel id for error logging (for bot admin)
+bot_token = os.getenv("TOKEN")  # Your bot token -- NEVER SHARE YOUR TOKEN WITH ANYONE!
+err_channel = os.getenv("ERR_CHANNEL") # Channel id for error logging (for bot admin)
 
 
 # Icons for embeds
