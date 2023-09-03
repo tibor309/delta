@@ -1,4 +1,3 @@
-psutil
 python-dotenv
 aiohttp
 requests
