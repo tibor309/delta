@@ -2,9 +2,8 @@ import discord
 from discord.ext import commands
 from config import invite_emoji, code_emoji
 from config import code_link
-import os, platform, psutil
-import datetime, time
-
+import psutil
+import time
 
 
 start_time = time.time()
