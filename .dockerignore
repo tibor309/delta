@@ -10,4 +10,4 @@ venv
 .env
 .upm/
 .replit
-.replit.nix
+replit.nix

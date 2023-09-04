@@ -9,3 +9,5 @@ utils/__pycache__/
 venv
 .env
 .upm/
+.replit
+replit.nix
