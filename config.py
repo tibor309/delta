@@ -21,12 +21,11 @@ user_icon = "https://images.tibor309.repl.co/icons/user.png" # for member specif
 guild_icon = "https://images.tibor309.repl.co/icons/folder_cpu.png" # icon for guild specific commands
 
 # Emojis for commands
-# The bot needs access to the server to use custom emojs,
-# so if you plan to fork the bot, change these to your own!
-yes_emoji = "<:ye:935798200621760533>" # emoji for upvote
-no_emoji = "<:nah:935798200869208074>" # emoji for downvote 
-invite_emoji = "<:love:1027605898593579118>" # emoji for invite button
-code_emoji = "<:github:1102166658589655080>" # emoji for source code link 
+# You can use custom emojis, but the bot needs access to the server to use them!
+yes_emoji = "✅" # emoji for upvote
+no_emoji = "🇽" # emoji for downvote 
+invite_emoji = "💙" # emoji for invite button
+code_emoji = "🧪" # emoji for source code link 
 
 
 
