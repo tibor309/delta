@@ -2,6 +2,7 @@ import discord
 import aiohttp, io
 from discord.ext import commands
 import random
+import requests
 from config import bot_color2, img_fail
 
 class meme_cmds(commands.Cog):
@@ -167,6 +168,19 @@ class meme_cmds(commands.Cog):
                 else:
                     await ctx.followup.send(random.choice(img_fail))
                 await session.close()
+
+
+    # Meme command
+    @discord.slash_command(name="meme", description="Get a random meme")
+    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
+    async def meme(self, ctx: commands.Context) -> None:
+        api = "https://api.popcat.xyz/meme"
+        await ctx.defer()
+        response = requests.get(api, verify=True)
+        data = response.json()
+        embed = discord.Embed(color=bot_color2, title=data['title'], url=data['url'])
+        embed.set_image(url=data['image'])
+        await ctx.followup.send(embed=embed)
 
 
 
