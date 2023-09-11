@@ -31,6 +31,12 @@ pip3 install -r requirements.txt
 ```
 Then rename the `.env.example` file to `.env` and fill it out with your values. If you're ready, run the bot with the `python3 main.py` command!
 
+### Docker
+You can run the bot with docker if you prefer that, but you might not be able to change some settings. Pull the image, create a container with the command below, and you're good to go! **The docker image might be not up to date with the source!**
+```
+docker run -d -it -e TOKEN=your-bot-token -e ERR_CHANNEL=channel-id tibor309/delta
+```
+
 ## Config
 You can customize the bot in the `config.py` file. You can change the messages, icons, colors, and emojis used by the bot. Just remember to change out the emojis to your own if you're planning to make host it yourself instead! If you use replit or similar, uncomment the `keep_alive` lines to make the bot run 24/7!
 
