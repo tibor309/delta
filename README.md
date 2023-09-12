@@ -18,12 +18,6 @@ Suggestions are always welcome! You can try to set it up by yourself, or you can
 ### Replit and Glitch
 Clone the repo, and then head over to the secrets tab and add fill it out using the `.env.example` file as template. You can change more stuff in the config file. And optionally you can enable the Flask server to make the bot run 24/7.
 
-### Docker
-You can host the bot using docker, but you may not be able to change the configuration. So i recommend hosting it from source. 
-```
-docker run -d -it -e TOKEN=your-bot-token -e ERR_CHANNEL=channel-id tibor309/delta
-```
-
 ### Source
 First, install all the required packages with this command. **Make sure to install [py-cord][py-cord] instead of discord.py!**
 ```
