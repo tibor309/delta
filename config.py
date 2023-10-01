@@ -17,8 +17,8 @@ err_channel = os.getenv("ERR_CHANNEL") # Channel id for error logging (for bot a
 
 
 # Icons for embeds
-user_icon = "https://images.tibor309.repl.co/icons/user.png" # for member specific commnds
-guild_icon = "https://images.tibor309.repl.co/icons/folder_cpu.png" # icon for guild specific commands
+user_icon = "https://images.tibor309.repl.co/icons/delta/user.png" # for member specific commnds
+guild_icon = "https://images.tibor309.repl.co/icons/delta/guild.png" # icon for guild specific commands
 
 # Emojis for commands
 # You can use custom emojis, but the bot needs access to the server to use them!
