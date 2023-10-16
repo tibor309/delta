@@ -31,6 +31,16 @@ class fun_cmds(commands.Cog):
         await ctx.followup.send(data['joke'])
 
 
+    # Get a random dadjoke
+    @discord.slash_command(name="dadjoke", description="Fetch a random dadjoke")
+    async def facts(self, ctx: commands.Context) -> None:
+        await ctx.defer()
+        api = "https://icanhazdadjoke.com/"
+        response = requests.get(api, headers={"Accept": "application/json"}, verify=True)
+        data = response.json()
+        await ctx.followup.send(data['joke'])
+
+
     # Flip command
     @discord.slash_command(name="flipcoin", description="Flip a coin")
     async def flip(self, ctx: commands.Context) -> None:
