@@ -10,15 +10,14 @@ class meme_cmds(commands.Cog):
         self.bot = bot
 
     
-    memegen = discord.SlashCommandGroup("memegen", "Create memes") # Create memes
+    memegen = discord.SlashCommandGroup("memegen", "Generate memes")
 
     # One panel memes
-    @memegen.command(name="onepanel", description="Create one panel memes")
+    @memegen.command(name="one_panel", description="Create a one panel meme")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("template", str, description="Choose a template", choices=["oogway", "pikachu", "biden", "facts", "sad cat", "iphone alert", "caution", "sad cat", "change my mind", "lisa", "worthless", "burn"], required=True)
-    @discord.option("title", str, description="An interesting title", required=True)
     @discord.option("text", str, description="Meme text", required=True)
-    async def memegen_onepanel(self, ctx: commands.Context, template: str, title: str, text: str) -> None:
+    async def memegen_onepanel(self, ctx: commands.Context, template: str, text: str) -> None:
         await ctx.defer()
         #global api
 
@@ -55,7 +54,7 @@ class meme_cmds(commands.Cog):
                     fp = io.BytesIO(await af.read())
                     file = discord.File(fp, "meme.png")
                     
-                    embed = discord.Embed(color=bot_color2, title=title)
+                    embed = discord.Embed(color=bot_color2)
                     embed.set_image(url="attachment://meme.png")
                     await ctx.followup.send(embed=embed, file=file)
                 else:
@@ -64,13 +63,12 @@ class meme_cmds(commands.Cog):
 
 
     # Two panel memes
-    @memegen.command(name="twopanel", description="Create two panel memes")
+    @memegen.command(name="two_panel", description="Create a meme with two panels")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
-    @discord.option("template", str, description="Choose a template", choices=["drake", "pooh", "happysad", "npc"], required=True)
-    @discord.option("title", str, description="A very interesting title", required=True)
+    @discord.option("template", str, description="Select a meme template", choices=["drake", "pooh", "happysad", "npc"], required=True)
     @discord.option("text1", str, description="Top panel text", required=True)
     @discord.option("text2", str, description="Bottom panel text", required=True)
-    async def memegen_twopanel(self, ctx: commands.Context, template: str, title: str, text1: str, text2:str) -> None:
+    async def memegen_twopanel(self, ctx: commands.Context, template: str, text1: str, text2:str) -> None:
         await ctx.defer()
 
         if template == "drake":
@@ -90,7 +88,7 @@ class meme_cmds(commands.Cog):
                     fp = io.BytesIO(await af.read())
                     file = discord.File(fp, "meme2.png")
                     
-                    embed = discord.Embed(color=bot_color2, title=title)
+                    embed = discord.Embed(color=bot_color2)
                     embed.set_image(url="attachment://meme2.png")
                     await ctx.followup.send(embed=embed, file=file)
                 else:
@@ -100,12 +98,11 @@ class meme_cmds(commands.Cog):
 
         
     # User memes
-    @memegen.command(name="member", description="Create member memes")
+    @memegen.command(name="member", description="Create a meme with someone")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
-    @discord.option("template", str, description="Choose a template", choices=["adios", "first time", "drip", "clown", "jail"], required=True)
-    @discord.option("title", str, description="An interesting title", required=True)
+    @discord.option("template", str, description="Choose a template", choices=["adios", "first time", "drip"], required=True)
     @discord.option("user", discord.Member, description="Select a user", required=True)
-    async def memegen_user(self, ctx: commands.Context, template: str, title: str, user: discord.Member) -> None:
+    async def memegen_user(self, ctx: commands.Context, template: str, user: discord.Member) -> None:
         await ctx.defer()
         avatar = user.avatar
 
@@ -115,46 +112,6 @@ class meme_cmds(commands.Cog):
             url = f"https://vacefron.nl/api/firsttime?user={avatar}"
         elif template == "drip":
             url = f"https://vacefron.nl/api/drip?user={avatar}"
-            
-        elif template == "clown":
-            url = f"https://api.popcat.xyz/clown?image={avatar}"
-            
-        elif template == "jail":
-            url = f"https://api.popcat.xyz/jail?image={avatar}"
-
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as af:
-                if 300 > af.status >= 200:
-                    fp = io.BytesIO(await af.read())
-                    file = discord.File(fp, "meme4.png")
-                    
-                    embed = discord.Embed(color=bot_color2, title=title)
-                    embed.set_image(url="attachment://meme4.png")
-                    await ctx.followup.send(embed=embed, file=file)
-                else:
-                    await ctx.followup.send(random.choice(img_fail))
-                await session.close()
-
-
-    # User memes
-    @memegen.command(name="together", description="Create memes with someone")
-    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
-    @discord.option("template", str, description="Choose a template", choices=["confused cat", "milk", "who would win"], required=True)
-    @discord.option("title", str, description="Post title", required=True)
-    @discord.option("user1", discord.Member, description="Select a user", required=True)
-    @discord.option("user2", discord.Member, description="and an another one", required=True)
-    async def memegen_twouser(self, ctx: commands.Context, template: str, title: str, user1: discord.Member, user2: discord.Member) -> None:
-        await ctx.defer()
-        global url
-        avatar1 = user1.avatar
-        avatar2 = user2.avatar
-
-        if template == "confused cat":
-            url = f"https://vacefron.nl/api/womanyellingatcat?woman={avatar1}&cat={avatar2}"
-        elif template == "milk":
-            url = f"https://vacefron.nl/api/icanmilkyou?user1={avatar1}&user2={avatar2}"
-        elif template == "who would win":
-            url = f"https://api.popcat.xyz/whowouldwin?user1={avatar1}&user2={avatar1}"
 
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as af:
@@ -162,7 +119,7 @@ class meme_cmds(commands.Cog):
                     fp = io.BytesIO(await af.read())
                     file = discord.File(fp, "meme3.png")
                     
-                    embed = discord.Embed(color=bot_color2, title=title)
+                    embed = discord.Embed(color=bot_color2)
                     embed.set_image(url="attachment://meme3.png")
                     await ctx.followup.send(embed=embed, file=file)
                 else:
@@ -181,6 +138,75 @@ class meme_cmds(commands.Cog):
         embed = discord.Embed(color=bot_color2, title=data['title'], url=data['url'])
         embed.set_image(url=data['image'])
         await ctx.followup.send(embed=embed)
+
+
+    # Get inside a nokia
+    @discord.slash_command(name="nokia", description="Trap someone inside a nokia")
+    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
+    @discord.option("member", discord.Member, description="Select a member", required=True)
+    async def nokia(self, ctx: commands.Context, member: discord.Member) -> None:
+        await ctx.defer()
+        avatar = member.avatar
+        url = f"https://api.popcat.xyz/nokia?image={avatar}"
+
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as af:
+                if 300 > af.status >= 200:
+                    fp = io.BytesIO(await af.read())
+                    file = discord.File(fp, "nokia.png")
+                    
+                    embed = discord.Embed(color=bot_color2)
+                    embed.set_image(url="attachment://nokia.png")
+                    await ctx.followup.send(embed=embed, file=file)
+                else:
+                    await ctx.followup.send(random.choice(img_fail))
+                await session.close()
+
+
+    # Jail someone
+    @discord.slash_command(name="jail", description="tax time :)")
+    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
+    @discord.option("member", discord.Member, description="Select a member", required=True)
+    async def jail(self, ctx: commands.Context, member: discord.Member) -> None:
+        await ctx.defer()
+        avatar = member.avatar
+        url = f"https://api.popcat.xyz/jail?image={avatar}"
+
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as af:
+                if 300 > af.status >= 200:
+                    fp = io.BytesIO(await af.read())
+                    file = discord.File(fp, "jail.png")
+                    
+                    embed = discord.Embed(color=bot_color2)
+                    embed.set_image(url="attachment://jail.png")
+                    await ctx.followup.send(embed=embed, file=file)
+                else:
+                    await ctx.followup.send(random.choice(img_fail))
+                await session.close()
+
+
+    # We got a funny guy overhere!
+    @discord.slash_command(name="clown", description="*clown music starts playing*")
+    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
+    @discord.option("member", discord.Member, description="Select a member", required=True)
+    async def clown(self, ctx: commands.Context, member: discord.Member) -> None:
+        await ctx.defer()
+        avatar = member.avatar
+        url = f"https://api.popcat.xyz/clown?image={avatar}"
+
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as af:
+                if 300 > af.status >= 200:
+                    fp = io.BytesIO(await af.read())
+                    file = discord.File(fp, "clown.png")
+                    
+                    embed = discord.Embed(color=bot_color2)
+                    embed.set_image(url="attachment://clown.png")
+                    await ctx.followup.send(embed=embed, file=file)
+                else:
+                    await ctx.followup.send(random.choice(img_fail))
+                await session.close()
 
 
 
