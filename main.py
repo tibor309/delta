@@ -72,6 +72,8 @@ except discord.HTTPException as err:
         raise err
 
 # TODO:
-# remove some commands - i want to separate bot functions to others
-# dadjoke command
+# remove some commands - i want to separate bot functions to others (mainly the info and moderator commands)
+# dadjoke command - done
 # color info
+# encode/decode: dc message, image, stb.
+# add new icons
