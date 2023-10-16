@@ -6,46 +6,9 @@ import random
 
 # These commands are in the message popout menu
 
-api = "https://some-random-api.ml"
-
 class message_cmds(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
-
-
-    # Encode to base64
-    @discord.message_command(name="Encode to Base64")
-    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
-    async def encode_base64(self, ctx: commands.Context, message: discord.Message) -> None:
-        await ctx.defer()
-        text = message.content.replace(" ", "+")
-        url = f"{api}/base64?encode={text}"
-        
-        response = requests.get(url, verify=True)
-        data = response.json()
-        
-        try: 
-            message = data['base64']
-            await ctx.followup.send(message, ephemeral=True)
-        except:
-            await ctx.followup.send(random.choice(err_msg), ephemeral=True)
-
-            
-    # Decode from base64
-    @discord.message_command(name="Decode from Base64")
-    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
-    async def decode_base64(self, ctx: commands.Context, message: discord.Message) -> None:
-        await ctx.defer()
-        url = f"{api}/base64?decode={message.content}"
-        
-        response = requests.get(url, verify=True)
-        data = response.json()
-        
-        try: 
-            message = data['text']
-            await ctx.followup.send(message, ephemeral=True)
-        except:
-            await ctx.followup.send(random.choice(err_msg), ephemeral=True)
 
 
     # React with the funny emoji
