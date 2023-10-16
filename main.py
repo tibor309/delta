@@ -70,3 +70,8 @@ except discord.HTTPException as err:
         #os.system("python3 utils/restarter.py") # This auto kills the repl (uncomment if you're using replit to host)
     else:
         raise err
+
+# TODO:
+# remove some commands - i want to separate bot functions to others
+# dadjoke command
+# color info
