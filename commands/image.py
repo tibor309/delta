@@ -23,7 +23,7 @@ class img_cmds(commands.Cog):
     # also wolfes
     @discord.slash_command(name="wolf", description="Wolfes are cool too")
     @commands.cooldown(1, 3, commands.BucketType.user)
-    async def fox(self, ctx):
+    async def wolf(self, ctx):
         await ctx.defer()
         url = "https://api.tinyfox.dev/img?animal=wolf"
         async with aiohttp.ClientSession() as trigSession:
