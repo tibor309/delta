@@ -155,7 +155,7 @@ class meme_cmds(commands.Cog):
 
 
     # We got a funny guy overhere!
-    @discord.slash_command(name="clown", description="*clown music starts playing*")
+    @discord.slash_command(name="clown", description="yo we got a funny guy here!")
     @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
     @discord.option("member", discord.Member, description="Select a member", required=True)
     async def clown(self, ctx: commands.Context, member: discord.Member) -> None:

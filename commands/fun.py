@@ -86,8 +86,8 @@ class fun_cmds(commands.Cog):
           return tuple(int(hex[i:i+2], 16) for i in (0, 2, 4))
         
         embed = discord.Embed(color=color , title=name)
-        embed.add_field(name="HEX", value=f"```#{hex}```")
-        embed.add_field(name="RGB", value=f"```{rgb(hex)}```")
+        embed.add_field(name="HEX", value=f"#{hex}")
+        embed.add_field(name="RGB", value=f"{rgb(hex)}")
         embed.set_thumbnail(url=icon)
         await ctx.followup.send(embed=embed)
 

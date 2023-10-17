@@ -12,7 +12,7 @@ class message_cmds(commands.Cog):
 
 
     # React with the funny emoji
-    @discord.message_command(name="React with \"🤓\"")
+    @discord.message_command(name="React with 🤓")
     @discord.commands.default_permissions(administrator=True)
     async def funny_react(self, ctx: commands.Context, message: discord.Message) -> None:
         emoji = "🤓"
