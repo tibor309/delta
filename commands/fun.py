@@ -108,6 +108,29 @@ class fun_cmds(commands.Cog):
         await ctx.followup.send(f"> {question}", embed=embed)
 
 
+    # Periodic table command
+    @discord.slash_command(name="randomelement", description="Show a random element from the periodic table")
+    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
+    async def randomelement(self, ctx: commands.Context) -> None:
+        await ctx.defer()
+        element = random.randint(1,118)
+        api = f"https://api.popcat.xyz/periodic-table?element={element}"
+        response = requests.get(api, verify=True)
+        data = response.json()
+
+        embed = discord.Embed(color=bot_color, title=data['name'], description=data['summary'])
+        embed.add_field(name="Symbol", value=data['symbol'])
+        embed.add_field(name="Phase", value=data['phase'])
+        embed.add_field(name="Period", value=data['period'])
+
+        embed.add_field(name="Atomic number", value=data['atomic_number'])
+        embed.add_field(name="Atomic mass", value=data['atomic_mass'])
+        embed.add_field(name="Discovered by", value=data['discovered_by'])
+        embed.set_thumbnail(url=data['image'])
+
+        await ctx.followup.send(embed=embed)
+
+
 
 def setup(bot: commands.Bot) -> None:
     bot.add_cog(fun_cmds(bot))
