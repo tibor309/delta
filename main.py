@@ -76,4 +76,5 @@ except discord.HTTPException as err:
 # dadjoke command - done
 # color info
 # encode/decode: dc message, image, stb.
-# add new icons
+# add new icons - done
+# show a random element from the periodic table

@@ -17,8 +17,8 @@ err_channel = os.getenv("ERR_CHANNEL") # Channel id for error logging (for bot a
 
 
 # Icons for embeds
-user_icon = "https://i.imgur.com/U2GPhRR.png" # for member specific commnds
-guild_icon = "https://i.imgur.com/dxQXe7H.png" # icon for guild specific commands
+user_icon = "https://i.imgur.com/AMn8jzp.png" # for member specific commnds
+guild_icon = "https://i.imgur.com/y5N1QY3.png" # icon for guild specific commands
 
 # Reaction images
 no_perms_meme = "https://i.imgur.com/cnwdsLo.png"
