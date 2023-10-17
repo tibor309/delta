@@ -1,5 +1,8 @@
-import discord, random
+import discord
+import random
 import requests
+import aiohttp
+import io
 from discord.ext import commands
 from config import bot_color, bot_color2
 from config import yes_emoji, no_emoji
@@ -129,6 +132,21 @@ class fun_cmds(commands.Cog):
         embed.set_thumbnail(url=data['image'])
 
         await ctx.followup.send(embed=embed)
+
+
+    # Give headpet
+    @discord.slash_command(name="pet", description="Give headpets to someone (might take a few seconds to generate the image)")
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
+    @discord.option("member", discord.Member, description="Select someone", required=True)
+    async def pet(self, ctx: commands.Context, member: discord.Member) -> None:
+        await ctx.defer()
+        api = f"https://api.popcat.xyz/pet?image={member.avatar}"
+
+        async with aiohttp.ClientSession() as trigSession:
+            async with trigSession.get(api) as trigImg:
+                imageData = io.BytesIO(await trigImg.read())
+                await trigSession.close()
+                await ctx.followup.send(file=discord.File(imageData, f'pet.gif'))
 
 
 
