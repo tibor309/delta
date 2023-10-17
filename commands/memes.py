@@ -19,7 +19,6 @@ class meme_cmds(commands.Cog):
     @discord.option("text", str, description="Meme text", required=True)
     async def memegen_onepanel(self, ctx: commands.Context, template: str, text: str) -> None:
         await ctx.defer()
-        #global api
 
         if template == "oogway":
             api = "https://api.popcat.xyz/oogway"
@@ -90,37 +89,6 @@ class meme_cmds(commands.Cog):
                     
                     embed = discord.Embed(color=bot_color2)
                     embed.set_image(url="attachment://meme2.png")
-                    await ctx.followup.send(embed=embed, file=file)
-                else:
-                    await ctx.followup.send(random.choice(img_fail))
-                await session.close()
-
-
-        
-    # User memes
-    @memegen.command(name="member", description="Create a meme with someone")
-    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
-    @discord.option("template", str, description="Choose a template", choices=["adios", "first time", "drip"], required=True)
-    @discord.option("user", discord.Member, description="Select a user", required=True)
-    async def memegen_user(self, ctx: commands.Context, template: str, user: discord.Member) -> None:
-        await ctx.defer()
-        avatar = user.avatar
-
-        if template == "adios":
-            url = f"https://vacefron.nl/api/adios?user={avatar}"
-        elif template == "first time":
-            url = f"https://vacefron.nl/api/firsttime?user={avatar}"
-        elif template == "drip":
-            url = f"https://vacefron.nl/api/drip?user={avatar}"
-
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as af:
-                if 300 > af.status >= 200:
-                    fp = io.BytesIO(await af.read())
-                    file = discord.File(fp, "meme3.png")
-                    
-                    embed = discord.Embed(color=bot_color2)
-                    embed.set_image(url="attachment://meme3.png")
                     await ctx.followup.send(embed=embed, file=file)
                 else:
                     await ctx.followup.send(random.choice(img_fail))
