@@ -1,5 +1,8 @@
-import discord, random
+import discord
+import random
 import requests
+import aiohttp
+import io
 from discord.ext import commands
 from config import bot_color, bot_color2
 from config import yes_emoji, no_emoji
@@ -27,6 +30,16 @@ class fun_cmds(commands.Cog):
         await ctx.defer()
         api = "https://api.popcat.xyz/joke"
         response = requests.get(api, verify=True)
+        data = response.json()
+        await ctx.followup.send(data['joke'])
+
+
+    # Get a random dadjoke
+    @discord.slash_command(name="dadjoke", description="Fetch a random dadjoke")
+    async def facts(self, ctx: commands.Context) -> None:
+        await ctx.defer()
+        api = "https://icanhazdadjoke.com/"
+        response = requests.get(api, headers={"Accept": "application/json"}, verify=True)
         data = response.json()
         await ctx.followup.send(data['joke'])
 
@@ -73,8 +86,8 @@ class fun_cmds(commands.Cog):
           return tuple(int(hex[i:i+2], 16) for i in (0, 2, 4))
         
         embed = discord.Embed(color=color , title=name)
-        embed.add_field(name="HEX", value=f"```#{hex}```")
-        embed.add_field(name="RGB", value=f"```{rgb(hex)}```")
+        embed.add_field(name="HEX", value=f"#{hex}")
+        embed.add_field(name="RGB", value=f"{rgb(hex)}")
         embed.set_thumbnail(url=icon)
         await ctx.followup.send(embed=embed)
 
@@ -96,6 +109,44 @@ class fun_cmds(commands.Cog):
         data = response.json()
         embed = discord.Embed(color=bot_color, description=f"🎱 " + data['answer'])
         await ctx.followup.send(f"> {question}", embed=embed)
+
+
+    # Periodic table command
+    @discord.slash_command(name="randomelement", description="Show a random element from the periodic table")
+    @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
+    async def randomelement(self, ctx: commands.Context) -> None:
+        await ctx.defer()
+        element = random.randint(1,118)
+        api = f"https://api.popcat.xyz/periodic-table?element={element}"
+        response = requests.get(api, verify=True)
+        data = response.json()
+
+        embed = discord.Embed(color=bot_color, title=data['name'], description=data['summary'])
+        embed.add_field(name="Symbol", value=data['symbol'])
+        embed.add_field(name="Phase", value=data['phase'])
+        embed.add_field(name="Period", value=data['period'])
+
+        embed.add_field(name="Atomic number", value=data['atomic_number'])
+        embed.add_field(name="Atomic mass", value=data['atomic_mass'])
+        embed.add_field(name="Discovered by", value=data['discovered_by'])
+        embed.set_thumbnail(url=data['image'])
+
+        await ctx.followup.send(embed=embed)
+
+
+    # Give headpet
+    @discord.slash_command(name="pet", description="Give headpets to someone (might take a few seconds to generate the image)")
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
+    @discord.option("member", discord.Member, description="Select someone", required=True)
+    async def pet(self, ctx: commands.Context, member: discord.Member) -> None:
+        await ctx.defer()
+        api = f"https://api.popcat.xyz/pet?image={member.avatar}"
+
+        async with aiohttp.ClientSession() as trigSession:
+            async with trigSession.get(api) as trigImg:
+                imageData = io.BytesIO(await trigImg.read())
+                await trigSession.close()
+                await ctx.followup.send(file=discord.File(imageData, f'pet.gif'))
 
 
 
