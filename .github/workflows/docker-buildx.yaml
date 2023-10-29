@@ -10,16 +10,16 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Docker Buildx
-      - run: |
+      - run:
           sudo apt-get update -y && sudo apt-get install docker docker-buildx -y
           docker buildx create --name the_engineer
           docker buildx use the_engineer
 
       - name: Build container
-      - run: |
+      - run:
           docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t tibor309/delta:latest .
 
       - name: Publish to Dockerhub
-      - run: |
+      - run:
           docker login -u tibor309 -p ${{secrets.DOCKER_TOKEN}}
           docker push tibor309/delta:latest
