@@ -29,4 +29,5 @@ jobs:
       - name: Publish to Dockerhub
         run: |
           docker login -u tibor309 -p ${{secrets.DOCKER_TOKEN}}
-          docker push tibor309/delta:latest
+          docker tag tibor309/delta docker.io/tibor309/delta:latest
+          docker push docker.io/tibor309/delta:latest
