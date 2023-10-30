@@ -14,9 +14,17 @@ jobs:
           docker buildx create --name the_engineer
           docker buildx use the_engineer
 
-      - name: Build container
+      - name: Build container for linux/arm64
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t tibor309/delta:latest .
+          docker buildx build --platform linux/arm64 -t tibor309/delta:latest .
+
+      - name: Build container for linux/arm/v7
+        run: |
+          docker buildx build --platform linux/arm/v7 -t tibor309/delta:latest .
+
+      - name: Build container for linux/amd64
+        run: |
+          docker buildx build --platform linux/amd64 -t tibor309/delta:latest .
 
       - name: Publish to Dockerhub
         run: |
