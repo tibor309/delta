@@ -1,6 +1,5 @@
-# Delta
-Delta is a multipurpose discord bot with fun and moderation features and some linux like commands. This bot was made for my friends, and for myself to learn programming.
-Suggestions are always welcome! You can try to set it up by yourself, or you can just invite it.
+# `Δ` Delta
+Delta is a discord bot with fun and interesting features. This bot was made for my friends, and for myself to learn programming. You can use it get cute pictures of foxes, create memes, and some more stuff. You can host it yourself, or you can just invite it.
 
 <div id="badges", align="center">
   <a href="https://repl.it/github/tibor309/delta">
@@ -16,25 +15,22 @@ Suggestions are always welcome! You can try to set it up by yourself, or you can
 
 ## Setup
 ### Replit and Glitch
-Clone the repo, and then head over to the secrets tab and add fill it out using the `.env.example` file as template. You can change more stuff in the config file. And optionally you can enable the Flask server to make the bot run 24/7.
+Clone the repo, and then head over to the secrets tab and add fill it out using the `.env.example` file as template. Make sure the package manager won't install discord.py or other discord librarys! You can change more stuff in the config file.
 
 ### Source
-First, install all the required packages with this command. **Make sure to install [py-cord][py-cord] instead of discord.py!**
+First, install all the required packages with the command below. At least python 3.10 is required for the bot to run!
 ```
 pip3 install -r requirements.txt
 ```
 Then rename the `.env.example` file to `.env` and fill it out with your values. If you're ready, run the bot with the `python3 main.py` command!
 
 ### Docker
-You can run the bot with docker if you prefer that, but you might not be able to change some settings. Pull the image, create a container with the command below, and you're good to go! **The docker image might be not up to date with the source!**
+You can run the bot with docker if you prefer that, but you won't be able to change some settings. Pull the image, create a container with the command below, and you're good to go!
 ```
 docker run -d -it -e TOKEN=your-bot-token -e ERR_CHANNEL=channel-id tibor309/delta
 ```
 
 ## Config
-You can customize the bot in the `config.py` file. You can change the messages, icons, colors, and emojis used by the bot. Just remember to change out the emojis to your own if you're planning to make host it yourself instead! If you use replit or similar, uncomment the `keep_alive` lines to make the bot run 24/7!
+You can customize the bot in the `config.py` file. You can change the messages, icons, colors, and emojis used by the bot.
 
-## Usage
-This bot uses the new slash commands and permissions system. That means you can override and restrict the required permissions for commands however you like in discord's integrations menu.
-
-[py-cord]: https://github.com/Pycord-Development/pycord/
+> Icons were provided by [fontawesome](https://fontawesome.com/)! <3
