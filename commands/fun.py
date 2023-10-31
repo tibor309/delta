@@ -149,6 +149,16 @@ class fun_cmds(commands.Cog):
                 await ctx.followup.send(file=discord.File(imageData, f'pet.gif'))
 
 
+    # Send pickup lines
+    @discord.slash_command(name="pickuplines", description="Get some pickup lines")
+    async def pickuplines(self, ctx):
+        await ctx.defer()
+        api = "https://api.popcat.xyz/pickuplines"
+        response = requests.get(api, verify=True)
+        data = response.json()
+        await ctx.followup.send(data['pickupline'])
+
+
 
 def setup(bot: commands.Bot) -> None:
     bot.add_cog(fun_cmds(bot))
