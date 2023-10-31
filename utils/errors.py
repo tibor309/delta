@@ -28,19 +28,20 @@ class errors(commands.Cog):
             await ctx.respond(random.choice(err_msg), ephemeral=True)
 
         # Send error log to channel
-        try:
-            channel = await self.bot.fetch_channel(err_channel)
-            embed = discord.Embed(color=bot_color, title=f"An error occured", description=f"**Command:** {ctx.command.name}\n**Guild ID:** ||{ctx.guild.id}||\n```{error}```")
-    
-            if ctx.guild.icon != None:
-                embed.set_footer(text=f"{ctx.guild.name}", icon_url=ctx.guild.icon)
-            else:
-                embed.set_footer(text=f"{ctx.guild.name}")
+        if err_channel != None:
+            try:
+                channel = await self.bot.fetch_channel(err_channel)
+                embed = discord.Embed(color=bot_color, title=f"An error occured", description=f"**On command:** {ctx.command.name}\n**Guild ID:** ||{ctx.guild.id}||\n```{error}```")
+                embed.timestamp = discord.utils.utcnow()
+
+                if ctx.guild.icon != None:
+                    embed.set_footer(text=f"{ctx.guild.name}", icon_url=ctx.guild.icon)
+                else:
+                    embed.set_footer(text=f"{ctx.guild.name}")
                     
-            embed.timestamp = discord.utils.utcnow()
-            await channel.send(embed=embed)
-        except:
-            print("Failed to send error log")
+                await channel.send(embed=embed)
+            except:
+                print("Failed to send error message to channel. Check if you provided a correct channel id, and the bot has access to it!")
         raise error
                 
 
