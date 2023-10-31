@@ -61,8 +61,6 @@ try:
 except discord.HTTPException as err:
     if err.status == 429:
         print("The Discord servers denied the connection for making too many requests")
-        print("Get help from https://stackoverflow.com/questions/66724687/in-discord-py-how-to-solve-the-error-for-toomanyrequests")
-        #os.system("python3 utils/restarter.py") # This auto kills the repl (uncomment if you're using replit to host)
     else:
         raise err
 
