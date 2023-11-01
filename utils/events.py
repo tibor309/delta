@@ -36,7 +36,7 @@ class events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_application_command(self, ctx: commands.Context) -> None:
-        print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"@{ctx.author.name} used the {ctx.command.name} app command")
+        print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"@{ctx.author.name} (ID: {ctx.author.id}) used the {ctx.command.name} app command")
         
 
 
