@@ -1,5 +1,5 @@
 # `Δ` Delta
-Delta is a discord bot with fun and interesting features. This bot was made for my friends, and for myself to learn programming. You can use it get cute pictures of foxes, create memes, and some more stuff. You can host it yourself, or you can just invite it.
+Delta is a discord bot with fun and interesting features. This bot was made for my friends, and for myself to learn programming. You can use it to get cute pictures of foxes, create memes, and some more stuff. You can host it yourself, or you can just invite it.
 
 <div id="badges", align="center">
   <a href="https://repl.it/github/tibor309/delta">
