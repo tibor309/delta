@@ -19,11 +19,10 @@ class events(commands.Cog):
         while not sent:
             guild_channel = guild.text_channels[count]
             message_channel = self.bot.get_channel(guild_channel.id)
-
             message = (random.choice(bot_join_msg))
 
             try:
-                await message_channel.send(message)
+                await message_channel.send(message) # send random message after joining server
                 sent = True
             except discord.Forbidden:
                 count += 1
@@ -31,12 +30,8 @@ class events(commands.Cog):
 
     # Commands
     @commands.Cog.listener()
-    async def on_command(self, ctx: commands.Context) -> None:
-        print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"@{ctx.author.name} used the {ctx.command.name} command")
-
-    @commands.Cog.listener()
     async def on_application_command(self, ctx: commands.Context) -> None:
-        print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"@{ctx.author.name} (ID: {ctx.author.id}) used the {ctx.command.name} app command")
+        print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"User @{ctx.author.name} (ID:{ctx.author.id}) used the '{ctx.command.qualified_name}' command")
         
 
 
