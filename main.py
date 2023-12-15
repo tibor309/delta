@@ -16,12 +16,12 @@ for f in os.listdir("./commands"):
         else:
             print((discord.utils.utcnow().strftime(f"[{bot_time}]")),f"Loaded {f}")
 
-for f in os.listdir("./privilaged_commands"):
+for f in os.listdir("./context_menus"):
     if f.endswith(".py"):
         try:
-            bot.load_extension("privilaged_commands." + f[:-3]) # privilaged commands
+            bot.load_extension("context_menus." + f[:-3]) # commands
         except Exception as error:
-            print((discord.utils.utcnow().now().strftime(f"[{bot_time}]")), f"ERROR {f} could not be loaded: {error}")
+            print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"ERROR {f} could not be loaded: {error}")
         else:
             print((discord.utils.utcnow().strftime(f"[{bot_time}]")),f"Loaded {f}")
 
@@ -65,9 +65,9 @@ except discord.HTTPException as err:
         raise err
 
 # TODO:
-# remove some commands - i want to separate bot functions to others (mainly the info and moderator commands)
+# remove some commands - done
 # dadjoke command - done
-# color info
+# color info - skipped
 # encode/decode: dc message, image, stb.
 # add new icons - done
 # show a random element from the periodic table - done

@@ -42,16 +42,5 @@ class user_cmds(commands.Cog):
         
 
 
-    # User perms command
-    @discord.user_command(name="View permissions")
-    async def userperms(self, ctx: commands.Context, member: discord.Member) -> None:
-        await ctx.defer(ephemeral=True)
-        perms = ', '.join([str(perm[0]).upper() for perm in member.guild_permissions if perm[1]])
-        embed = discord.Embed(color=bot_color, description=f"**{member.name}'s permissions**\n```{perms}```")
-        embed.set_author(name="User permissions", icon_url=user_icon)
-        embed.set_footer(text=f"User ID: {member.id}")
-        await ctx.followup.send(embed=embed)
-
-
 def setup(bot: commands.Bot) -> None:
     bot.add_cog(user_cmds(bot))

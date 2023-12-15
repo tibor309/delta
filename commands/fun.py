@@ -159,6 +159,18 @@ class fun_cmds(commands.Cog):
         await ctx.followup.send(data['pickupline'])
 
 
+    # Lulcat
+    @discord.slash_command(name="lulcat", description="Translate your text into funny lul cat language")
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 2 sec
+    @discord.option("text", str, description="Write something", required=True)
+    async def lulcat(self, ctx: commands.Context, text: str) -> None:
+        await ctx.defer()
+        api = f"https://api.popcat.xyz/lulcat?text={text}"
+        response = requests.get(api, verify=True)
+        data = response.json()
+        await ctx.followup.send(data['text'])
+
+
 
 def setup(bot: commands.Bot) -> None:
     bot.add_cog(fun_cmds(bot))
