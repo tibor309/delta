@@ -32,6 +32,7 @@ code_emoji = "🧪" # emoji for source code link
 # Messages
 # One message is randomly selected to be sent
 no_perm = ["nope", "access denied", "You have missing permissions!", "https://i.imgur.com/cnwdsLo.png", "https://tenor.com/view/nuh-uh-beocord-no-lol-gif-24435520"]
+bot_no_perm = ["I have missing permissions", "i can't do that, i don't have perms", "I don't have perms for this", "i don't have perms"]
 bot_join_msg = ["Hi everyone!", "Hi", "hi everyone", "hi :3", "Hello everyone!", "https://tenor.com/view/hi-gif-25925938"]
 err_msg = ["something went wrong", "well that didn't work", "uh.. i got an error", "got an error", "something didn't work", "some wires in my brain got corroded, and caused an error"]
 img_fail = ["I couldn't get the image", "Failed to get the image :(", "i couldn't download the image", "Something went wrong while i was trying to download the image"]
