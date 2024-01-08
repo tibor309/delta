@@ -135,12 +135,18 @@ class fun_cmds(commands.Cog):
 
 
     # Give headpet
-    @discord.slash_command(name="pet", description="Give headpets to someone (might take a few seconds to generate the image)")
+    @discord.slash_command(name="petpet", description="Create a petpet gif (might take a few seconds)")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("member", discord.Member, description="Select someone", required=True)
     async def pet(self, ctx: commands.Context, member: discord.Member) -> None:
         await ctx.defer()
-        api = f"https://api.popcat.xyz/pet?image={member.avatar}"
+
+        if member.guild_avatar != None:
+            image = member.guild_avatar
+        else:
+            image = member.avatar
+
+        api = f"https://api.popcat.xyz/pet?image={image}"
 
         async with aiohttp.ClientSession() as trigSession:
             async with trigSession.get(api) as trigImg:
