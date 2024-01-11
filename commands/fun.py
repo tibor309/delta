@@ -177,6 +177,30 @@ class fun_cmds(commands.Cog):
         await ctx.followup.send(data['text'])
 
 
+    # Encode to binary
+    @discord.slash_command(name="encode", description="Encode text to binary")
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 2 sec
+    @discord.option("text", str, description="Write some text", required=True)
+    async def encode(self, ctx: commands.Context, text: str) -> None:
+        await ctx.defer(ephemeral=True)
+        api = f"https://api.popcat.xyz/encode?text={text}"
+        response = requests.get(api, verify=True)
+        data = response.json()
+        await ctx.followup.send(f"```{data['binary']}```")
+
+
+    # Decode from binary
+    @discord.slash_command(name="decode", description="Decode binary to text")
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 2 sec
+    @discord.option("binary", str, description="Write some binary numbers", required=True)
+    async def encode(self, ctx: commands.Context, binary: str) -> None:
+        await ctx.defer(ephemeral=True)
+        api = f"https://api.popcat.xyz/decode?binary={binary}"
+        response = requests.get(api, verify=True)
+        data = response.json()
+        await ctx.followup.send(f"```{data['text']}```")
+
+
 
 def setup(bot: commands.Bot) -> None:
     bot.add_cog(fun_cmds(bot))
