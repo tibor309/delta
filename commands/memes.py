@@ -177,6 +177,70 @@ class meme_cmds(commands.Cog):
                 await session.close()
 
 
+    # Gun
+    @discord.slash_command(name="gun", description="Add a gun to someone's avatar")
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
+    @discord.option("member", discord.Member, description="Select someone", required=True)
+    async def gun(self, ctx: commands.Context, member: discord.Member) -> None:
+        await ctx.defer()
+
+        if member.guild_avatar != None:
+            image = member.guild_avatar
+        else:
+            image = member.avatar
+
+        api = f"https://api.popcat.xyz/gun?image={image}"
+
+        async with aiohttp.ClientSession() as trigSession:
+            async with trigSession.get(api) as trigImg:
+                imageData = io.BytesIO(await trigImg.read())
+                await trigSession.close()
+                await ctx.followup.send(file=discord.File(imageData, f'gun.png'))
+
+
+    # Drip
+    @discord.slash_command(name="drip", description="Wear the drip jacket")
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
+    @discord.option("member", discord.Member, description="Select someone", required=True)
+    async def gun(self, ctx: commands.Context, member: discord.Member) -> None:
+        await ctx.defer()
+
+        if member.guild_avatar != None:
+            image = member.guild_avatar
+        else:
+            image = member.avatar
+
+        api = f"https://vacefron.nl/api/drip?user={image}"
+
+        async with aiohttp.ClientSession() as trigSession:
+            async with trigSession.get(api) as trigImg:
+                imageData = io.BytesIO(await trigImg.read())
+                await trigSession.close()
+                await ctx.followup.send(file=discord.File(imageData, f'drip.png'))
+
+
+    # Stonks
+    @discord.slash_command(name="stonks", description="Business is booming! or not")
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
+    @discord.option("member", discord.Member, description="Select someone", required=True)
+    @discord.option("not_stonks", bool, description="not yippie", requred=False)
+    async def gun(self, ctx: commands.Context, member: discord.Member, not_stonks: bool = False) -> None:
+        await ctx.defer()
+
+        if member.guild_avatar != None:
+            image = member.guild_avatar
+        else:
+            image = member.avatar
+
+        api = f"https://vacefron.nl/api/stonks?user={image}&notStonks={not_stonks}"
+
+        async with aiohttp.ClientSession() as trigSession:
+            async with trigSession.get(api) as trigImg:
+                imageData = io.BytesIO(await trigImg.read())
+                await trigSession.close()
+                await ctx.followup.send(file=discord.File(imageData, f'gun.png'))
+
+
 
 def setup(bot: commands.Bot) -> None:
     bot.add_cog(meme_cmds(bot))

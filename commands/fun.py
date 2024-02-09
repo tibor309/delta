@@ -135,12 +135,18 @@ class fun_cmds(commands.Cog):
 
 
     # Give headpet
-    @discord.slash_command(name="pet", description="Give headpets to someone (might take a few seconds to generate the image)")
+    @discord.slash_command(name="petpet", description="Create a petpet gif (might take a few seconds)")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("member", discord.Member, description="Select someone", required=True)
     async def pet(self, ctx: commands.Context, member: discord.Member) -> None:
         await ctx.defer()
-        api = f"https://api.popcat.xyz/pet?image={member.avatar}"
+
+        if member.guild_avatar != None:
+            image = member.guild_avatar
+        else:
+            image = member.avatar
+
+        api = f"https://api.popcat.xyz/pet?image={image}"
 
         async with aiohttp.ClientSession() as trigSession:
             async with trigSession.get(api) as trigImg:
@@ -169,6 +175,30 @@ class fun_cmds(commands.Cog):
         response = requests.get(api, verify=True)
         data = response.json()
         await ctx.followup.send(data['text'])
+
+
+    # Encode to binary
+    @discord.slash_command(name="encode", description="Encode text to binary")
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 2 sec
+    @discord.option("text", str, description="Write some text", required=True)
+    async def encode(self, ctx: commands.Context, text: str) -> None:
+        await ctx.defer(ephemeral=True)
+        api = f"https://api.popcat.xyz/encode?text={text}"
+        response = requests.get(api, verify=True)
+        data = response.json()
+        await ctx.followup.send(f"```{data['binary']}```")
+
+
+    # Decode from binary
+    @discord.slash_command(name="decode", description="Decode binary to text")
+    @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 2 sec
+    @discord.option("binary", str, description="Write some binary numbers", required=True)
+    async def encode(self, ctx: commands.Context, binary: str) -> None:
+        await ctx.defer(ephemeral=True)
+        api = f"https://api.popcat.xyz/decode?binary={binary}"
+        response = requests.get(api, verify=True)
+        data = response.json()
+        await ctx.followup.send(f"```{data['text']}```")
 
 
 
