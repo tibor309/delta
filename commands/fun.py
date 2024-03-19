@@ -13,14 +13,13 @@ from config import no_emoji
 
 
 class fun_cmds(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
-
 
 
     # Facts command
     @discord.slash_command(name="fact", description="He do speaking facts doe")
-    async def facts(self, ctx) -> None:
+    async def fact(self, ctx):
         await ctx.defer()
         api = "https://api.popcat.xyz/fact"
         response = requests.get(api, verify=True)
@@ -30,7 +29,7 @@ class fun_cmds(commands.Cog):
 
     # Tell a joke
     @discord.slash_command(name="joke", description="for the funny")
-    async def joke(self, ctx) -> None:
+    async def joke(self, ctx):
         await ctx.defer()
         api = "https://api.popcat.xyz/joke"
         response = requests.get(api, verify=True)
@@ -40,7 +39,7 @@ class fun_cmds(commands.Cog):
 
     # Get a random dadjoke
     @discord.slash_command(name="dadjoke", description="Fetch a random dadjoke")
-    async def facts(self, ctx) -> None:
+    async def dadjoke(self, ctx):
         await ctx.defer()
         api = "https://icanhazdadjoke.com/"
         response = requests.get(api, headers={"Accept": "application/json"}, verify=True)
@@ -50,7 +49,7 @@ class fun_cmds(commands.Cog):
 
     # Flip command
     @discord.slash_command(name="flipcoin", description="Flip a coin")
-    async def flip(self, ctx) -> None:
+    async def flipcoin(self, ctx):
         coin = ["tails", "heads"]
         await ctx.respond(f'🪙 You flipped, {random.choice(coin)}!', ephemeral=False)
 
@@ -76,7 +75,7 @@ class fun_cmds(commands.Cog):
     # Get a random color
     @discord.slash_command(name="randomcolor", description="Get a random color")
     @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
-    async def color(self, ctx) -> None:
+    async def randomcolor(self, ctx):
         await ctx.defer()
         api = "https://api.popcat.xyz/randomcolor"
         response = requests.get(api, verify=True)
@@ -98,7 +97,7 @@ class fun_cmds(commands.Cog):
 
     # RTD command
     @discord.slash_command(name="rtd", description="Roll the dice")
-    async def rtd(self, ctx) -> None:
+    async def rtd(self, ctx):
         await ctx.respond(f'🎲 You got, {random.randint(1,6)}!', ephemeral=False)
 
 
@@ -118,7 +117,7 @@ class fun_cmds(commands.Cog):
     # Periodic table command
     @discord.slash_command(name="randomelement", description="Show a random element from the periodic table")
     @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
-    async def randomelement(self, ctx) -> None:
+    async def randomelement(self, ctx):
         await ctx.defer()
         element = random.randint(1,118)
         api = f"https://api.popcat.xyz/periodic-table?element={element}"
@@ -142,7 +141,7 @@ class fun_cmds(commands.Cog):
     @discord.slash_command(name="petpet", description="Create a petpet gif (might take a few seconds)")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("member", discord.Member, description="Select someone", required=True)
-    async def pet(self, ctx, member: discord.Member) -> None:
+    async def petpet(self, ctx, member: discord.Member):
         await ctx.defer()
 
         if member.guild_avatar != None:
@@ -173,7 +172,7 @@ class fun_cmds(commands.Cog):
     @discord.slash_command(name="lulcat", description="Translate your text into funny lul cat language")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 2 sec
     @discord.option("text", str, description="Write something", required=True)
-    async def lulcat(self, ctx, text: str) -> None:
+    async def lulcat(self, ctx, text: str):
         await ctx.defer()
         api = f"https://api.popcat.xyz/lulcat?text={text}"
         response = requests.get(api, verify=True)
@@ -185,7 +184,7 @@ class fun_cmds(commands.Cog):
     @discord.slash_command(name="encode", description="Encode text to binary")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 2 sec
     @discord.option("text", str, description="Write some text", required=True)
-    async def encode(self, ctx, text: str) -> None:
+    async def encode(self, ctx, text: str):
         await ctx.defer(ephemeral=True)
         api = f"https://api.popcat.xyz/encode?text={text}"
         response = requests.get(api, verify=True)
@@ -197,7 +196,7 @@ class fun_cmds(commands.Cog):
     @discord.slash_command(name="decode", description="Decode binary to text")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 2 sec
     @discord.option("binary", str, description="Write some binary numbers", required=True)
-    async def encode(self, ctx, binary: str) -> None:
+    async def decode(self, ctx, binary: str):
         await ctx.defer(ephemeral=True)
         api = f"https://api.popcat.xyz/decode?binary={binary}"
         response = requests.get(api, verify=True)
@@ -206,5 +205,6 @@ class fun_cmds(commands.Cog):
 
 
 
-def setup(bot: commands.Bot) -> None:
+def setup(bot: commands.Bot):
     bot.add_cog(fun_cmds(bot))
+    

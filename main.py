@@ -1,5 +1,7 @@
-import discord, os
+import os
+import discord
 from discord.ext import commands
+
 import utils.mobile_status # set mobile status
 from config import bot_token, bot_time
 

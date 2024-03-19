@@ -10,7 +10,7 @@ from config import img_fail
 
 
 class meme_cmds(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     
@@ -21,7 +21,7 @@ class meme_cmds(commands.Cog):
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("template", str, description="Choose a template", choices=["oogway", "pikachu", "biden", "facts", "sad cat", "iphone alert", "caution", "sad cat", "change my mind", "lisa", "worthless", "burn"], required=True)
     @discord.option("text", str, description="Meme text", required=True)
-    async def memegen_onepanel(self, ctx, template: str, text: str) -> None:
+    async def memegen_onepanel(self, ctx, template: str, text: str):
         await ctx.defer()
 
         if template == "oogway":
@@ -71,7 +71,7 @@ class meme_cmds(commands.Cog):
     @discord.option("template", str, description="Select a meme template", choices=["drake", "pooh", "happysad", "npc"], required=True)
     @discord.option("text1", str, description="Top panel text", required=True)
     @discord.option("text2", str, description="Bottom panel text", required=True)
-    async def memegen_twopanel(self, ctx, template: str, text1: str, text2:str) -> None:
+    async def memegen_twopanel(self, ctx, template: str, text1: str, text2:str):
         await ctx.defer()
 
         if template == "drake":
@@ -102,7 +102,7 @@ class meme_cmds(commands.Cog):
     # Meme command
     @discord.slash_command(name="meme", description="Get a random meme")
     @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
-    async def meme(self, ctx) -> None:
+    async def meme(self, ctx):
         api = "https://api.popcat.xyz/meme"
         await ctx.defer()
         response = requests.get(api, verify=True)
@@ -116,7 +116,7 @@ class meme_cmds(commands.Cog):
     @discord.slash_command(name="nokia", description="Trap someone inside a nokia")
     @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
     @discord.option("member", discord.Member, description="Select a member", required=True)
-    async def nokia(self, ctx, member: discord.Member) -> None:
+    async def nokia(self, ctx, member: discord.Member):
         await ctx.defer()
         avatar = member.avatar
         url = f"https://api.popcat.xyz/nokia?image={avatar}"
@@ -139,7 +139,7 @@ class meme_cmds(commands.Cog):
     @discord.slash_command(name="jail", description="tax time :)")
     @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
     @discord.option("member", discord.Member, description="Select a member", required=True)
-    async def jail(self, ctx, member: discord.Member) -> None:
+    async def jail(self, ctx, member: discord.Member):
         await ctx.defer()
         avatar = member.avatar
         url = f"https://api.popcat.xyz/jail?image={avatar}"
@@ -162,7 +162,7 @@ class meme_cmds(commands.Cog):
     @discord.slash_command(name="clown", description="yo we got a funny guy here!")
     @commands.cooldown(1, 2, commands.BucketType.user) # Cooldown for 2 sec
     @discord.option("member", discord.Member, description="Select a member", required=True)
-    async def clown(self, ctx, member: discord.Member) -> None:
+    async def clown(self, ctx, member: discord.Member):
         await ctx.defer()
         avatar = member.avatar
         url = f"https://api.popcat.xyz/clown?image={avatar}"
@@ -185,7 +185,7 @@ class meme_cmds(commands.Cog):
     @discord.slash_command(name="gun", description="Add a gun to someone's avatar")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("member", discord.Member, description="Select someone", required=True)
-    async def gun(self, ctx, member: discord.Member) -> None:
+    async def gun(self, ctx, member: discord.Member):
         await ctx.defer()
 
         if member.guild_avatar != None:
@@ -206,7 +206,7 @@ class meme_cmds(commands.Cog):
     @discord.slash_command(name="drip", description="Wear the drip jacket")
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("member", discord.Member, description="Select someone", required=True)
-    async def gun(self, ctx, member: discord.Member) -> None:
+    async def drip(self, ctx, member: discord.Member):
         await ctx.defer()
 
         if member.guild_avatar != None:
@@ -228,7 +228,7 @@ class meme_cmds(commands.Cog):
     @commands.cooldown(1, 3, commands.BucketType.user) # Cooldown for 3 sec
     @discord.option("member", discord.Member, description="Select someone", required=True)
     @discord.option("not_stonks", bool, description="not yippie", requred=False)
-    async def gun(self, ctx, member: discord.Member, not_stonks: bool = False) -> None:
+    async def stonks(self, ctx, member: discord.Member, not_stonks: bool = False):
         await ctx.defer()
 
         if member.guild_avatar != None:
@@ -246,5 +246,6 @@ class meme_cmds(commands.Cog):
 
 
 
-def setup(bot: commands.Bot) -> None:
+def setup(bot: commands.Bot):
     bot.add_cog(meme_cmds(bot))
+    

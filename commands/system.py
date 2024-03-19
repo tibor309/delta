@@ -10,13 +10,13 @@ from config import code_link
 start_time = time.time()
 
 class system_commands(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
 
     # Neofetch command
     @discord.slash_command(name="neofetch", description="Show system info")
-    async def neofetch(self, ctx) -> None:
+    async def neofetch(self, ctx):
         await ctx.defer()
         
         current_time = time.time()
@@ -55,5 +55,6 @@ class system_commands(commands.Cog):
         await ctx.followup.send(neofetch, view=view, ephemeral=True)
 
 
-def setup(bot: commands.Bot) -> None:
+def setup(bot: commands.Bot):
     bot.add_cog(system_commands(bot))
+    

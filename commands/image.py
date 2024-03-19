@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 
 class img_cmds(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
 
@@ -36,5 +36,6 @@ class img_cmds(commands.Cog):
 
 
 
-def setup(bot: commands.Bot) -> None:
+def setup(bot: commands.Bot):
     bot.add_cog(img_cmds(bot))
+    

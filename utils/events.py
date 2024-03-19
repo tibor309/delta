@@ -7,13 +7,13 @@ from config import bot_time
 
 
 class events(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
 
     # Guild join
     @commands.Cog.listener()
-    async def on_guild_join(self, guild: discord.Guild) -> None:
+    async def on_guild_join(self, guild: discord.Guild):
         print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"Joined {guild.name} guild (ID: {guild.id})")
         sent = False
         count = 0
@@ -32,10 +32,11 @@ class events(commands.Cog):
 
     # Commands
     @commands.Cog.listener()
-    async def on_application_command(self, ctx) -> None:
+    async def on_application_command(self, ctx):
         print((discord.utils.utcnow().strftime(f"[{bot_time}]")), f"User @{ctx.author.name} (ID:{ctx.author.id}) used the '{ctx.command.qualified_name}' command")
         
 
 
-def setup(bot: commands.Bot) -> None:
+def setup(bot: commands.Bot):
     bot.add_cog(events(bot))
+    
