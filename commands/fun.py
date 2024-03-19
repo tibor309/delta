@@ -22,7 +22,7 @@ class fun_cmds(commands.Cog):
     async def fact(self, ctx):
         await ctx.defer()
         api = "https://api.popcat.xyz/fact"
-        response = requests.get(api, verify=True)
+        response = requests.get(api, verify=True, timeout=15)
         data = response.json()
         await ctx.followup.send(data['fact'])
 
@@ -32,7 +32,7 @@ class fun_cmds(commands.Cog):
     async def joke(self, ctx):
         await ctx.defer()
         api = "https://api.popcat.xyz/joke"
-        response = requests.get(api, verify=True)
+        response = requests.get(api, verify=True, timeout=15)
         data = response.json()
         await ctx.followup.send(data['joke'])
 
@@ -42,7 +42,7 @@ class fun_cmds(commands.Cog):
     async def dadjoke(self, ctx):
         await ctx.defer()
         api = "https://icanhazdadjoke.com/"
-        response = requests.get(api, headers={"Accept": "application/json"}, verify=True)
+        response = requests.get(api, headers={"Accept": "application/json"}, verify=True, timeout=15)
         data = response.json()
         await ctx.followup.send(data['joke'])
 
@@ -78,7 +78,7 @@ class fun_cmds(commands.Cog):
     async def randomcolor(self, ctx):
         await ctx.defer()
         api = "https://api.popcat.xyz/randomcolor"
-        response = requests.get(api, verify=True)
+        response = requests.get(api, verify=True, timeout=15)
         data = response.json()
         hex = data['hex']
         name = data['name']
@@ -108,7 +108,7 @@ class fun_cmds(commands.Cog):
     async def ball(self, ctx, question:str):
         api = "https://api.popcat.xyz/8ball"
         await ctx.defer()
-        response = requests.get(api, verify=True)
+        response = requests.get(api, verify=True, timeout=15)
         data = response.json()
         embed = discord.Embed(color=bot_color, description=f"🎱 " + data['answer'])
         await ctx.followup.send(f"> {question}", embed=embed)
@@ -121,7 +121,7 @@ class fun_cmds(commands.Cog):
         await ctx.defer()
         element = random.randint(1,118)
         api = f"https://api.popcat.xyz/periodic-table?element={element}"
-        response = requests.get(api, verify=True)
+        response = requests.get(api, verify=True, timeout=15)
         data = response.json()
 
         embed = discord.Embed(color=bot_color, title=data['name'], description=data['summary'])
@@ -156,7 +156,7 @@ class fun_cmds(commands.Cog):
     async def pickuplines(self, ctx):
         await ctx.defer()
         api = "https://api.popcat.xyz/pickuplines"
-        response = requests.get(api, verify=True)
+        response = requests.get(api, verify=True, timeout=15)
         data = response.json()
         await ctx.followup.send(data['pickupline'])
 
@@ -168,7 +168,7 @@ class fun_cmds(commands.Cog):
     async def lulcat(self, ctx, text: str):
         await ctx.defer()
         api = f"https://api.popcat.xyz/lulcat?text={text}"
-        response = requests.get(api, verify=True)
+        response = requests.get(api, verify=True, timeout=15)
         data = response.json()
         await ctx.followup.send(data['text'])
 
@@ -180,7 +180,7 @@ class fun_cmds(commands.Cog):
     async def encode(self, ctx, text: str):
         await ctx.defer(ephemeral=True)
         api = f"https://api.popcat.xyz/encode?text={text}"
-        response = requests.get(api, verify=True)
+        response = requests.get(api, verify=True, timeout=15)
         data = response.json()
         await ctx.followup.send(f"```{data['binary']}```")
 
@@ -192,7 +192,7 @@ class fun_cmds(commands.Cog):
     async def decode(self, ctx, binary: str):
         await ctx.defer(ephemeral=True)
         api = f"https://api.popcat.xyz/decode?binary={binary}"
-        response = requests.get(api, verify=True)
+        response = requests.get(api, verify=True, timeout=15)
         data = response.json()
         await ctx.followup.send(f"```{data['text']}```")
 
