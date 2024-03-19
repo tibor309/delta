@@ -12,7 +12,7 @@ class user_cmds(commands.Cog):
 
     # View user avatars
     @discord.user_command(name="View profile picture")
-    async def useravatar(self, ctx: commands.Context, member: discord.Member) -> None:
+    async def useravatar(self, ctx, member: discord.Member) -> None:
         embed = discord.Embed(color=bot_color)
         embed.set_author(name=f"{member.name}'s profile", icon_url=user_icon)
         
@@ -28,7 +28,7 @@ class user_cmds(commands.Cog):
 
     # View user banner
     @discord.user_command(name="View banner")
-    async def userbanner(self, ctx: commands.Context, member: discord.Member) -> None:
+    async def userbanner(self, ctx, member: discord.Member) -> None:
         embed = discord.Embed(color=bot_color)
         embed.set_author(name=f"{member.name}'s profile", icon_url=user_icon)
         embed.set_thumbnail(url=member.avatar)
