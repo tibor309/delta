@@ -230,13 +230,7 @@ class meme_cmds(commands.Cog):
     @discord.option("not_stonks", bool, description="not yippie", requred=False)
     async def stonks(self, ctx, member: discord.Member, not_stonks: bool = False):
         await ctx.defer()
-
-        if member.guild_avatar != None:
-            image = member.guild_avatar
-        else:
-            image = member.avatar
-
-        api = f"https://vacefron.nl/api/stonks?user={image}&notStonks={not_stonks}"
+        api = f"https://vacefron.nl/api/stonks?user={member.display_avatar}&notStonks={not_stonks}"
 
         async with aiohttp.ClientSession() as trigSession:
             async with trigSession.get(api) as trigImg:

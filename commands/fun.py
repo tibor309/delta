@@ -143,14 +143,7 @@ class fun_cmds(commands.Cog):
     @discord.option("member", discord.Member, description="Select someone", required=True)
     async def petpet(self, ctx, member: discord.Member):
         await ctx.defer()
-
-        if member.guild_avatar != None:
-            image = member.guild_avatar
-        else:
-            image = member.avatar
-
-        api = f"https://api.popcat.xyz/pet?image={image}"
-
+        api = f"https://api.popcat.xyz/pet?image={member.display_avatar}"
         async with aiohttp.ClientSession() as trigSession:
             async with trigSession.get(api) as trigImg:
                 imageData = io.BytesIO(await trigImg.read())
