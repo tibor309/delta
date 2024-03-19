@@ -1,12 +1,16 @@
-import discord
 import random
+import io
+from asyncio import sleep
 import requests
 import aiohttp
-import io
+import discord
 from discord.ext import commands
-from config import bot_color, bot_color2
-from config import yes_emoji, no_emoji
-from asyncio import sleep
+
+from config import bot_color
+from config import bot_color2
+from config import yes_emoji
+from config import no_emoji
+
 
 class fun_cmds(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:

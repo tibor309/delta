@@ -1,9 +1,13 @@
-import discord
-import aiohttp, io
-from discord.ext import commands
 import random
+import io
+import aiohttp
 import requests
-from config import bot_color2, img_fail
+import discord
+from discord.ext import commands
+
+from config import bot_color2
+from config import img_fail
+
 
 class meme_cmds(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:

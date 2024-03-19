@@ -1,8 +1,10 @@
+import time
 import discord
 from discord.ext import commands
-from config import invite_emoji, code_emoji
+
+from config import invite_emoji
+from config import code_emoji
 from config import code_link
-import time
 
 
 start_time = time.time()

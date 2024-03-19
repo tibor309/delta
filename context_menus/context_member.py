@@ -1,10 +1,11 @@
 import discord
 from discord.ext import commands
-from config import bot_color, user_icon
+
+from config import bot_color
+from config import user_icon
+
 
 # These commands are in the user popout menu
-
-
 class user_cmds(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot

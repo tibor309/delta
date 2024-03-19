@@ -1,11 +1,11 @@
+import random
 import discord
 from discord.ext import commands
-import requests
+
 from config import err_msg
-import random
+
 
 # These commands are in the message popout menu
-
 class message_cmds(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot

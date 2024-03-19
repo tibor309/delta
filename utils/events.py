@@ -1,12 +1,14 @@
-import discord
 import random
+import discord
 from discord.ext import commands
-from config import bot_join_msg, bot_time
+
+from config import bot_join_msg
+from config import bot_time
+
 
 class events(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
-
 
 
     # Guild join
