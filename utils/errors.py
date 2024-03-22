@@ -1,12 +1,18 @@
-import discord
 import random
+import discord
 from discord.ext import commands
-from config import bot_no_perm, bot_color, no_perm, on_cooldown, err_msg, err_channel
+
+from config import bot_no_perm
+from config import bot_color
+from config import no_perm
+from config import on_cooldown
+from config import err_msg
+from config import err_channel
+
 
 class errors(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
 
 
     # Command error
@@ -48,3 +54,4 @@ class errors(commands.Cog):
 
 def setup(bot) -> None:
     bot.add_cog(errors(bot))
+    

@@ -1,20 +1,20 @@
+import random
 import discord
 from discord.ext import commands
-import requests
+
 from config import err_msg
-import random
+
 
 # These commands are in the message popout menu
-
 class message_cmds(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
 
     # React with the funny emoji
     @discord.message_command(name="React with 🤓")
     @discord.commands.default_permissions(administrator=True)
-    async def funny_react(self, ctx: commands.Context, message: discord.Message) -> None:
+    async def funny_react(self, ctx, message: discord.Message):
         emoji = "🤓"
         
         try: 
@@ -25,5 +25,6 @@ class message_cmds(commands.Cog):
 
 
 
-def setup(bot: commands.Bot) -> None:
+def setup(bot: commands.Bot):
     bot.add_cog(message_cmds(bot))
+    
